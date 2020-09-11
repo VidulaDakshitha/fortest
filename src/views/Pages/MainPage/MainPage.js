@@ -34,7 +34,7 @@ class MainPage extends Component{
 <div className="divstyle col-lg-4">
 <div className="">
 
-
+{/* add comment */}
 
 <div>
 
