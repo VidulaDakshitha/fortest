@@ -430,10 +430,16 @@ Swal.fire({
 })
             }
 
-            deleteItems=()=>{
+            deleteItems=(id)=>{
 
-              this.setState({
-                Items:[]
+              JSON.parse(localStorage.getItem('item')).map((val,index)=>{
+
+               if (val.itemID===id){
+                this.setState({
+                  Items:JSON.parse(localStorage.getItem('item'))
+                })
+               }
+
               })
 
             }
@@ -694,8 +700,8 @@ Swal.fire({
           }
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
         />
-        <IconButton edge="end" aria-label="comments">
-                <HighlightOff className={classes.successIcon} onClick={console.log()}/>
+        <IconButton edge="end" aria-label="comments" onClick={()=>this.deleteItems(tile.itemID)}>
+                <HighlightOff className={classes.successIcon} />
               </IconButton>
       </ListItem>
       ))}
