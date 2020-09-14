@@ -6,7 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import DotLoader from "react-spinners/DotLoader";
 import "./App.scss";
 import Loader from "react-spinners/CircleLoader";
-
+import "./style.css";
 const override = css`
   display: block;
   margin: 0 auto;
@@ -28,6 +28,7 @@ const Register = React.lazy(() => import("./views/Pages/Register"));
 const Page404 = React.lazy(() => import("./views/Pages/Page404"));
 const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
+const Menupage=React.lazy(() => import("./views/Menu/Card"));
 
 const PrivateRouteUser = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -83,6 +84,13 @@ class App extends Component {
               name="Register Page"
               render={(props) => <Register {...props} />}
             />
+
+            <Route
+              path="/menu"
+              name="Menu Page"
+              render={(props) => <Menupage {...props} />}
+            />
+
             <Route
               exact
               path="/404"
@@ -95,6 +103,8 @@ class App extends Component {
               name="Page 500"
               render={(props) => <Page500 {...props} />}
             />
+           
+
             <Route
               path="/"
               name="Home"

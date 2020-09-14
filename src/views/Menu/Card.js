@@ -92,6 +92,7 @@
 
 
 import React from 'react';
+
 import "./Style.scss";
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -102,13 +103,30 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 //import tileData from './tileData';
-import logo from '../../assets/img/brand/logo2.png'
+import logo1 from '../../assets/img/brand/logo2.png'
 import Menu from "./Menu";
 import * as BaseService from "../../BaseService.js";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Rating from '@material-ui/lab/Rating';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Swal from 'sweetalert2';
+import logo from "../../assets/logo.png";
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
+
+import HighlightOff from '@material-ui/icons/HighlightOff';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+
+
+import "./Style.scss";
+
 
 import {
   
@@ -134,13 +152,30 @@ const useStyles =theme => ({
     transform: 'translateZ(0)',
   },
   title: {
-    color: theme.palette.primary.light,
+    color: "white",
   },
   titleBar: {
     background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 90%, rgba(0,0,0,0) 100%)',
+  },
+
+  inline: {
+    display: 'inline',
+    color:"green"
+  },
+  cardstyle:{
+    maxWidth: 345,
+    alignItems: 'center'
+  },
+  root1: {
+    width: '100%',
+ 
+    backgroundColor: theme.palette.background.paper,
   },
 });
+
+
+
 
 
 
@@ -149,6 +184,7 @@ class Cardimg extends React.Component {
   constructor(props){
              super(props);
              this.state={
+              matches: window.matchMedia("(min-width: 768px)").matches,
                categories:[],
                Items:[],
                initialCatID:"",
@@ -161,12 +197,17 @@ class Cardimg extends React.Component {
                satisfactionrating:"",
                hygeinerating:"",
                foodrating:"",
-               name:""
+               name:"",
+               large2:false,
+               recepies:JSON.parse(localStorage.getItem('item')),
              }
             
             }
 
             componentDidMount=async()=>{
+
+              const handler = e => this.setState({matches: e.matches});
+      window.matchMedia("(min-width: 768px)").addListener(handler);
 
               await this.getItems(1);
               // if(localStorage.getItem("sub_domain")!==null)
@@ -288,6 +329,13 @@ this.onCatergoryClick();
             }
 
 
+            toggleLarge2=()=> {
+              this.setState({
+                large2: !this.state.large2,
+              });
+            }
+
+
 
 
             onCatergoryClick=()=>{
@@ -382,18 +430,297 @@ Swal.fire({
 })
             }
 
+            deleteItems=()=>{
+
+              this.setState({
+                Items:[]
+              })
+
+            }
+
 
 
 
             render() { 
+
+            
               const {classes} = this.props;
               return(
 <div>
 
+{this.state.matches && (
+
+
+<div>
+  <div style={{position:"fixed",color:"white"}}>
+
+  </div>
+<div className="divstyle col-lg-5">
+  <div >
+
+
+
+<div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green"}}/></div>
+<div className="justify-content-center text-center">
+              {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
+              <img src={logo1} width="120"></img>
+              <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>The Kingsbury Hotel</b></p>
+              </div>
+              
+
+
+
+
+
+
+
+
+<div >
+  <GridList className={classes.gridList} cols={2.5} > 
+
+    {this.state.categories.map((tile) => (
+      <GridListTile key={tile.catID}
+      onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
+      style={{borderColor:"red",borderWidth:"medium"}}
+     
+      >
+        <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
+        
+        <GridListTileBar
+        
+          title={tile.catName}
+          classes={{
+            root: classes.titleBar,
+            title: classes.title,
+          }}
+          actionIcon={
+            <IconButton aria-label={`star ${tile.catName}`}
+            >
+              <StarBorderIcon className={classes.title} />
+            </IconButton>
+          }
+        
+        />
+      </GridListTile>
+      
+    ))}
+    
+  </GridList>
+</div>
+
+</div>
+
+
+<div className="justify-content-center" style={{paddingTop:"20px"}}>
+ 
+
+{this.state.filteredItems.length===0?<p>No items available</p>:
+<Menu item={this.state.filteredItems}/>}
+
+</div>
+
+
+<Modal
+            isOpen={this.state.large}
+            toggle={this.toggleLarge1}
+            className={"modal-lg " + this.props.className}
+          >
+            <ModalHeader><KeyboardBackspaceIcon onClick={this.toggleLarge1}/>    Customer Feedback</ModalHeader>
+
+            <ModalBody>
+
+              <form onSubmit={this.onSubmitHandler}>
+              <FormGroup>
+              <p>Is this first time at our restaurant?</p>
+              <Button color="success" style={{borderColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:"yellow",color2:"green"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"green",color2:"yellow"});}}>No</Button>{' '}
+              </FormGroup>
+
+
+              <FormGroup>
+              <p>What is your overall satisfaction with our restaurant?</p>
+              <Rating
+        name="satisfactionrating"
+        value={this.state.satisfactionrating}
+        precision={1}
+        onChange={(event, newValue1) => {
+          //this.addrating(newValue);
+          console.log(newValue1)
+          this.setState({
+            satisfactionrating:newValue1
+          })
+        }}
+        onChangeActive={(event, newHover) => {
+          //setHover(newHover);
+        }}
+
+        size="large"
+      />
+              </FormGroup>
+
+
+
+
+              <FormGroup>
+              <p>How would you rate the hygeine?</p>
+              <Rating
+        name="hygeinerating"
+        value={this.state.hygeinerating}
+        precision={1}
+        onChange={(event, newValue2) => {
+          this.setState({
+            hygeinerating:newValue2
+          })
+        }}
+        onChangeActive={(event, newHover) => {
+          //setHover(newHover);
+        }}
+
+        size="large"
+      />
+              </FormGroup>
+
+
+              <FormGroup>
+              <p>How would you rate the taste of our food?</p>
+              <Rating
+        name="foodrating"
+        value={this.state.foodrating}
+        precision={1}
+        onChange={(event, newValue3) => {
+          this.setState({
+            foodrating:newValue3
+          },()=>console.log(this.state.foodrating))
+        }}
+        onChangeActive={(event, newHover) => {
+          //setHover(newHover);
+        }}
+
+        size="large"
+      />
+              </FormGroup>
+
+
+              <FormGroup>
+              <p>Would you come back to eat with us again?</p>
+              <Button color="success" style={{borderColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"yellow",color4:"green"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"yellow",color3:"green"});}}>No</Button>{' '}
+              </FormGroup>
+
+              <FormGroup>
+        <Label for="exampleText">Is there anything you want to tell us?</Label>
+        <Input type="textarea" name="feedback" id="exampleText" onChange={this.changeHandler} value={this.state.feedback} />
+      </FormGroup>
+
+      <FormGroup>
+        <Label for="exampleEmail">Name</Label>
+        <Input type="text" name="name" id="name" placeholder="Enter your name" value={this.state.name} onChange={this.changeHandler} />
+      </FormGroup>
+
+      <FormGroup>
+        <Label for="exampleEmail">Email</Label>
+        <Input type="email" name="email" id="exampleEmail" placeholder="Enter email" value={this.state.email} onChange={this.changeHandler} />
+      </FormGroup>
+
+      <Button color="success">Submit Feedback</Button>{' '}
+      </form>
+            </ModalBody>
+             
+             </Modal>
+
+
+<div  >
+<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",left:"500px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+  <Badge  badgeContent={Object.keys(JSON.parse(localStorage.getItem('item'))).length} color="secondary">
+    <ShoppingCart fontSize="large" />
+  </Badge >
+</IconButton>
+             {/* <ShoppingCart  style={{bottom:"10",right:"10",position:"absolute",zIndex:"1"}}/> */}
+         
+
+</div>
+
+
+</div>
+
+
+
+
+<div >
+
+<div className="justify-content-right" >
+  <div className="text-right " style={{paddingRight:"220px",paddingTop:"80px"}}>
+<img src={logo} width="32%" height="20%" alt=""></img>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<Modal
+            isOpen={this.state.large2}
+            toggle={this.toggleLarge2}
+            className={"modal-lg " + this.props.className}
+          >
+            <ModalHeader><KeyboardBackspaceIcon onClick={this.toggleLarge2}/>    Cart Items</ModalHeader>
+
+            <ModalBody>
+
+            <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
+      {JSON.parse(localStorage.getItem('item')).map(tile=>(
+
+     
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src={""} />
+        </ListItemAvatar>
+        <ListItemText
+           primary={tile.itemName}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                LKR {tile.price} X {tile.NoOfitems} = LKR{tile.price*tile.NoOfitems}
+              </Typography>
+              
+            </React.Fragment>
+          }
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
+        />
+        <IconButton edge="end" aria-label="comments">
+                <HighlightOff className={classes.successIcon} onClick={console.log()}/>
+              </IconButton>
+      </ListItem>
+      ))}
+
+    
+<Divider variant="inset" component="li" />
+    </List>
+            </ModalBody>
+             
+             </Modal>
+
+
+</div>
+
+
+)}
+{!this.state.matches && (
+
+
+<div>
 
 <div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1}/></div>
 <div className="justify-content-center text-center">
-              <button className="dropbtn"  style={{backgroundImage:`url(${logo})`,height:100,width:100}}></button>
+              {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
+              <img src={logo1} width="120"></img>
               <p>The Kingsbury Hotel</p>
               </div>
               
@@ -514,11 +841,12 @@ Swal.fire({
 
 
 <div >
-  <GridList className={classes.gridList} cols={2.5}>
+  <GridList className={classes.gridList} cols={2.5} > 
 
     {this.state.categories.map((tile) => (
       <GridListTile key={tile.catID}
       onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
+      className="shadowstyle"
       
       >
         <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
@@ -545,7 +873,10 @@ Swal.fire({
   </GridList>
 </div>
 
-<div className="d-flex justify-content-center">
+
+
+
+<div className="justify-content-center" style={{paddingTop:"30px"}}>
 
 {this.state.filteredItems.length===0?<p>No items available</p>:
 <Menu item={this.state.filteredItems}/>}
@@ -553,6 +884,33 @@ Swal.fire({
 </div>
 
 
+
+
+
+
+<div>
+
+</div>
+
+
+
+
+<div  >
+<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",right:"5px",position:"fixed",zIndex:"3",backgroundColor:"white"}}>
+  <Badge  badgeContent={Object.keys(JSON.parse(localStorage.getItem('item'))).length} color="secondary">
+    <ShoppingCart fontSize="large" />
+  </Badge >
+</IconButton>
+             {/* <ShoppingCart  style={{bottom:"10",right:"10",position:"absolute",zIndex:"1"}}/> */}
+         
+
+</div>
+
+</div>
+
+
+
+)}
 
           
        

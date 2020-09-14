@@ -8,7 +8,7 @@ import "alertifyjs/build/css/alertify.css";
 import "alertifyjs/build/css/themes/default.min.css";
 import * as BaseService from "../../../BaseService.js";
 import { GoogleComponent } from 'react-google-location' 
-
+import logo from "../../../assets/logo.png";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -22,6 +22,7 @@ class Register extends Component {
   constructor(props){
     super(props);
     this.state={
+      matches: window.matchMedia("(min-width: 768px)").matches,
       businesstype:"",
       businesscatergory:"",
       businessname:"",
@@ -44,6 +45,9 @@ class Register extends Component {
 
 
   componentDidMount=()=>{
+
+    const handler = e => this.setState({matches: e.matches});
+      window.matchMedia("(min-width: 768px)").addListener(handler);
     
      
     
@@ -169,12 +173,13 @@ BaseService.PostService(url, regUsers)
     return (
 
       
-      <div className=" flex-row align-items-center">
-      
-       
-        <Container>
+      <div className=" flex-row align-items-center" >
+       {this.state.matches && (
+    <div>
+       <div className="divstyle col-lg-5">
+        <Container style={{position:"relative"}}>
           <Row className="justify-content-center">
-            <Col md="9" lg="7" xl="6">
+            <Col >
               <Card className="mx-4">
                 <CardBody className="p-4">
                   <Form onSubmit={this.onSubmitHandler}>
@@ -374,6 +379,224 @@ BaseService.PostService(url, regUsers)
             </Col>
           </Row>
         </Container>
+        </div>
+        
+      
+
+
+        <div >
+
+<div className="justify-content-right" >
+  <div className="" style={{paddingLeft:"900px",paddingTop:"120px"}}>
+<img src={logo} width="62%" height="50%" alt=""></img>
+</div>
+</div>
+</div>
+
+</div>
+
+)}
+      {!this.state.matches && (
+
+
+ 
+ <Container >
+   <Row className="justify-content-center">
+     <Col >
+       <Card className="mx-4">
+         <CardBody className="p-4">
+           <Form onSubmit={this.onSubmitHandler}>
+             <h1>Business Register</h1>
+             <p className="text-muted">Create your account</p>
+             
+
+             <InputGroup className="mb-3">
+             <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-bag"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+ <Input type="select" name="businesstype" id="businesstype" onChange={this.onChangeHandler}>
+  <option value="">Select Business Type</option>
+   <option value="1">Service Business</option>
+   <option value="2">Sole Business</option>
+   <option value="3">Hybrid Business</option>
+   <option value="4">Manufacturing Business</option>
+   <option value="5">Partnership Business</option>
+ </Input>
+</InputGroup>
+
+
+<InputGroup className="mb-3">
+             <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-basket"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+ <Input type="select" name="businesscatergory" id="businesscatergory" onChange={this.onChangeHandler}>
+  <option value="">Select Business Catergory</option>
+   <option value="1">Restaurant</option>
+   <option value="2">Hotel</option>
+   <option value="3">Pub</option>
+   <option value="4">Bakery</option>
+   <option value="5">Supermarket</option>
+ </Input>
+</InputGroup>
+
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-basket-loaded"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="text" placeholder="Business Name" name="businessname" id="businessname" value={this.state.businessname} onChange={this.onChangeHandler}/>
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-user"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Number" placeholder="Business Registration Number" name="registernumber" onChange={this.onChangeHandler} value={this.state.registernumber} id="registernumber" />
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-globe"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="text" placeholder="Business Trading Name" name="trandingname" id="trandingname" value={this.state.trandingname} onChange={this.onChangeHandler}/>
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-pin"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Business Place" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} />
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-location-pin"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Corresponding Address" name="address" id="address" value={this.state.address} onChange={this.onChangeHandler}  />
+             </InputGroup>
+
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-user"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="text" placeholder="Business Subdomain" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.onChangeHandler}/>
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-phone"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.onChangeHandler} />
+             </InputGroup>
+
+
+            
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>@</InputGroupText>
+               </InputGroupAddon>
+               <Input type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.onChangeHandler} />
+             </InputGroup>
+
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-user"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Enter NIC" name="nic" id="nic" value={this.state.nic} onChange={this.onChangeHandler} />
+             </InputGroup>
+
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-social-facebook"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Enter Website" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
+             </InputGroup>
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-social-facebook"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Enter Facebook page Name" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
+             </InputGroup>
+
+             <InputGroup className="mb-3">
+               <InputGroupAddon addonType="prepend">
+                 <InputGroupText>
+                   <i className="icon-social-instagram"></i>
+                 </InputGroupText>
+               </InputGroupAddon>
+               <Input type="Text" placeholder="Enter Instagram page Name" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
+             </InputGroup>
+
+             
+             <GoogleComponent
+  
+  apiKey={API_KEY}
+  language={'en'}
+  country={'country:lk'}
+  coordinates={true}
+ 
+  onChange={(e) => { this.setState({ place: e }) }} />
+
+<FormGroup style={{paddingTop:"14px"}}>
+ <Label for="exampleFile">Add Logo</Label>
+ <Input type="file" name="file" id="exampleFile" accept=".png,.jpeg" value={this.state.file} onChange={this.onImageChangeHandler} />
+ <FormText color="muted">
+  This logo will appear in the user menu
+ </FormText>
+</FormGroup>
+
+             <div >
+             <Button color="success" block type="submit">Create Account</Button>
+             </div>
+           </Form>
+         </CardBody>
+      
+       </Card>
+     </Col>
+   </Row>
+ </Container>
+
+
+
+      )}
       </div>
     );
   }

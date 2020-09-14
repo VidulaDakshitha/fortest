@@ -2,13 +2,23 @@ import React, { Component } from 'react';
 import QrReader from 'react-qr-reader'
 import Swal from 'sweetalert2';
 import queryString from "query-string";
+import logo from "../../../assets/logo.png";
 
 class Qrscanner extends Component{
     constructor(props){
         super(props);
         this.state={
-            result: ""
+            result: "",
+            matches: window.matchMedia("(min-width: 768px)").matches
         }
+    }
+
+
+    componentDidMount() {
+      const handler = e => this.setState({matches: e.matches});
+      window.matchMedia("(min-width: 768px)").addListener(handler);
+
+      localStorage.setItem("item",[]);
     }
 
 handleScan=(data)=>{
@@ -57,8 +67,11 @@ handleError = err => {
     render(){
         return(
 <div>
-  <div style={{backgroundColor:"#244f24",width:"100%",height:"20%"}}>c</div>
-<div style={{backgroundColor:"#349c32",width:"100%",height:"30%",textAlign:"center"}}>
+{this.state.matches && (
+  <div>
+    <div className="divstyle col-lg-5">
+  <div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}>c</div>
+<div style={{backgroundColor:"#349c32",width:"100%",height:"20%",textAlign:"center"}}>
                 <p style={{color:"white",fontSize:"30px"}}>Inorder to use digital menu please scan the QR code</p>
               </div>
             <div className="d-flex justify-content-center">
@@ -72,6 +85,34 @@ handleError = err => {
           </div>
  <p>{this.state.result}</p>
  </div>
+
+
+
+ <div >
+
+<div className="justify-content-right" >
+  <div className="text-right" style={{paddingRight:"200px",paddingTop:"70px"}}>
+<img src={logo} width="32%" height="20%" alt=""></img>
+</div>
+</div>
+</div>
+
+
+
+ </div>
+
+
+
+
+ )}
+ {!this.state.matches && (
+
+
+<div></div>
+ )}
+
+</div>
+
         );
     }
 }

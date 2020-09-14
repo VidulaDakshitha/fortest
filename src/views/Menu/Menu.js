@@ -19,6 +19,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import * as BaseService from "../../BaseService.js";
 import Swal from "sweetalert2";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+import { shadows } from '@material-ui/system';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
+
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 //import Button from '@material-ui/core/Button';
 //import Typography from '@material-ui/core/Typography';
 import {
@@ -37,19 +42,41 @@ const tileData=[
    price:"150"}
 ]
 
+// const useStyles = theme => ({
+//   root: {
+//     width: '100%',
+//     maxWidth: '36ch',
+//     backgroundColor: theme.palette.background.paper,
+//   },
+//   inline: {
+//     display: 'inline',
+//   },
+//   cardstyle:{
+//     maxWidth: 345,
+//     alignItems: 'center'
+//   }
+// });
+
+
+
+
 const useStyles = theme => ({
   root: {
     width: '100%',
-    maxWidth: '36ch',
+ 
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
+    color:"green"
   },
   cardstyle:{
     maxWidth: 345,
     alignItems: 'center'
-  }
+  },
+  successIcon: {
+    color: 'green',
+  },
 });
 
 
@@ -66,10 +93,14 @@ const labels = {
   5: 'Excellent+',
 };
 
+
+
+
 class Menu extends React.Component {
   constructor(props){
              super(props);
              this.state={
+              matches: window.matchMedia("(min-width: 768px)").matches,
               large: false,
               name:"",
               price:"",
@@ -85,6 +116,10 @@ class Menu extends React.Component {
              }
             
             }
+
+
+
+            
 
 changeHandler=(e)=>{
 
@@ -184,18 +219,21 @@ this.setState({
               const cart={
                 itemID:this.state.itemID,
                 itemName:this.state.name,
-                price:this.state.price,
-                NoOfamount:Amount
+                price:this.state.price*Amount,
+                NoOfitems:Amount
 
               }
 
-              // this.setState({
-              //   cartItem:[...cart,this.state.cartItem]
-              // },()=>console.log(this.state.cartItem[0]))
+              
 
-              this.state.cartItem.push({...cart})
+             
+            this.setState({
+              cartItem:[cart,...JSON.parse(localStorage.getItem('item'))]
+            },()=>localStorage.setItem("item",JSON.stringify(this.state.cartItem)))
 
-              localStorage.setItem("item",this.state.cartItem);
+              
+
+             
             }
 
 
@@ -208,7 +246,7 @@ this.setState({
   return (
     <div>
        
-    <List style={{width:400}}>
+    <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
      
@@ -233,13 +271,18 @@ this.setState({
           }
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
         />
+        <IconButton edge="end" aria-label="comments">
+                <AddCircleIcon className={classes.successIcon} />
+              </IconButton>
       </ListItem>
       ))}
 
     
 <Divider variant="inset" component="li" />
     </List>
-   
+
+
+
 
     <Modal
             isOpen={this.state.large}
@@ -301,7 +344,7 @@ this.setState({
         </Button> */}
       </CardActions>
       <CardFooter className="d-flex justify-content-center">
-      <buttom className="btn btn-success" block onClick={()=>{this.AddItemsToCart(this.state.Items);}}>Add {this.state.Items} Item To Cart</buttom>
+      <button className="btn btn-success" block onClick={()=>{this.AddItemsToCart(this.state.Items);}}>Add {this.state.Items} Item To Cart</button>
       </CardFooter>
 
     </Card>

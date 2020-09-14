@@ -1,0 +1,12 @@
+@media screen and (min-width: 480px) {
+    div.desktop {
+      display: none !important;
+    }
+  }
+  
+  @media screen and (max-width: 479px)  { 
+    div.phone  {
+        
+      display: none !important ;
+    }
+  }
