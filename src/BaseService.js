@@ -45,6 +45,27 @@ export const GetDataWithParams = (url, data) => {
 
 
 
+
+export const GetDataWithoutParams = (url) => {
+  return axios(base_url + url, {
+    method: "GET",
+  }).then(
+    (res) => {
+      return res;
+    },
+    (err) => {
+
+      alertify.alert("Cannot perform the operation. Try refreshing page or contact administrator");
+      console.log(err);
+      return err;
+
+    }
+  );
+};
+
+
+
+
 export const PostService=(url, data)=>{
 
 

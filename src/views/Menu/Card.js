@@ -437,6 +437,7 @@ Swal.fire({
                if (val.itemID===id){
                 this.setState({
                   Items:JSON.parse(localStorage.getItem('item'))
+                  
                 })
                }
 

@@ -21,6 +21,7 @@ const loading = () => (
 const DefaultLayout = React.lazy(() => import("./containers/DefaultLayout"));
 
 // Pages
+const HomePage=React.lazy(() => import("./views/Pages/HomePage/HomePage"));
 const Qrscanner=React.lazy(()=>import("./views/Pages/Qrscanner"));
 const Loaders = React.lazy(()=>import("./views/Pages/Loader"));
 const Login = React.lazy(() => import("./views/Pages/Login"));
@@ -75,7 +76,7 @@ class App extends Component {
               exact
               path="/main"
               name="Main Page"
-              render={(props) => <MainPage {...props} />}
+              render={(props) => <HomePage {...props} />}
             />
 
             <Route
