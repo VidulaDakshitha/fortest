@@ -330,11 +330,11 @@ this.setState({
 
           
         <div>
-        <Button onClick={()=>this.RemoveItem()}><i className="fa fa-minus"></i></Button>
+        <Button style={{borderRadius:"20px"}} onClick={()=>this.RemoveItem()}><i className="fa fa-minus"></i></Button>
         </div>
         <b>{this.state.Items}</b>
         <div>
-        <Button onClick={()=>this.AddItem()}><i className="fa fa-plus"></i></Button>
+        <Button style={{borderRadius:"20px"}} onClick={()=>this.AddItem()}><i className="fa fa-plus"></i></Button>
         </div>
 
         

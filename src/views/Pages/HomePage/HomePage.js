@@ -43,6 +43,10 @@ import Mobileapp2 from "../../../assets/img/img/mobile-app/mobile-app-2.png";
 
 import Onepaylogo from "../../../assets/onepay_logo.png";
 
+import Img4 from "../../../assets/img4.jpg";
+
+import Spemai from "../../../assets/spemai.png"
+
 class HomePage extends React.Component {
 
     constructor(props){
@@ -74,7 +78,7 @@ class HomePage extends React.Component {
             <img alt="Jumpstart" src={Onepaylogo} height="50px" width="200px" alt="JumpStart"></img>
           </a>
           <div className="d-flex align-items-center order-lg-3">
-            <a href="#" className="btn1 btn-primary1 ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-none d-sm-block order-lg-3">Register As Merchant</a>
+            <a href="#/register" className="btn1 btn-primary1 ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-none d-sm-block order-lg-3">Register As Merchant</a>
             <button aria-expanded="false" aria-label="Toggle navigation" className="navbar-toggler" data-target=".navbar-collapse" data-toggle="collapse" type="button">
               <img alt="Navbar Toggler Open Icon" className="navbar-toggler-open icon icon-sm" src={IconMenu}></img>
               <img alt="Navbar Toggler Close Icon" className="navbar-toggler-close icon icon-sm" src={Iconx}></img>
@@ -96,8 +100,8 @@ class HomePage extends React.Component {
               </li>
               <li className="nav-item">
                 <div className="dropdown">
-                  <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="#" role="button">Scan QR</a>
-                  <div className="row dropdown-menu">
+                  <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="/#/scan" role="button">Scan QR</a>
+                  {/* <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu">
                         <div className="dropdown">
@@ -197,7 +201,7 @@ class HomePage extends React.Component {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </li>
               {/* <li className="nav-item">
@@ -235,7 +239,7 @@ class HomePage extends React.Component {
           <div className="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
             <div className="pr-xl-5">
               <h1 className="display-33">Register and, <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> View Menu In Style.</mark></h1>
-              <p className="lead">Launch your SaaS in style with this suite of carefully crafted pages and components.
+              <p className="lead">Register with alacartes as a merchant and enjoy the innovation of a digital menu
               </p>
               <div className="mt-4 mt-lg-5">
                 <form data-form-email novalidate action="/forms/mailchimp.php">
@@ -255,13 +259,13 @@ class HomePage extends React.Component {
                     Please fill all fields correctly.
                   </div>
                 </form>
-                <div className="alert rounded-lg bg-secondary d-inline-flex align-items-center">
-                  <div className="badge badge-pill badge-success">Beta</div>
-                  <div className="mx-3">
+                {/* <div className="alert rounded-lg bg-secondary d-inline-flex align-items-center">
+                  <div className="badge badge-pill badge-success">Beta</div> 
+                   <div className="mx-3">
                     Launching v1.0 in
                     <span className="font-weight-bold add-countdown-time" data-countdown-date="2019/10/05"></span>
-                  </div>
-                </div>
+                  </div> 
+                </div> */}
               </div>
             </div>
           </div>
@@ -291,13 +295,13 @@ class HomePage extends React.Component {
       <div className="container">
         <div className="row text-center">
           <div className="col-md-4 mb-5 mb-lg-0">
-            <img src={Kyan} alt="Kyan company logo" className="bg-white opacity-50 my-4" ></img>
+            <img src={Spemai} alt="Kyan company logo" className="bg-white opacity-50 my-4" ></img>
             <div className="px-xl-4">
               &ldquo;A polished product from a solid performer in the brutal and ever-changing SaaS landscape.&rdquo;
             </div>
           </div>
           <div className="col-md-4 mb-5 mb-lg-0">
-            <img src={Goldline} alt="Goldline company logo" className="bg-white opacity-50 my-4" ></img>
+            <img src={Onepaylogo} height="70px" width="200px" alt="Goldline company logo" className="bg-white opacity-50 my-4" ></img>
             <div className="px-xl-4">
               &ldquo;It's clear that the team at Jumpstart have been listening to their customers.&rdquo;
             </div>
@@ -431,7 +435,7 @@ class HomePage extends React.Component {
         <a data-fancybox href="https://vimeo.com/166034462#t=32s" className="btn btn-lg btn-light rounded-circle position-absolute" data-aos="zoom-in" data-aos-delay="400">
           <img src={Mediaplay} alt="Media Play Icon"></img>
         </a>
-        <img src={Hero2} alt="Image" className="w-100 h-100"></img>
+        <img src={Img4} alt="Image" className="w-100 h-100"></img>
         <div className="divider divider-side bg-primary d-none d-lg-block"></div>
       </div>
       <div className="col-lg-7 col-xl-6">
@@ -440,7 +444,7 @@ class HomePage extends React.Component {
             <div className="row justify-content-center">
               <div className="col col-md-10 col-xl-9">
                 <div className="text-white text-center text-lg-left">
-                  <h3 className="h1">Showcase your product with an engaing video</h3>
+                  <h3 className="h1">You can scan QR to load menu</h3>
                   <p className="lead">
                     Non pulvinar neque laoreet suspendisse interdum Catelyn libero id. Olenna imp leo in vitae turpis massa. Sapien habitant Tyrion.
                   </p>
@@ -551,7 +555,7 @@ class HomePage extends React.Component {
           <div className="col-md-4 text-center mb-4 mb-md-0">
             <img src={Female4} alt="Shelley McNabb avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;<mark data-aos="highlight-text" data-aos-delay="200">We cut our build times in half</mark> compared to our previous process. Love it.&rdquo;
+                    &ldquo;<mark data-aos="highlight-text" className="mark1" data-aos-delay="200">We cut our build times in half</mark> compared to our previous process. Love it.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
               <h6 className="mb-1">Shelley McNabb</h6>
@@ -571,7 +575,7 @@ class HomePage extends React.Component {
           <div className="col-md-4 text-center mb-4 mb-md-0">
             <img src={Male2} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;Reliability is what Jumpstart is known for, and <mark data-aos='highlight-text' data-aos-delay='200'>they've totally delivered</mark> this time.&rdquo;
+                    &ldquo;Reliability is what Jumpstart is known for, and <mark className="mark1" data-aos='highlight-text' data-aos-delay='200'>they've totally delivered</mark> this time.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
               <h6 className="mb-1">Bradley Singleton</h6>

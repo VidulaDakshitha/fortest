@@ -221,13 +221,16 @@ BaseService.PostService(url, regUsers)
 
     if (res.data.success === true) {
       alertify.success("Successfully posted data");
+
+      window.location.href="/#/main";
+      
       
     } else {
       alertify.alert("Cannot perform the operation");
     }
   })
   .catch((err) => {
-    alertify.alert("Cannot perform the operation");
+    alertify.alert("Cannot perform the operation"+err);
   });
 
 }

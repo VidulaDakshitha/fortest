@@ -102,6 +102,7 @@ import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FeedbackIcon from '@material-ui/icons/Feedback';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import Home from '@material-ui/icons/Home';
 //import tileData from './tileData';
 import logo1 from '../../assets/img/brand/logo2.png'
 import Menu from "./Menu";
@@ -502,15 +503,19 @@ Swal.fire({
 
 
 <div>
-  <div style={{position:"fixed",color:"white"}}>
+  
 
-  </div>
 <div className="divstyle col-lg-5">
   
 
 
 
-<div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green"}}/></div>
+<div className="d-flex justify-content-between">
+  <InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green",cursor:"pointer"}}/>
+  <Home fontSize="large" onClick={()=>window.location.href="/#/main"} style={{color:"green",cursor:"pointer"}}/>
+  </div>
+
+
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
@@ -772,7 +777,10 @@ Swal.fire({
 
 <div>
 <div>
-<div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1}/></div>
+<div className="d-flex justify-content-between">
+  <InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green",cursor:"pointer"}}/>
+  <Home fontSize="large" onClick={()=>window.location.href="/#/main"} style={{color:"green",cursor:"pointer"}}/>
+  </div>
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
