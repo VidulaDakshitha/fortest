@@ -22,6 +22,7 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { shadows } from '@material-ui/system';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
+import img2 from "../../assets/burger.jpg";
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 //import Button from '@material-ui/core/Button';
@@ -62,7 +63,7 @@ const tileData=[
 
 const useStyles = theme => ({
   root: {
-    width: '100%',
+    width: '80%',
  
     backgroundColor: theme.palette.background.paper,
   },
@@ -182,6 +183,11 @@ this.setState({
 
               }).catch((err)=>{
 
+                Swal.fire({
+                  icon:"error",
+                  title:"oops...",
+                  text:"Error making feedback"
+                })
               })
 
             }
@@ -246,7 +252,7 @@ this.setState({
   return (
     <div>
        
-    <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
+    <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
      
@@ -271,8 +277,9 @@ this.setState({
           }
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
         />
-        <IconButton edge="end" aria-label="comments">
-                <AddCircleIcon className={classes.successIcon} />
+        <IconButton edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
+>
+                <AddCircleIcon className={classes.successIcon} fontSize="large"/>
               </IconButton>
       </ListItem>
       ))}
@@ -303,7 +310,7 @@ this.setState({
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={"data:image/jpeg;base64," +  tileData[0].img}
+          image={img2}
           title="Contemplative Reptile"
         />
         <CardContent className="text-center">

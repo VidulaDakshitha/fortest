@@ -66,3 +66,30 @@ z-index: 1;
     -webkit-filter: drop-shadow(2px 2px 2px #222);
     filter: drop-shadow(3px 3px 3px #222);
   }
+
+
+  .forHeader{
+
+    position: fixed !important;
+    z-index: 2;
+  }
+
+  .forbottom{
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: relative !important;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    will-change: scroll-position;
+
+  }
+
+
+  .px-5 {
+     padding-top: ($spacer * 5) !important;
+    padding-right: ($spacer * 12) !important;
+  }

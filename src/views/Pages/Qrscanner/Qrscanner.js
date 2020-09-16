@@ -9,16 +9,17 @@ class Qrscanner extends Component{
         super(props);
         this.state={
             result: "",
-            matches: window.matchMedia("(min-width: 768px)").matches
+            empty:[],
+            matches: window.matchMedia("(min-width: 1008px)").matches
         }
     }
 
 
     componentDidMount() {
       const handler = e => this.setState({matches: e.matches});
-      window.matchMedia("(min-width: 768px)").addListener(handler);
+      window.matchMedia("(min-width: 1008px)").addListener(handler);
 
-      localStorage.setItem("item",[]);
+      localStorage.setItem("item",JSON.stringify(this.state.empty));
     }
 
 handleScan=(data)=>{
@@ -108,7 +109,23 @@ handleError = err => {
  {!this.state.matches && (
 
 
-<div></div>
+<div>
+
+
+<div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}>c</div>
+<div style={{backgroundColor:"#349c32",width:"100%",height:"20%",textAlign:"center"}}>
+                <p style={{color:"white",fontSize:"30px"}}>Inorder to use digital menu please scan the QR code</p>
+              </div>
+            <div className="d-flex justify-content-center">
+            <QrReader
+              delay={300}
+              onError={this.handleError}
+              onScan={this.handleScan}
+              style={{ width: '100%' }}
+            />
+           
+          </div>
+</div>
  )}
 
 </div>

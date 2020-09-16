@@ -361,7 +361,7 @@ h6, .h6 {
     .display-2 {
       font-size: calc(1.675rem + 5.1vw) ; } }
 
-.display-3 {
+.display-33 {
   font-size: 4.5rem;
   font-weight: 700;
   line-height: 1; }
@@ -8125,7 +8125,7 @@ a {
   a.lead {
     font-weight: 700; }
 
-mark {
+.mark1 {
   color: inherit;
   padding: 0;
   background: none;
@@ -8138,12 +8138,12 @@ mark {
           animation-delay: 1s; }
 
 
-  mark[data-aos="highlight-text"].aos-animate {
+  .mark1[data-aos="highlight-text"].aos-animate {
     background-size: 100% .3em; }
-  mark:not([data-aos="highlight-text"]) {
+  .mark1:not([data-aos="highlight-text"]) {
     background-size: 100% .3em; }
 
-.text-primary mark {
+.text-primary .mark1 {
   background-image: linear-gradient(120deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.25) 100%); }
 
 @-webkit-keyframes animateMark {

@@ -31,6 +31,8 @@ const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
 const Menupage=React.lazy(() => import("./views/Menu/Card"));
 
+const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
+
 const PrivateRouteUser = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
     //fakeAuth.isAuthenticated === true
@@ -70,6 +72,13 @@ class App extends Component {
               path="/login"
               name="Login Page"
               render={(props) => <Login {...props} />}
+            />
+
+            <Route
+              exact
+              path="/sample"
+              name="Sample Page"
+              render={(props) => <Sample {...props} />}
             />
 
 <Route

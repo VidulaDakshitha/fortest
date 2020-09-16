@@ -71,7 +71,7 @@ class HomePage extends React.Component {
       <nav className="navbar navbar-expand-lg navbar-light" data-sticky="top">
         <div className="container">
           <a className="navbar-brand navbar-brand-dynamic-color fade-page" href="index.html">
-            <img alt="Jumpstart" src={Onepaylogo} alt="JumpStart" height="80px" width="250px"></img>
+            <img alt="Jumpstart" src={Onepaylogo} height="50px" width="200px" alt="JumpStart"></img>
           </a>
           <div className="d-flex align-items-center order-lg-3">
             <a href="#" className="btn1 btn-primary1 ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-none d-sm-block order-lg-3">Register As Merchant</a>
@@ -84,19 +84,19 @@ class HomePage extends React.Component {
             <ul className="navbar-nav my-3 my-lg-0">
               <li className="nav-item">
                 <div className="dropdown">
-                  <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="#" role="button">Demos</a>
-                  <div className="row dropdown-menu">
+                  <a aria-expanded="false" href="/#/register" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" role="button">Register</a>
+                  {/* <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu"><a href="index.html" className="dropdown-item fade-page">Overview</a><a href="landing-1.html" className="dropdown-item fade-page">Landing 1</a><a href="landing-2.html" className="dropdown-item fade-page">Landing 2</a><a href="landing-3.html"
                         className="dropdown-item fade-page">Landing 3</a><a href="landing-4.html" className="dropdown-item fade-page">Landing 4</a><a href="landing-5.html" className="dropdown-item fade-page">Landing 5</a><a href="landing-6.html" className="dropdown-item fade-page">Landing 6</a>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </li>
               <li className="nav-item">
                 <div className="dropdown">
-                  <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="#" role="button">Pages</a>
+                  <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="#" role="button">Scan QR</a>
                   <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu">
@@ -200,7 +200,7 @@ class HomePage extends React.Component {
                   </div>
                 </div>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <div className="dropdown">
                   <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="#" role="button">Features</a>
                   <div className="row dropdown-menu">
@@ -222,7 +222,7 @@ class HomePage extends React.Component {
                     </div>
                   </div>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -234,8 +234,7 @@ class HomePage extends React.Component {
         <div className="row align-items-center justify-content-between">
           <div className="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
             <div className="pr-xl-5">
-              <h1 className="display-3">Build fast, <mark data-aos="highlight-text" data-aos-delay="250">launch in
-                            style.</mark></h1>
+              <h1 className="display-33">Register and, <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> View Menu In Style.</mark></h1>
               <p className="lead">Launch your SaaS in style with this suite of carefully crafted pages and components.
               </p>
               <div className="mt-4 mt-lg-5">
@@ -321,7 +320,7 @@ class HomePage extends React.Component {
           <div className="col-xl-4 mb-5 mb-xl-0" data-aos="fade-right">
             <div className="text-center text-xl-left mb-lg-5">
               <h3 className="h1">
-                        Showcase the <mark data-aos="highlight-text" data-aos-delay="250">great features</mark> of your
+                        Showcase the <mark className="mark1" data-aos="highlight-text" data-aos-delay="250">great features</mark> of your
                         app
                     </h3>
             </div>

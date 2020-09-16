@@ -200,6 +200,8 @@ class Cardimg extends React.Component {
                name:"",
                large2:false,
                recepies:JSON.parse(localStorage.getItem('item')),
+              MerchantLogo:"",
+              MerchantName:"",
              }
             
             }
@@ -207,7 +209,7 @@ class Cardimg extends React.Component {
             componentDidMount=async()=>{
 
               const handler = e => this.setState({matches: e.matches});
-      window.matchMedia("(min-width: 768px)").addListener(handler);
+      window.matchMedia("(min-width: 990px)").addListener(handler);
 
               await this.getItems(1);
               // if(localStorage.getItem("sub_domain")!==null)
@@ -254,7 +256,7 @@ class Cardimg extends React.Component {
                     
                    
                       
-                      res.data.data.data.map((value)=>{
+                      res.data.data.data.map(async(value)=>{
 
 
 
@@ -264,14 +266,17 @@ class Cardimg extends React.Component {
                             catImage:value.Category.categoryImages[0].image
                           }
 
-                          const User={
-                            //username:value.user_data.business_name,
-                            //userImage:value.user_data.logo_url
-                          }
+                          // const User={
+                          //   username:value.Category.user_data[0].business_name,
+                          //   userImage:value.Category.user_data[0].logo_url
+                          // }
 
-                         this.setState({
+                          await this.setState({
                           categories:[...this.state.categories,catergory],
-                          length:res.data.data.count
+                          length:res.data.data.count,
+                          MerchantLogo:value.Category.user_data[0].logo_url,
+                          MerchantName:value.Category.user_data[0].business_name,
+
                           },()=>{
 
 
@@ -430,16 +435,50 @@ Swal.fire({
 })
             }
 
+
+
+
+            // deleteItems=(id)=>{
+
+            //   JSON.parse(localStorage.getItem('item')).map((val,index)=>{
+
+            //    if (val.itemID===id){
+            //     this.setState({
+            //       Items:JSON.parse(localStorage.getItem('item'))
+                  
+            //     })
+            //    }
+
+            //   })
+
+            // }
+
+
+
+
+            
             deleteItems=(id)=>{
 
-              JSON.parse(localStorage.getItem('item')).map((val,index)=>{
+              this.setState({
+                Items:JSON.parse(localStorage.getItem('item'))
+              },()=>{
 
-               if (val.itemID===id){
-                this.setState({
-                  Items:JSON.parse(localStorage.getItem('item'))
-                  
-                })
-               }
+                  this.state.Items.map((val,index)=>{
+
+
+                    if(val.itemID===id)
+                    {
+                      const copy = Object.assign([], this.state.Items);
+                      copy.splice(index, 1);
+                       
+                      this.setState({
+                        Items:copy
+                      },()=>localStorage.setItem("item",JSON.stringify(this.state.Items)))
+
+                        //localStorage.setItem("item",JSON.stringify(value));
+                    }
+
+                  })
 
               })
 
@@ -448,10 +487,14 @@ Swal.fire({
 
 
 
+
             render() { 
 
             
               const {classes} = this.props;
+
+              var NoOfItems=Object.keys(JSON.parse(localStorage.getItem('item'))).length;
+
               return(
 <div>
 
@@ -463,17 +506,17 @@ Swal.fire({
 
   </div>
 <div className="divstyle col-lg-5">
-  <div >
+  
 
 
 
 <div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green"}}/></div>
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
-              <img src={logo1} width="120"></img>
-              <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>The Kingsbury Hotel</b></p>
+              <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
+<p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
               </div>
-              
+         
 
 
 
@@ -483,7 +526,7 @@ Swal.fire({
 
 
 <div >
-  <GridList className={classes.gridList} cols={2.5} > 
+  <GridList className={classes.gridList} cols={2.5} style={{cursor:"pointer"}}> 
 
     {this.state.categories.map((tile) => (
       <GridListTile key={tile.catID}
@@ -515,7 +558,7 @@ Swal.fire({
   </GridList>
 </div>
 
-</div>
+
 
 
 <div className="justify-content-center" style={{paddingTop:"20px"}}>
@@ -638,7 +681,7 @@ Swal.fire({
 
 <div  >
 <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",left:"500px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
-  <Badge  badgeContent={Object.keys(JSON.parse(localStorage.getItem('item'))).length} color="secondary">
+  <Badge  badgeContent={NoOfItems} color="secondary">
     <ShoppingCart fontSize="large" />
   </Badge >
 </IconButton>
@@ -656,7 +699,7 @@ Swal.fire({
 <div >
 
 <div className="justify-content-right" >
-  <div className="text-right " style={{paddingRight:"220px",paddingTop:"80px"}}>
+  <div className="text-right px-5 align-middle" >
 <img src={logo} width="32%" height="20%" alt=""></img>
 </div>
 </div>
@@ -675,6 +718,8 @@ Swal.fire({
             <ModalHeader><KeyboardBackspaceIcon onClick={this.toggleLarge2}/>    Cart Items</ModalHeader>
 
             <ModalBody>
+
+              {Object.keys(JSON.parse(localStorage.getItem('item'))).length!==0?
 
             <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
       {JSON.parse(localStorage.getItem('item')).map(tile=>(
@@ -710,7 +755,10 @@ Swal.fire({
     
 <Divider variant="inset" component="li" />
     </List>
+    :<p>No Items in cart</p>}
+
             </ModalBody>
+            <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter>
              
              </Modal>
 
@@ -723,12 +771,12 @@ Swal.fire({
 
 
 <div>
-
+<div>
 <div><InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1}/></div>
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
-              <img src={logo1} width="120"></img>
-              <p>The Kingsbury Hotel</p>
+              <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
+<p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
               </div>
               
 
@@ -738,7 +786,77 @@ Swal.fire({
 
 
 
-              <Modal
+             
+
+
+<div >
+  <GridList className={classes.gridList} cols={2.5} > 
+
+    {this.state.categories.map((tile) => (
+      <GridListTile key={tile.catID}
+      onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
+      className="shadowstyle"
+      
+      >
+        <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
+        
+        <GridListTileBar
+        
+          title={tile.catName}
+          classes={{
+            root: classes.titleBar,
+            title: classes.title,
+          }}
+          actionIcon={
+            <IconButton aria-label={`star ${tile.catName}`}
+            >
+              <StarBorderIcon className={classes.title} />
+            </IconButton>
+          }
+        
+        />
+      </GridListTile>
+      
+    ))}
+    
+  </GridList>
+</div>
+
+</div>
+
+
+<div className="justify-content-center" style={{paddingTop:"30px"}}>
+
+{this.state.filteredItems.length===0?<p>No items available</p>:
+<Menu item={this.state.filteredItems}/>}
+
+</div>
+
+
+
+
+
+
+<div>
+
+</div>
+
+
+
+
+<div  >
+
+             <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+  <Badge  badgeContent={NoOfItems} color="secondary">
+    <ShoppingCart fontSize="large" />
+  </Badge >
+</IconButton>
+</div>
+
+
+
+
+<Modal
             isOpen={this.state.large}
             toggle={this.toggleLarge1}
             className={"modal-lg " + this.props.className}
@@ -847,71 +965,61 @@ Swal.fire({
              </Modal>
 
 
-<div >
-  <GridList className={classes.gridList} cols={2.5} > 
 
-    {this.state.categories.map((tile) => (
-      <GridListTile key={tile.catID}
-      onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
-      className="shadowstyle"
-      
-      >
-        <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
-        
-        <GridListTileBar
-        
-          title={tile.catName}
-          classes={{
-            root: classes.titleBar,
-            title: classes.title,
-          }}
-          actionIcon={
-            <IconButton aria-label={`star ${tile.catName}`}
-            >
-              <StarBorderIcon className={classes.title} />
-            </IconButton>
+
+
+
+             <Modal
+            isOpen={this.state.large2}
+            toggle={this.toggleLarge2}
+            className={"modal-lg " + this.props.className}
+          >
+            <ModalHeader><KeyboardBackspaceIcon onClick={this.toggleLarge2}/>    Cart Items</ModalHeader>
+
+            <ModalBody>
+
+              {Object.keys(JSON.parse(localStorage.getItem('item'))).length!==0?
+
+            <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
+      {JSON.parse(localStorage.getItem('item')).map(tile=>(
+
+     
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src={""} />
+        </ListItemAvatar>
+        <ListItemText
+           primary={tile.itemName}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                LKR {tile.price} X {tile.NoOfitems} = LKR{tile.price*tile.NoOfitems}
+              </Typography>
+              
+            </React.Fragment>
           }
-        
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
         />
-      </GridListTile>
-      
-    ))}
+        <IconButton edge="end" aria-label="comments" onClick={()=>this.deleteItems(tile.itemID)}>
+                <HighlightOff className={classes.successIcon} />
+              </IconButton>
+      </ListItem>
+      ))}
+
     
-  </GridList>
-</div>
+<Divider variant="inset" component="li" />
+    </List>
+    :<p>No Items in cart</p>}
 
-
-
-
-<div className="justify-content-center" style={{paddingTop:"30px"}}>
-
-{this.state.filteredItems.length===0?<p>No items available</p>:
-<Menu item={this.state.filteredItems}/>}
-
-</div>
-
-
-
-
-
-
-<div>
-
-</div>
-
-
-
-
-<div  >
-<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",right:"5px",position:"fixed",zIndex:"3",backgroundColor:"white"}}>
-  <Badge  badgeContent={Object.keys(JSON.parse(localStorage.getItem('item'))).length} color="secondary">
-    <ShoppingCart fontSize="large" />
-  </Badge >
-</IconButton>
-             {/* <ShoppingCart  style={{bottom:"10",right:"10",position:"absolute",zIndex:"1"}}/> */}
-         
-
-</div>
+            </ModalBody>
+            <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter>
+             
+             </Modal>
 
 </div>
 
