@@ -17,7 +17,9 @@ import "react-phone-input-2/lib/style.css";
 import { element } from 'prop-types';
 //import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
-
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import Home from '@material-ui/icons/Home';
+import { IconButton } from '@material-ui/core';
 
 const API_KEY = "AIzaSyAJOsEJARWcAMa1YffDEdQJzNSnONN_yGE";
 
@@ -248,12 +250,17 @@ BaseService.PostService(url, regUsers)
       <div className=" flex-row align-items-center" >
        {this.state.matches && (
     <div>
-      <div></div>
+      
        <div className="divstyle col-lg-5">
-        <Container style={{position:"relative"}}>
+       <div className="d-flex justify-content-between">
+       <IconButton className="shadowstyle">
+  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
+  </IconButton>
+  </div>
+        <Container style={{position:"relative"}} >
           <Row className="justify-content-center">
-            <Col >
-              <Card className="mx-4">
+            <Col style={{paddingTop:"20px"}}>
+              <Card className="mx-4" className="shadowstyle">
                 <CardBody className="p-4">
                   <Form onSubmit={this.onSubmitHandler}>
                     <h1>Business Register</h1>
@@ -431,10 +438,10 @@ BaseService.PostService(url, regUsers)
         withIcon={true}
         buttonText="Choose images"
         onChange={this.onDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={[".jpg",".png"]}
         maxFileSize={5242880}
-        singleImage="true"
-        withPreview="true"
+        singleImage={true}
+        withPreview={true}
       />
 
                     <div >
@@ -466,12 +473,16 @@ BaseService.PostService(url, regUsers)
 )}
       {!this.state.matches && (
 
-
+<div>   <div className="d-flex justify-content-between">
+  <IconButton className="shadowstyle">
+  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"grey",cursor:"pointer"}}/>
+  </IconButton>
+  </div>
  
  <Container >
    <Row className="justify-content-center">
      <Col >
-       <Card className="mx-4">
+       <Card className="mx-4" className="shadowstyle" >
          <CardBody className="p-4">
            <Form onSubmit={this.onSubmitHandler}>
              <h1>Business Register</h1>
@@ -644,7 +655,7 @@ BaseService.PostService(url, regUsers)
         withIcon={true}
         buttonText="Choose images"
         onChange={this.onDrop}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+        imgExtension={[".jpg", ".png"]}
         maxFileSize={5242880}
         singleImage="true"
         withPreview="true"
@@ -666,7 +677,7 @@ BaseService.PostService(url, regUsers)
  </Container>
 
 
-
+ </div>
       )}
       </div>
     );

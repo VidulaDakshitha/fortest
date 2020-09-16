@@ -124,7 +124,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-
+import pastry from "../../assets/pastry.jpg";
 
 import "./Style.scss";
 
@@ -511,8 +511,12 @@ Swal.fire({
 
 
 <div className="d-flex justify-content-between">
-  <InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green",cursor:"pointer"}}/>
-  <Home fontSize="large" onClick={()=>window.location.href="/#/main"} style={{color:"green",cursor:"pointer"}}/>
+<IconButton className="shadowstyle">
+  <InsertEmoticonIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"black",cursor:"pointer"}}/>
+  </IconButton>
+  <IconButton className="shadowstyle">
+  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
+  </IconButton>
   </div>
 
 
@@ -732,7 +736,7 @@ Swal.fire({
      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={""} />
+          <Avatar alt="Remy Sharp" src={pastry} />
         </ListItemAvatar>
         <ListItemText
            primary={tile.itemName}
@@ -778,8 +782,12 @@ Swal.fire({
 <div>
 <div>
 <div className="d-flex justify-content-between">
-  <InsertEmoticonIcon fontSize="large" onClick={this.toggleLarge1} style={{color:"green",cursor:"pointer"}}/>
-  <Home fontSize="large" onClick={()=>window.location.href="/#/main"} style={{color:"green",cursor:"pointer"}}/>
+<IconButton className="shadowstyle">
+  <InsertEmoticonIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"black",cursor:"pointer"}}/>
+  </IconButton>
+  <IconButton className="shadowstyle">
+  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
+  </IconButton>
   </div>
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
@@ -994,7 +1002,7 @@ Swal.fire({
      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={""} />
+          <Avatar alt="Remy Sharp" src={pastry} />
         </ListItemAvatar>
         <ListItemText
            primary={tile.itemName}
@@ -1014,7 +1022,7 @@ Swal.fire({
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
         />
         <IconButton edge="end" aria-label="comments" onClick={()=>this.deleteItems(tile.itemID)}>
-                <HighlightOff className={classes.successIcon} />
+                <HighlightOff className={classes.successIcon} style={{color:"red",cursor:"pointer"}}/>
               </IconButton>
       </ListItem>
       ))}

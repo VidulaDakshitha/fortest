@@ -277,9 +277,9 @@ this.setState({
           }
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
         />
-        <IconButton edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
+        <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
 >
-                <AddCircleIcon className={classes.successIcon} fontSize="large"/>
+                <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
               </IconButton>
       </ListItem>
       ))}
