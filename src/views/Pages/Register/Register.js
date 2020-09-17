@@ -21,6 +21,8 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Home from '@material-ui/icons/Home';
 import { IconButton } from '@material-ui/core';
 
+
+
 const API_KEY = "AIzaSyAJOsEJARWcAMa1YffDEdQJzNSnONN_yGE";
 
 
@@ -52,7 +54,9 @@ class Register extends Component {
       valid:false,
       invalid:false,
       pictures:"",
-      place:"" 
+      place:"" ,
+      validphone:false,
+      invalidphone:false,
     }
   }
 
@@ -74,8 +78,10 @@ class Register extends Component {
 
   onDrop=(pictureFiles, pictureDataURLs) =>{
     this.setState({
-      pictures: pictureDataURLs
+      pictures: pictureDataURLs[0]
     });
+
+    //console.log(pictureDataURLs[0]);
 
   }
 
@@ -162,8 +168,58 @@ class Register extends Component {
   }
 
 
-  ValidatePhoneNumber=()=>{
-    
+  ValidatePhoneNumber=(e)=>{
+
+    this.setState({
+     phone:e.target.value
+    },()=>{
+
+
+console.log(this.state.phone.length);
+      if (this.state.phone !== "") {
+
+         
+
+        var pattern = new RegExp(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
+      
+        if (!pattern.test(this.state.phone)) {
+
+          this.setState({
+            invalidphone:true,
+            validphone:false
+          })
+      
+         
+      
+        }else if(this.state.phone.length !== 12){
+          this.setState({
+            invalidphone:true,
+            validphone:false
+          })
+      
+      
+        }else{
+
+          this.setState({
+            invalidphone:false,
+            validphone:true
+          })
+        }
+      
+      }
+
+
+
+
+
+     // phone_number: ['',[Validators.required,Validators.pattern('^(?:\\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|91)(0|2|3|4|5|7|9)|7(0|1|2|5|6|7|8)\\d)\\d{6}$')]];
+
+      
+
+
+    })
+
+
 
   }
 
@@ -371,13 +427,16 @@ BaseService.PostService(url, regUsers)
                     </InputGroup>
 
 
+
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-phone"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.onChangeHandler} required />
+                      <Input  valid={this.state.validphone} invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
+                      <FormFeedback valid>Valid phone number</FormFeedback>
+                      <FormFeedback>Invalid Phone number</FormFeedback>
                     </InputGroup>
 
 
@@ -486,6 +545,8 @@ BaseService.PostService(url, regUsers)
 </div>
 </div>
 </div>
+
+
 
 </div>
 
@@ -602,14 +663,17 @@ BaseService.PostService(url, regUsers)
                     </InputGroup>
 
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-phone"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.onChangeHandler} required/>
-             </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-phone"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input  valid={this.state.validphone} invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
+                      <FormFeedback valid>Valid phone number</FormFeedback>
+                      <FormFeedback>Invalid Phone number</FormFeedback>
+                    </InputGroup>
+
 
 
             
@@ -696,6 +760,7 @@ BaseService.PostService(url, regUsers)
      </Col>
    </Row>
  </Container>
+
 
 
  </div>

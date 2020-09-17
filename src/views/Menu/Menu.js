@@ -114,6 +114,7 @@ class Menu extends React.Component {
               itemID:"",
               Items:1,
               cartItem:[],
+              itemImage:"",
              }
             
             }
@@ -136,15 +137,16 @@ changeHandler=(e)=>{
               });
             }
 
-            dataAssign=(name,price,time,desc,item)=>{
-console.log("item"+item)
-this.setState({
-  name:name,
-  price:price,
-  time:time,
-  description:desc,
-  itemID:item
-})
+            dataAssign=(name,price,time,desc,item,image)=>{
+                  console.log("item"+image)
+                  this.setState({
+                    name:name,
+                    price:price,
+                    time:time,
+                    description:desc,
+                    itemID:item,
+                    itemImage:image
+                  },()=>console.log(this.state.itemImage))
             }
 
 
@@ -226,7 +228,8 @@ this.setState({
                 itemID:this.state.itemID,
                 itemName:this.state.name,
                 price:this.state.price*Amount,
-                NoOfitems:Amount
+                NoOfitems:Amount,
+                Image:this.state.itemImage
 
               }
 
@@ -258,7 +261,7 @@ this.setState({
      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={"data:image/jpeg;base64," +  tileData[0].img} />
+          <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '50px', width: '50px' }}/>
         </ListItemAvatar>
         <ListItemText
            primary={tile.item_name}
@@ -270,14 +273,14 @@ this.setState({
                 className={classes.inline}
                 color="textPrimary"
               >
-                LKR {tile.price}
+               <b> LKR {tile.price}</b>
               </Typography>
               
             </React.Fragment>
           }
-          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
         />
-        <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID);}}
+        <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
 >
                 <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
               </IconButton>
@@ -310,7 +313,7 @@ this.setState({
           component="img"
           alt="Contemplative Reptile"
           height="140"
-          image={img2}
+          image={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.itemImage}
           title="Contemplative Reptile"
         />
         <CardContent className="text-center">

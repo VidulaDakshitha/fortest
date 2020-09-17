@@ -132,6 +132,7 @@ import "alertifyjs/build/css/alertify.min.css";
 import "alertifyjs/build/css/alertify.css";
 import "alertifyjs/build/css/themes/default.min.css";
 
+import SpemaiLogo from "../../assets/spemaiLogo.jpg";
 
 import "./Style.scss";
 
@@ -207,14 +208,21 @@ class Cardimg extends React.Component {
                foodrating:"",
                name:"",
                large2:false,
-               recepies:JSON.parse(localStorage.getItem('item')),
+               //recepies:JSON.parse(localStorage.getItem('item')),
               MerchantLogo:"",
               MerchantName:"",
+              ItemsInCart:[],
+              ItemImage:""
              }
             
             }
 
             componentDidMount=async()=>{
+
+              if(localStorage.getItem("item")===undefined)
+              {
+                window.location.href="/#/scan";
+              }
 
               const handler = e => this.setState({matches: e.matches});
       window.matchMedia("(min-width: 990px)").addListener(handler);
@@ -271,7 +279,8 @@ class Cardimg extends React.Component {
                           const catergory= {
                             catID:value.Category.id,
                             catName:value.Category.category_name,
-                            catImage:value.Category.categoryImages[0].image
+                            catImage:value.Category.categoryImages[0].image,
+                           
                           }
 
                           // const User={
@@ -299,6 +308,7 @@ class Cardimg extends React.Component {
                              catID:value.Category.id,
                               itemID:value2.id,
                               item_name: value2.item_name,
+                              itemImage:value2.item_image,
                             price: value2.price,
                             preparing_time: value2.preparing_time,
                             description: value2.description
@@ -326,6 +336,11 @@ this.onCatergoryClick();
 
               }).catch((err)=>{
 
+                   Swal.fire({
+                  icon:'error',
+                  title:'Oopss....',
+                  text:err
+                })
 
               })
         
@@ -366,6 +381,7 @@ const filteredItems=await{
   catID:value.catID,
   itemID:value.itemID,
   item_name: value.item_name,
+  itemImage:value.itemImage,
 price: value.price,
 preparing_time: value.preparing_time,
 description: value.description
@@ -405,7 +421,7 @@ await this.setState({
                 rate_hygiene:this.state.hygeinerating,
                 rate_taste:this.state.foodrating,
                 is_come_back:this.state. is_come_back,
-                sub_domain:"avb"
+                sub_domain:localStorage.getItem("sub_domain")
               }
 
               const url="/api/digital_user/getcustomerfeedback/";              
@@ -434,7 +450,15 @@ await this.setState({
                 
 
               }
-              }).catch(()=>{})
+              }).catch((e)=>{
+
+                   Swal.fire({
+                  icon:'error',
+                  title:'Oopss....',
+                  text:e
+                })
+
+              })
 
 Swal.fire({
   icon:'error',
@@ -468,20 +492,20 @@ Swal.fire({
             deleteItems=(id)=>{
 
               this.setState({
-                Items:JSON.parse(localStorage.getItem('item'))
+                ItemsInCart:JSON.parse(localStorage.getItem('item'))
               },()=>{
 
-                  this.state.Items.map((val,index)=>{
+                  this.state.ItemsInCart.map((val,index)=>{
 
 
                     if(val.itemID===id)
                     {
-                      const copy = Object.assign([], this.state.Items);
+                      const copy = Object.assign([], this.state.ItemsInCart);
                       copy.splice(index, 1);
                        
                       this.setState({
-                        Items:copy
-                      },()=>{localStorage.setItem("item",JSON.stringify(this.state.Items));
+                        ItemsInCart:copy
+                      },()=>{localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
                     
                       //alertify.success("Successfully deleted Item");
                     })
@@ -529,11 +553,14 @@ Swal.fire({
   </IconButton>
   </div>
 
-
+  
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <div className="d-flex justify-content-center">
-              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/> */}
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/>
+
+             
               </div>
               {/* <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img> */}
 <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
@@ -754,7 +781,7 @@ Swal.fire({
      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={pastry} />
+        <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.Image} style={{ height: '50px', width: '50px' }}/>
         </ListItemAvatar>
         <ListItemText
            primary={tile.itemName}
@@ -815,7 +842,10 @@ Swal.fire({
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <div className="d-flex justify-content-center">
-              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/> */}
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/>
+ 
+              
               </div>
 <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
               </div>
@@ -831,7 +861,7 @@ Swal.fire({
 
 
 <div >
-  <GridList className={classes.gridList} cols={2.5} > 
+  <GridList className={classes.gridList} cols={1.5} > 
 
     {this.state.categories.map((tile) => (
       <GridListTile key={tile.catID}
@@ -1027,7 +1057,9 @@ Swal.fire({
      
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={pastry} />
+        <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.Image} style={{ height: '50px', width: '50px' }}/>
+
+          {/* <Avatar alt="Remy Sharp" src={pastry} /> */}
         </ListItemAvatar>
         <ListItemText
            primary={tile.itemName}
