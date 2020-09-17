@@ -101,7 +101,7 @@ class Menu extends React.Component {
   constructor(props){
              super(props);
              this.state={
-              matches: window.matchMedia("(min-width: 768px)").matches,
+              matches: window.matchMedia("(min-width: 1000px)").matches,
               large: false,
               name:"",
               price:"",
@@ -314,13 +314,13 @@ this.setState({
           title="Contemplative Reptile"
         />
         <CardContent className="text-center">
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h4" component="h4">
           {this.state.name}
           </Typography>
         
           <Typography variant="body2" color="textSecondary" component="p">
           <p style={{fontSize:"18px"}}><b>LKR {this.state.price}</b></p>
-          <p style={{fontSize:"16px"}}>{this.state.time} minutes</p>
+          <p style={{fontSize:"16px"}}><b>{this.state.time}</b></p>
           <p style={{fontSize:"14px"}}>{this.state.description}</p>
           
           </Typography>
@@ -351,7 +351,7 @@ this.setState({
         </Button> */}
       </CardActions>
       <CardFooter className="d-flex justify-content-center">
-      <button className="btn btn-success" block onClick={()=>{this.AddItemsToCart(this.state.Items);}}>Add {this.state.Items} Item To Cart</button>
+      <button className="btn btn-success" block onClick={()=>{this.AddItemsToCart(this.state.Items);this.setState({large:false})}}>Add {this.state.Items} Item To Cart</button>
       </CardFooter>
 
     </Card>

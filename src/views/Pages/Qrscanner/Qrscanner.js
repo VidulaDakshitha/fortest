@@ -89,15 +89,24 @@ handleError = err => {
 
 
 
- <div >
+ {/* <div >
 
 <div className="justify-content-right" >
   <div className="text-right" style={{paddingRight:"200px",paddingTop:"70px"}}>
 <img src={logo} width="32%" height="20%" alt=""></img>
 </div>
 </div>
-</div>
+</div> */}
 
+
+<div >
+
+<div className="justify-content-right" >
+  <div className="text-right px-5 align-middle" >
+<img src={logo} width="32%" height="20%" alt=""></img>
+</div>
+</div>
+</div>
 
 
  </div>

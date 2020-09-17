@@ -126,6 +126,13 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import pastry from "../../assets/pastry.jpg";
 
+
+import alertify from "alertifyjs/build/alertify";
+import "alertifyjs/build/css/alertify.min.css";
+import "alertifyjs/build/css/alertify.css";
+import "alertifyjs/build/css/themes/default.min.css";
+
+
 import "./Style.scss";
 
 
@@ -185,7 +192,7 @@ class Cardimg extends React.Component {
   constructor(props){
              super(props);
              this.state={
-              matches: window.matchMedia("(min-width: 768px)").matches,
+              matches: window.matchMedia("(min-width: 990px)").matches,
                categories:[],
                Items:[],
                initialCatID:"",
@@ -474,7 +481,10 @@ Swal.fire({
                        
                       this.setState({
                         Items:copy
-                      },()=>localStorage.setItem("item",JSON.stringify(this.state.Items)))
+                      },()=>{localStorage.setItem("item",JSON.stringify(this.state.Items));
+                    
+                      //alertify.success("Successfully deleted Item");
+                    })
 
                         //localStorage.setItem("item",JSON.stringify(value));
                     }
@@ -522,7 +532,10 @@ Swal.fire({
 
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
-              <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
+              <div className="d-flex justify-content-center">
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              </div>
+              {/* <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img> */}
 <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
               </div>
          
@@ -689,17 +702,22 @@ Swal.fire({
 
 
 <div  >
-<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",left:"500px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+{/* <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",left:"600px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
   <Badge  badgeContent={NoOfItems} color="secondary">
     <ShoppingCart fontSize="large" />
   </Badge >
-</IconButton>
+</IconButton> */}
              {/* <ShoppingCart  style={{bottom:"10",right:"10",position:"absolute",zIndex:"1"}}/> */}
          
 
 </div>
-
-
+<div className="d-flex flex-row-reverse">
+<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+  <Badge  badgeContent={NoOfItems} color="secondary">
+    <ShoppingCart fontSize="large" />
+  </Badge >
+</IconButton>
+</div>
 </div>
 
 
@@ -748,7 +766,7 @@ Swal.fire({
                 className={classes.inline}
                 color="textPrimary"
               >
-                LKR {tile.price} X {tile.NoOfitems} = LKR{tile.price*tile.NoOfitems}
+               <b>LKR {tile.price} X {tile.NoOfitems} = LKR {tile.price*tile.NoOfitems}</b>
               </Typography>
               
             </React.Fragment>
@@ -756,7 +774,7 @@ Swal.fire({
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
         />
         <IconButton edge="end" aria-label="comments" onClick={()=>this.deleteItems(tile.itemID)}>
-                <HighlightOff className={classes.successIcon} />
+                <HighlightOff className={classes.successIcon} style={{color:"red",cursor:"pointer"}}/>
               </IconButton>
       </ListItem>
       ))}
@@ -767,7 +785,12 @@ Swal.fire({
     :<p>No Items in cart</p>}
 
             </ModalBody>
-            <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter>
+            <ModalFooter>
+            
+              <button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button>
+              
+              
+              </ModalFooter>
              
              </Modal>
 
@@ -791,7 +814,9 @@ Swal.fire({
   </div>
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
-              <img src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} width="120"></img>
+              <div className="d-flex justify-content-center">
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              </div>
 <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
               </div>
               
@@ -811,7 +836,7 @@ Swal.fire({
     {this.state.categories.map((tile) => (
       <GridListTile key={tile.catID}
       onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
-      className="shadowstyle"
+     
       
       >
         <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
@@ -1014,7 +1039,7 @@ Swal.fire({
                 className={classes.inline}
                 color="textPrimary"
               >
-                LKR {tile.price} X {tile.NoOfitems} = LKR{tile.price*tile.NoOfitems}
+                <b>LKR {tile.price} X {tile.NoOfitems} = LKR {tile.price*tile.NoOfitems}</b>
               </Typography>
               
             </React.Fragment>

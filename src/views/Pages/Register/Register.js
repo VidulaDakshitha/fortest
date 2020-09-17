@@ -222,17 +222,27 @@ BaseService.PostService(url, regUsers)
     console.log(res);
 
     if (res.data.success === true) {
-      alertify.success("Successfully posted data");
+      Swal.fire(
+        'Good Job!',
+        'You are successfully registered please wait for approval',
+        'success'
+      )
 
       window.location.href="/#/main";
       
       
     } else {
-      alertify.alert("Cannot perform the operation");
+      Swal.fire({
+        icon:'error',
+        title:'Oopss....',
+        text:'cannot perform operation '+res.data.description
+      })
+
+    
     }
   })
   .catch((err) => {
-    alertify.alert("Cannot perform the operation"+err);
+    alertify.alert("Cannot perform the operation "+err);
   });
 
 }
@@ -459,11 +469,20 @@ BaseService.PostService(url, regUsers)
       
 
 
-        <div >
+        {/* <div >
 
 <div className="justify-content-right" >
   <div className="" style={{paddingLeft:"900px",paddingTop:"120px"}}>
 <img src={logo} width="62%" height="50%" alt=""></img>
+</div>
+</div>
+</div> */}
+
+<div >
+
+<div className="justify-content-right" >
+  <div className="text-right px-5 align-middle" >
+<img src={logo} width="32%" height="20%" alt=""></img>
 </div>
 </div>
 </div>
@@ -572,13 +591,15 @@ BaseService.PostService(url, regUsers)
 
 
              <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-user"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="text" placeholder="Business Subdomain" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.onChangeHandler} required/>
-             </InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-user"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
+                      <FormFeedback valid>Valid Subdomain</FormFeedback>
+                      <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+                    </InputGroup>
 
 
              <InputGroup className="mb-3">
