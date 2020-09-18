@@ -491,29 +491,50 @@ Swal.fire({
             
             deleteItems=(id)=>{
 
-              this.setState({
-                ItemsInCart:JSON.parse(localStorage.getItem('item'))
-              },()=>{
+              // this.setState({
+              //   ItemsInCart:JSON.parse(localStorage.getItem('item'))
+              // },()=>{
 
-                  this.state.ItemsInCart.map((val,index)=>{
+              //     this.state.ItemsInCart.map((val,index)=>{
 
 
-                    if(val.itemID===id)
-                    {
-                      const copy = Object.assign([], this.state.ItemsInCart);
-                      copy.splice(index, 1);
+              //       if(val.itemID===id)
+              //       {
+              //         const copy = Object.assign([], this.state.ItemsInCart);
+              //         copy.splice(index, 1);
                        
-                      this.setState({
-                        ItemsInCart:copy
-                      },()=>{localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
+              //         this.setState({
+              //           ItemsInCart:copy
+              //         },()=>{localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
                     
-                      //alertify.success("Successfully deleted Item");
-                    })
+                   
+              //       })
 
-                        //localStorage.setItem("item",JSON.stringify(value));
-                    }
+                      
+              //       }
 
-                  })
+              //     })
+
+              // })
+
+
+              this.state.ItemsInCart.map((val,index)=>{
+
+
+                if(val.itemID===id)
+                {
+                  const copy = Object.assign([], this.state.ItemsInCart);
+                  copy.splice(index, 1);
+                   
+                  this.setState({
+                    ItemsInCart:copy
+                  },()=>{localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
+                
+               
+                })
+
+                  
+                }
 
               })
 
@@ -739,7 +760,9 @@ Swal.fire({
 
 </div>
 <div className="d-flex flex-row-reverse">
-<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+<IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
+          ItemsInCart:JSON.parse(localStorage.getItem('item'))
+        });this.toggleLarge2();}}>
   <Badge  badgeContent={NoOfItems} color="secondary">
     <ShoppingCart fontSize="large" />
   </Badge >
@@ -776,7 +799,7 @@ Swal.fire({
               {Object.keys(JSON.parse(localStorage.getItem('item'))).length!==0?
 
             <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
-      {JSON.parse(localStorage.getItem('item')).map(tile=>(
+      {this.state.ItemsInCart.map(tile=>(
 
      
       <ListItem alignItems="flex-start">
@@ -800,21 +823,21 @@ Swal.fire({
           }
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.itemName,tile.price);}}
         />
-        <IconButton edge="end" aria-label="comments" onClick={()=>this.deleteItems(tile.itemID)}>
+        <IconButton edge="end" aria-label="comments" onClick={()=>{this.deleteItems(tile.itemID)}}>
                 <HighlightOff className={classes.successIcon} style={{color:"red",cursor:"pointer"}}/>
-              </IconButton>
+        </IconButton>
       </ListItem>
       ))}
 
     
-<Divider variant="inset" component="li" />
+{/* <Divider variant="inset" component="li" /> */}
     </List>
     :<p>No Items in cart</p>}
 
             </ModalBody>
             <ModalFooter>
             
-              <button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button>
+              {/* <button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button> */}
               
               
               </ModalFooter>
@@ -917,7 +940,9 @@ Swal.fire({
 
 <div  >
 
-             <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={this.toggleLarge2}>
+             <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
+          ItemsInCart:JSON.parse(localStorage.getItem('item'))
+        });this.toggleLarge2();}}>
   <Badge  badgeContent={NoOfItems} color="secondary">
     <ShoppingCart fontSize="large" />
   </Badge >
@@ -1052,7 +1077,7 @@ Swal.fire({
               {Object.keys(JSON.parse(localStorage.getItem('item'))).length!==0?
 
             <List className={classes.root} style={{borderRadius:"10px"}} className="shadowstyle">
-      {JSON.parse(localStorage.getItem('item')).map(tile=>(
+      {this.state.ItemsInCart.map(tile=>(
 
      
       <ListItem alignItems="flex-start">
@@ -1085,12 +1110,12 @@ Swal.fire({
       ))}
 
     
-<Divider variant="inset" component="li" />
+{/* <Divider variant="inset" component="li" /> */}
     </List>
     :<p>No Items in cart</p>}
 
             </ModalBody>
-            <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter>
+            {/* <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter> */}
              
              </Modal>
 

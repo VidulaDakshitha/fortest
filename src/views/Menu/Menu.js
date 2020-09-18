@@ -227,7 +227,8 @@ changeHandler=(e)=>{
               const cart={
                 itemID:this.state.itemID,
                 itemName:this.state.name,
-                price:this.state.price*Amount,
+                price:this.state.price,
+                totalPrice:this.state.price*Amount,
                 NoOfitems:Amount,
                 Image:this.state.itemImage
 
@@ -237,8 +238,12 @@ changeHandler=(e)=>{
 
              
             this.setState({
-              cartItem:[cart,...JSON.parse(localStorage.getItem('item'))]
-            },()=>localStorage.setItem("item",JSON.stringify(this.state.cartItem)))
+              cartItem:[cart,...JSON.parse(localStorage.getItem('item'))],
+              Items:1
+            },()=>{localStorage.setItem("item",JSON.stringify(this.state.cartItem));
+          
+      
+          })
 
               
 
