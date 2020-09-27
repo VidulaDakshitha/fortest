@@ -30,6 +30,8 @@ const Page404 = React.lazy(() => import("./views/Pages/Page404"));
 const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
 const Menupage=React.lazy(() => import("./views/Menu/Card"));
+const RegisterConfirm=React.lazy(() => import("./views/Pages/RegisterConfirm/RegisterConfirm"));
+
 
 const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
 
@@ -112,6 +114,13 @@ class App extends Component {
               path="/500"
               name="Page 500"
               render={(props) => <Page500 {...props} />}
+            />
+
+              <Route
+              exact
+              path="/regsiterconfirm"
+              name="Page 500"
+              render={(props) => <RegisterConfirm {...props} />}
             />
            
 
