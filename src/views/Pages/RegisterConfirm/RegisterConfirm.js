@@ -108,27 +108,30 @@ class RegisterConfirm extends Component {
   e.preventDefault();
   
   const regUsers={
-    id:parseInt(this.state.userId),
-    password:this.state.password,
-    token:this.state.token
+    user_id:parseInt(this.state.userId),
+    new_password:this.state.password,
+    token:this.state.token,
+    confirm_password:this.state.password
   }
   
-  const url = "/user/update/";
+  const url = "/api/digital_user/rest_new_password/";
   BaseService.PostData(url, regUsers)
     .then((res) => {
       if (res.data.success === true) {
         Swal.fire(
           'Good job!',
-          'successfully registered. Login to continue',
+          'Your password is successfully set. Wait for approval',
           'success'
         )
-        window.location.href="/#/login";
+
+        window.location.href="/#/main"
+       
       } else {
         alertify.alert("Cannot perform the operation");
       }
     })
     .catch((err) => {
-      alertify.alert("Cannot perform the operation");
+      alertify.alert("Cannot perform the operation "+err);
     });
   
   
