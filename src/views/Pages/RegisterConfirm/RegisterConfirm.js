@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, FormFeedback } from 'reactstrap';
+import { Button, Card, CardBody, FormGroup,Label,CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, FormFeedback } from 'reactstrap';
 import queryString from 'query-string'
 import axios from "axios";
 import alertify from "alertifyjs/build/alertify";
@@ -26,6 +26,7 @@ class RegisterConfirm extends Component {
         invalid:false,
         valid1:false,
         invalid1:false,
+        isChecked:false
   
       }
     }
@@ -55,12 +56,14 @@ class RegisterConfirm extends Component {
     }
   
     onChangeHandler=(e)=>{
+
+      var pattern = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
   
       this.setState({
         [e.target.name]:e.target.value
       })
   
-      if(e.target.value.length<8)
+      if(!pattern.test(e.target.value))
       {
         console.log("visited")
         this.setState(
@@ -89,6 +92,8 @@ class RegisterConfirm extends Component {
     }
   
     HandlepasswordConfirm=(e)=>{
+
+
 
       this.setState({
         confirmPass:e.target.value
@@ -200,6 +205,29 @@ class RegisterConfirm extends Component {
                 </Card>
               </Col>
             </Row>
+
+            {/* <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isChecked}/>{' '}
+          Check me out
+        </Label>
+      </FormGroup>
+
+            <li>
+            At least one upper case English letter
+            </li>
+            <li>
+            At least one lower case English letter
+            </li>
+            <li>
+            At least one digit
+            </li>
+            <li>
+            At least one special character
+            </li>
+            <li>
+            Minimum eight in length
+            </li> */}
           </Container>
 
 
