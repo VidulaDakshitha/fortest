@@ -27,7 +27,7 @@ class Loader extends Component{
           this.setState({
             loading:false
           },()=>{window.location.href="/#/main";})
-        },2000)
+        },1500)
         
         }
 

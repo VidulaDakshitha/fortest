@@ -578,8 +578,8 @@ Swal.fire({
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <div className="d-flex justify-content-center">
-              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/> */}
-              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/>
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/> */}
 
              
               </div>
@@ -865,8 +865,8 @@ Swal.fire({
 <div className="justify-content-center text-center">
               {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
               <div className="d-flex justify-content-center">
-              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/> */}
-              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/>
+              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/> */}
  
               
               </div>

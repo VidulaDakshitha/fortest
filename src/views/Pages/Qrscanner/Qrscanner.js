@@ -71,7 +71,7 @@ handleError = err => {
 {this.state.matches && (
   <div>
     <div className="divstyle col-lg-5">
-  <div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}>c</div>
+  <div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}></div>
 <div style={{backgroundColor:"#349c32",width:"100%",height:"20%",textAlign:"center"}}>
                 <p style={{color:"white",fontSize:"30px"}}>Inorder to use digital menu please scan the QR code</p>
               </div>
@@ -113,7 +113,7 @@ handleError = err => {
 <div>
 
 
-<div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}>c</div>
+<div style={{backgroundColor:"#244f24",width:"100%",height:"10%"}}><b><p style={{color:"white"}}>Powered by Spemai</p></b></div>
 <div style={{backgroundColor:"#349c32",width:"100%",height:"20%",textAlign:"center"}}>
                 <p style={{color:"white",fontSize:"30px"}}>Inorder to use digital menu please scan the QR code</p>
               </div>

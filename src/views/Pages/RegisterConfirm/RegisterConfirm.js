@@ -65,8 +65,11 @@ class RegisterConfirm extends Component {
         console.log("visited")
         this.setState(
           {
+            confirmPass:"",
             valid1: false,
             invalid1: true,
+            invalid: true
+
           }
         );
   
@@ -74,8 +77,10 @@ class RegisterConfirm extends Component {
         console.log("visited 2")
         this.setState(
           {
+            confirmPass:"",
             invalid1: false,
             valid1: true,
+            invalid: true
           }
         );
   
@@ -84,6 +89,10 @@ class RegisterConfirm extends Component {
     }
   
     HandlepasswordConfirm=(e)=>{
+
+      this.setState({
+        confirmPass:e.target.value
+      })
   
       if (e.target.value === this.state.password) {
         this.setState(
@@ -106,6 +115,15 @@ class RegisterConfirm extends Component {
   
     onSubmitHandler=(e)=>{
   e.preventDefault();
+
+  if(this.state.valid1===true && this.state.password.length >= 7)
+  {
+    alert("asuccess");
+  }else{
+
+    alert("false");
+
+  }
   
   const regUsers={
     user_id:parseInt(this.state.userId),
@@ -179,7 +197,7 @@ class RegisterConfirm extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Repeat password" name="confirmPass" autoComplete="new-password" valid={this.state.valid} invalid={this.state.invalid} onChange={this.HandlepasswordConfirm}/>
+                        <Input type="password" placeholder="Repeat password" name="confirmPass" autoComplete="new-password" value={this.state.confirmPass} valid={this.state.valid} invalid={this.state.invalid} onChange={this.HandlepasswordConfirm}/>
                         <FormFeedback>Passwords doesn't match</FormFeedback>
                       </InputGroup>
                       <Button color="success" block>Create Account</Button>

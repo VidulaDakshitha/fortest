@@ -271,35 +271,35 @@ const regUsers={
 
 }
 
-// const url = "/api/digital_user/digitaluser/";
-// BaseService.PostService(url, regUsers)
-//   .then((res) => {
+const url = "/api/digital_user/digitaluser/";
+BaseService.PostService(url, regUsers)
+  .then((res) => {
 
-//     console.log(res);
+    console.log(res);
 
-//     if (res.data.success === true) {
-//       Swal.fire(
-//         'Good Job!',
-//         'You are successfully registered please wait for approval',
-//         'success'
-//       )
+    if (res.data.success === true) {
+      Swal.fire(
+        'Good Job!',
+        'You are successfully registered. Check your email to proceed',
+        'success'
+      )
 
-//       window.location.href="/#/main";
+      window.location.href="/#/main";
       
       
-//     } else {
-//       Swal.fire({
-//         icon:'error',
-//         title:'Oopss....',
-//         text:'cannot perform operation '+res.data.description
-//       })
+    } else {
+      Swal.fire({
+        icon:'error',
+        title:'Oopss....',
+        text:'cannot perform operation '+res.data.description
+      })
 
     
-//     }
-//   })
-//   .catch((err) => {
-//     alertify.alert("Cannot perform the operation "+err);
-//   });
+    }
+  })
+  .catch((err) => {
+    alertify.alert("Cannot perform the operation "+err);
+  });
 
 
 console.log(regUsers)
