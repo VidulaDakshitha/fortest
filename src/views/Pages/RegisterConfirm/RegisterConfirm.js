@@ -60,7 +60,7 @@ class RegisterConfirm extends Component {
         [e.target.name]:e.target.value
       })
   
-      if(e.target.value.length<7)
+      if(e.target.value.length<8)
       {
         console.log("visited")
         this.setState(
