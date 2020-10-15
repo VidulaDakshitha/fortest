@@ -4,7 +4,8 @@ import "alertifyjs/build/css/alertify.min.css";
 import "alertifyjs/build/css/alertify.css";
 import "alertifyjs/build/css/themes/default.min.css";
 
-const base_url = "http://merchant-api.onepay.lk";
+const base_url = "https://merchant-api-uat.onepay.lk";
+//const base_url = "https://merchant-api-live.onepay.lk";
 //const base_url = "";
 
 export const PostData = (url, data) => {
