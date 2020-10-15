@@ -116,14 +116,7 @@ class RegisterConfirm extends Component {
     onSubmitHandler=(e)=>{
   e.preventDefault();
 
-  if(this.state.valid1===true && this.state.password.length >= 7)
-  {
-    alert("asuccess");
-  }else{
 
-    alert("false");
-
-  }
   
   const regUsers={
     user_id:parseInt(this.state.userId),
