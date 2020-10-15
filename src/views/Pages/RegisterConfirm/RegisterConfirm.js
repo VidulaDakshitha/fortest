@@ -174,7 +174,7 @@ class RegisterConfirm extends Component {
                 <Card className="mx-4" className="shadowstyle">
                   <CardBody className="p-4">
                     <Form onSubmit={this.onSubmitHandler}>
-                      <h1>Register Confirm</h1>
+                      <h1>Register Confirmation</h1>
                       <p className="text-muted">Create your account</p>
                       
                   
