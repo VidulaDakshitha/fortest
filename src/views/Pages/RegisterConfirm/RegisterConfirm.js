@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, FormGroup,Label,CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, FormFeedback } from 'reactstrap';
+import { Button, Card, CardBody,FormText, FormGroup,Label,CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, FormFeedback } from 'reactstrap';
 import queryString from 'query-string'
 import axios from "axios";
 import alertify from "alertifyjs/build/alertify";
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import logo from "../../../assets/logo.png";
 import Home from '@material-ui/icons/Home';
 import { IconButton } from '@material-ui/core';
+
 
 class RegisterConfirm extends Component {
 
@@ -26,7 +27,11 @@ class RegisterConfirm extends Component {
         invalid:false,
         valid1:false,
         invalid1:false,
-        isChecked:false
+        isCheckedlower:false,
+        isCheckedupper:false,
+        isCheckedspecial:false,
+        isCheckednumber:false,
+        isCheckedlength:false
   
       }
     }
@@ -58,10 +63,88 @@ class RegisterConfirm extends Component {
     onChangeHandler=(e)=>{
 
       var pattern = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+
+      var pattern2=new RegExp(/[a-z]/); //lower case
+
+      var pattern3=new RegExp(/[A-Z]/); //upper case
+
+      var pattern4=new RegExp(/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/); //special characters
+
+      var pattern5=new RegExp(/\d/);
+
+
+
+
   
       this.setState({
         [e.target.name]:e.target.value
       })
+
+      if(pattern2.test(e.target.value))
+      {
+        this.setState({
+          isCheckedlower:true
+        })
+      }else{
+
+        this.setState({
+          isCheckedlower:false
+        })
+      }
+
+
+      if(pattern3.test(e.target.value))
+      {
+        this.setState({
+          isCheckedupper:true
+        })
+      }else{
+
+        this.setState({
+          isCheckedupper:false
+        })
+      }
+
+
+      if(pattern4.test(e.target.value))
+      {
+        this.setState({
+          isCheckedspecial:true
+        })
+      }else{
+
+        this.setState({
+          isCheckedspecial:false
+        })
+      }
+
+
+      if(e.target.value.length>=8)
+      {
+        this.setState({
+          isCheckedlength:true
+        })
+      }else{
+
+        this.setState({
+          isCheckedlength:false
+        })
+      }
+
+
+      if(pattern5.test(e.target.value))
+      {
+        this.setState({
+          isCheckednumber:true
+        })
+      }else{
+
+        this.setState({
+          isCheckednumber:false
+        })
+      }
+
+
   
       if(!pattern.test(e.target.value))
       {
@@ -185,7 +268,7 @@ class RegisterConfirm extends Component {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input type="password" placeholder="Password" name="password" value={this.state.password} autoComplete="new-password" valid={this.state.valid1} invalid={this.state.invalid1} onChange={this.onChangeHandler}/>
-                        <FormFeedback>Password length should be more than 7</FormFeedback>
+                        <FormFeedback>Password is not strong</FormFeedback>
                       </InputGroup>
                       
                       
@@ -205,15 +288,48 @@ class RegisterConfirm extends Component {
                 </Card>
               </Col>
             </Row>
-
-            {/* <FormGroup check>
+<div>
+          <FormGroup check>
         <Label check>
-          <Input type="checkbox" checked={this.state.isChecked}/>{' '}
-          Check me out
+          <Input  type="checkbox" checked={this.state.isCheckedlower}/>{' '}
+         lowercase letter
+    
         </Label>
       </FormGroup>
 
-            <li>
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedupper}/>{' '}
+         Uppercase letter
+        </Label>
+      </FormGroup>
+
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedspecial}/>{' '}
+         Special letter
+        </Label>
+      </FormGroup>
+
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckednumber}/>{' '}
+        Number
+        </Label>
+      </FormGroup>
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedlength}/>{' '}
+        minimum 8 characters
+        </Label>
+      </FormGroup>
+
+      </div>
+
+           {/*    <li>
             At least one upper case English letter
             </li>
             <li>
@@ -268,7 +384,7 @@ class RegisterConfirm extends Component {
     <Card className="mx-4">
       <CardBody className="p-4">
         <Form onSubmit={this.onSubmitHandler}>
-          <h1>Register Confirm</h1>
+          <h1>Register Confirmation</h1>
           <p className="text-muted">Create your account</p>
           
       
@@ -279,7 +395,7 @@ class RegisterConfirm extends Component {
               </InputGroupText>
             </InputGroupAddon>
             <Input type="password" placeholder="Password" name="password" value={this.state.password} autoComplete="new-password" valid={this.state.valid1} invalid={this.state.invalid1} onChange={this.onChangeHandler}/>
-            <FormFeedback>Password length should be more than 7</FormFeedback>
+            <FormFeedback>Password is not stromg</FormFeedback>
           </InputGroup>
           
           
@@ -299,6 +415,48 @@ class RegisterConfirm extends Component {
     </Card>
   </Col>
 </Row>
+
+
+<div>
+          <FormGroup check>
+        <Label check>
+          <Input  type="checkbox" checked={this.state.isCheckedlower}/>{' '}
+         lowercase letter
+    
+        </Label>
+      </FormGroup>
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedupper}/>{' '}
+         Uppercase letter
+        </Label>
+      </FormGroup>
+
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedspecial}/>{' '}
+         Special letter
+        </Label>
+      </FormGroup>
+
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckednumber}/>{' '}
+        Number
+        </Label>
+      </FormGroup>
+
+      <FormGroup check>
+        <Label check>
+          <Input type="checkbox" checked={this.state.isCheckedlength}/>{' '}
+        minimum 8 characters
+        </Label>
+      </FormGroup>
+
+      </div>
 </Container>
 </div>
     )}

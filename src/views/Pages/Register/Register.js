@@ -236,6 +236,7 @@ console.log(this.state.phone.length);
     if(this.state.businesstype===""||this.state.businesscatergory===""||this.state.businessname===""||this.state.registernumber===""||this.state.trandingname===""||this.state.principalplace===""||this.state.address===""||this.state.subdomain===""||this.state.email===""||this.state.phone===""||this.state.nic===""){
 
       Swal.fire({
+        allowOutsideClick: false,
         icon:"error",
         title:"oops...",
         text:"Please fill the mandatory fields"
@@ -289,6 +290,7 @@ BaseService.PostService(url, regUsers)
       
     } else {
       Swal.fire({
+        allowOutsideClick: false,
         icon:'error',
         title:'Oopss....',
         text:'cannot perform operation '+res.data.description
