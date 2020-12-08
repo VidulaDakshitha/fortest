@@ -31,22 +31,23 @@ const Page500 = React.lazy(() => import("./views/Pages/Page500"));
 const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
 const Menupage=React.lazy(() => import("./views/Menu/Card"));
 const RegisterConfirm=React.lazy(() => import("./views/Pages/RegisterConfirm/RegisterConfirm"));
+const QRgenerator=React.lazy(() => import("./views/Pages/QRgenerator/QRgenerator"));
 
 
 const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
 
-const PrivateRouteUser = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    //fakeAuth.isAuthenticated === true
-    localStorage.getItem("AccessToken")!==""
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/#/login',
+// const PrivateRouteUser = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={(props) => (
+//     //fakeAuth.isAuthenticated === true
+//     localStorage.getItem("AccessToken")!==""
+//       ? <Component {...props} />
+//       : <Redirect to={{
+//           pathname: '/#/login',
          
-        }} />
+//         }} />
        
-  )} />
-)
+//   )} />
+// )
 
 class App extends Component {
   render() {
@@ -75,7 +76,12 @@ class App extends Component {
               name="Login Page"
               render={(props) => <Login {...props} />}
             />
-
+        <Route
+              exact
+              path="/generator"
+              name="QRgenerator"
+              render={(props) => <QRgenerator {...props} />}
+            />
             <Route
               exact
               path="/sample"
@@ -122,6 +128,9 @@ class App extends Component {
               name="Page 500"
               render={(props) => <RegisterConfirm {...props} />}
             />
+
+
+           
            
 
             <Route
