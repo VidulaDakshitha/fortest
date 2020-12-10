@@ -238,7 +238,7 @@ class HomePage extends React.Component {
         <div className="row align-items-center justify-content-between">
           <div className="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
             <div className="pr-xl-5">
-              <h3 className="display-33"> and, <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> View Menu In Style.</mark></h3>
+              <h3 className="display-33">Register and, <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> View Menu In Style.</mark></h3>
               <p className="lead">Register with alacartes as a merchant and enjoy the innovation of a digital menu
               </p>
               <div className="mt-4 mt-lg-5">
