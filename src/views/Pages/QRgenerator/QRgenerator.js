@@ -9,6 +9,7 @@ class QRgenerator extends Component{
         super(props);
         this.state={
             result: "",
+            subdomain:"",
             empty:[],
             matches: window.matchMedia("(min-width: 1008px)").matches
         }
@@ -19,6 +20,41 @@ class QRgenerator extends Component{
       const handler = e => this.setState({matches: e.matches});
       window.matchMedia("(min-width: 1008px)").addListener(handler);
 console.log(window.location.href);
+
+
+              let value=window.location.href.split("?");
+               const values=queryString.parse(value[1]);
+              console.log("values",value[1])
+
+
+
+              if(value[1]===undefined)
+              {
+                 Swal.fire({
+              icon:'error',
+              title:'Oopss....',
+              text:"please provide valid URL"
+            })
+             window.location.href="#/main"
+              }else  if(value[1].includes("sub_domain"))
+          {
+
+            this.setState({
+              subdomain:values.sub_domain
+            })
+
+  
+           
+          }else{
+            Swal.fire({
+              icon:'error',
+              title:'Oopss....',
+              text:"please provide valid URL"
+            })
+             window.location.href="#/main"
+
+          }
+
 
     }
 
@@ -72,8 +108,11 @@ handleError = err => {
   <div>
     <div className="divstyle col-lg-5">
         <div className="d-flex justify-content-center mt-5">
-    <QRCode value={window.location.href} style={{width:"250px",height:"250px"}} />
-    </div>
+                    <div className="files-list">
+                    <QRCode value={'https://alacartes.lk/#/menu?sub_domain='+this.state.subdomain} style={{width:"250px",height:"250px"}} />
+                    </div>
+        </div>
+        <h1 className="d-flex justify-content-center mt-5"><b>Scan QR Code</b></h1>
  </div>
 
 
@@ -97,12 +136,18 @@ handleError = err => {
 
  )}
  {!this.state.matches && (
-
+<div>
 
 <div className="d-flex justify-content-center mt-5">
 
+<div className="files-list">
 
-<QRCode value={window.location.href} style={{width:"250px",height:"250px"}} />
+<QRCode value={'https://alacartes.lk/#/menu?sub_domain='+this.state.subdomain} style={{width:"250px",height:"250px"}} />
+</div>
+
+</div>
+
+<h1 className="d-flex justify-content-center mt-5"><b>Scan QR Code</b></h1>
 </div>
  )}
 

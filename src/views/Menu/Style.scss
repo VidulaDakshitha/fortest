@@ -24,13 +24,14 @@
   .card {
     border: 2px solid white;
     width: 150px;
-    height: 75px;
+    height: 140px;
     background: white;
+
   }
   
   .scrolling-wrapper, .scrolling-wrapper-flexbox {
-    height: 80px;
-    margin-bottom: 20px;
+    height: 150px;
+    margin-bottom: 0px;
     width: 100%;
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
@@ -103,5 +104,13 @@
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+}
+
+
+.heading{
+  text-decoration: underline;
+  -webkit-text-decoration-color: green; /* Safari */  
+  text-decoration-color: green;
+  text-underline-position: under;
 }
 

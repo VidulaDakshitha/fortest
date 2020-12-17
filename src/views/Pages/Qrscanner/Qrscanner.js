@@ -32,24 +32,25 @@ handleScan=(data)=>{
 
           if(this.state.result!=="")
           {
-            let value3=this.state.result.split("?");
-            const values=queryString.parse(value3[1]);
+          //   let value3=this.state.result.split("?");
+          //   const values=queryString.parse(value3[1]);
 
       
-          if(value3[1].includes("sub_domain"))
-          {
+          // if(value3[1].includes("sub_domain"))
+          // {
 
-           await localStorage.setItem("sub_domain",values.sub_domain);
-            window.location.href="#/menu"
+          //  await localStorage.setItem("sub_domain",values.sub_domain);
+          //   window.location.href="#/menu"
            
-          }else{
-            Swal.fire({
-              icon:'error',
-              title:'Oopss....',
-              text:"please provide valid QR code for digital menu"
-            })
+          // }else{
+          //   Swal.fire({
+          //     icon:'error',
+          //     title:'Oopss....',
+          //     text:"please provide valid QR code for digital menu"
+          //   })
 
-          }
+          // }
+          window.location.replace=this.state.result
             
           }
         })

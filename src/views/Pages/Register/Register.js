@@ -510,7 +510,7 @@ console.log(regUsers)
 
       <ImageUploader
         withIcon={true}
-        buttonText="Choose images"
+        buttonText="Choose image for logo"
         onChange={this.onDrop}
         imgExtension={[".jpg",".png"]}
         maxFileSize={5242880}
@@ -743,7 +743,7 @@ console.log(regUsers)
 
              <ImageUploader
         withIcon={true}
-        buttonText="Choose images"
+        buttonText="Choose image for logo"
         onChange={this.onDrop}
         imgExtension={[".jpg", ".png"]}
         maxFileSize={5242880}

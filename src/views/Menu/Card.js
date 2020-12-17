@@ -101,6 +101,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import FeedbackIcon from '@material-ui/icons/Feedback';
+import EmojiEmotionsRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Home from '@material-ui/icons/Home';
 //import tileData from './tileData';
@@ -135,7 +136,7 @@ import "alertifyjs/build/css/themes/default.min.css";
 import SpemaiLogo from "../../assets/spemaiLogo.jpg";
 
 import "./Style.scss";
-
+import queryString from "query-string";
 
 import {
   
@@ -159,6 +160,7 @@ const useStyles =theme => ({
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+
   },
   title: {
     color: "white",
@@ -212,35 +214,64 @@ class Cardimg extends React.Component {
               MerchantLogo:"",
               MerchantName:"",
               ItemsInCart:[],
-              ItemImage:""
+              ItemImage:"",
+              QRsubdomain:"",
+              styleArray:"",
+              catergoryName:"",
+              empty:[],
              }
             
             }
 
             componentDidMount=async()=>{
+      //localStorage.setItem("item",JSON.stringify(this.state.empty));
 
-              if(localStorage.getItem("item")===undefined)
+      //         if(localStorage.getItem("item")===undefined)
+      //         {
+      //           window.location.href="/#/scan";
+      //         }
+
+      //         const handler = e => this.setState({matches: e.matches});
+      // window.matchMedia("(min-width: 990px)").addListener(handler);
+
+      //         await this.getItems(1);
+
+      console.log("localstorage",localStorage.getItem("item"))
+      
+              let value=window.location.href.split("?");
+               const values=queryString.parse(value[1]);
+              console.log("values",value[1])
+
+
+
+              if(value[1]===undefined)
               {
-                window.location.href="/#/scan";
-              }
+                 Swal.fire({
+              icon:'error',
+              title:'Oopss....',
+              text:"please scan valid QR code for digital menu"
+            })
+             window.location.href="#/main"
+              }else  if(value[1].includes("sub_domain"))
+          {
+console.log("vidula",values.sub_domain)
 
-              const handler = e => this.setState({matches: e.matches});
-      window.matchMedia("(min-width: 990px)").addListener(handler);
 
-              await this.getItems(1);
-              // if(localStorage.getItem("sub_domain")!==null)
-              // {
-              //   await this.getItems(1);
-              // }else{
+            this.setState({
+              QRsubdomain:values.sub_domain
+            },()=>{this.getItems(1);})
 
-              //   window.location.href="#/main";
-              //   Swal.fire({
-              //     icon:'error',
-              //     title:'Oopss....',
-              //     text:'Please Scan QR Code First'
-              //   })
-              // }
-              
+  
+           
+          }else{
+            Swal.fire({
+              icon:'error',
+              title:'Oopss....',
+              text:"please scan valid QR code for digital menu"
+            })
+             window.location.href="#/main"
+
+          }
 
             
             }
@@ -252,8 +283,10 @@ class Cardimg extends React.Component {
               const paramdata={
                 page:this.state.pageNumber,
                 limit:this.state.limit,
-                sub_domain:localStorage.getItem("sub_domain")
+                sub_domain:this.state.QRsubdomain
               }
+
+              console.log(paramdata)
               BaseService.GetDataWithParams(url,paramdata)
                 .then(async(res) => {
 
@@ -280,7 +313,7 @@ class Cardimg extends React.Component {
                             catID:value.Category.id,
                             catName:value.Category.category_name,
                             catImage:value.Category.categoryImages[0].image,
-                           
+                            color:"white"
                           }
 
                           // const User={
@@ -331,7 +364,7 @@ class Cardimg extends React.Component {
                 await  this.setState({
                     initialCatID:res.data.data.data[0].Category.id
                 },console.log("hi"))
-this.onCatergoryClick();
+this.onCatergoryClick(0,"");
 }
 
               }).catch((err)=>{
@@ -366,9 +399,18 @@ this.onCatergoryClick();
 
 
 
-            onCatergoryClick=()=>{
+            onCatergoryClick=(index1,name)=>{
 
-              
+//               this.state.categories.map((value,index)=>{
+
+// if(index===index1)
+// {
+//   value.color="green"
+// }
+//               })
+
+              const someArray=[...this.state.categories];
+              console.log("the color"+Object.values(someArray[index1]))
          
           
 
@@ -388,7 +430,9 @@ description: value.description
 
 }
 await this.setState({
-  filteredItems:[filteredItems,...this.state.filteredItems]
+  filteredItems:[filteredItems,...this.state.filteredItems],
+  styleArray:index1,
+  catergoryName:name
 })
 
             }
@@ -549,7 +593,7 @@ Swal.fire({
             
               const {classes} = this.props;
 
-              var NoOfItems=Object.keys(JSON.parse(localStorage.getItem('item'))).length;
+             // var NoOfItems=Object.keys(JSON.parse(localStorage.getItem('item'))).length;
 
               return(
 <div>
@@ -565,13 +609,13 @@ Swal.fire({
 
 
 
-<div className="d-flex justify-content-between">
+<div className="d-flex justify-content-start pt-4 pl-4">
 <IconButton className="shadowstyle">
-  <InsertEmoticonIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"black",cursor:"pointer"}}/>
+  <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"#47441c",cursor:"pointer"}}/>
   </IconButton>
-  <IconButton className="shadowstyle">
+  {/* <IconButton className="shadowstyle">
   <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
-  </IconButton>
+  </IconButton> */}
   </div>
 
   
@@ -598,13 +642,13 @@ Swal.fire({
 <div >
   <GridList className={classes.gridList} cols={2.5} style={{cursor:"pointer"}}> 
 
-    {this.state.categories.map((tile) => (
+    {this.state.categories.map((tile,index) => (
       <GridListTile key={tile.catID}
-      onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick();});}}
-      style={{borderColor:"red",borderWidth:"medium"}}
+      onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}
+      style={{borderColor:"red",borderWidth:"medium",height:"150px"}}
      
       >
-        <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%"}} alt={tile.catName} />
+        <img src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage} style={{width:"100%",borderRadius:"20px"}} alt={tile.catName} />
         
         <GridListTileBar
         
@@ -628,7 +672,7 @@ Swal.fire({
   </GridList>
 </div>
 
-
+<h4 className="heading mt-4" ><b>{this.state.catergoryName}</b></h4>
 
 
 <div className="justify-content-center" style={{paddingTop:"20px"}}>
@@ -761,10 +805,10 @@ Swal.fire({
 </div>
 <div className="d-flex flex-row-reverse">
 <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"10px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
-          ItemsInCart:JSON.parse(localStorage.getItem('item'))
+          ItemsInCart:localStorage.getItem('item')!==null? JSON.parse(localStorage.getItem('item')): localStorage.setItem("item",JSON.stringify(this.state.empty))
         });this.toggleLarge2();}}>
-  <Badge  badgeContent={NoOfItems} color="secondary">
-    <ShoppingCart fontSize="large" />
+  <Badge  badgeContent={localStorage.getItem('item')!==null? Object.keys(JSON.parse(localStorage.getItem('item'))).length: localStorage.setItem("item",JSON.stringify(this.state.empty))} color="secondary">
+    <ShoppingCart fontSize="large" style={{color:"#47441c",cursor:"pointer"}}/>
   </Badge >
 </IconButton>
 </div>
@@ -829,8 +873,7 @@ Swal.fire({
       </ListItem>
       ))}
 
-    
-{/* <Divider variant="inset" component="li" /> */}
+
     </List>
     :<p>No Items in cart</p>}
 
@@ -852,26 +895,26 @@ Swal.fire({
 {!this.state.matches && (
 
 
-<div>
-<div>
-<div className="d-flex justify-content-between">
-<IconButton className="shadowstyle">
-  <InsertEmoticonIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"black",cursor:"pointer"}}/>
-  </IconButton>
-  <IconButton className="shadowstyle">
-  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
-  </IconButton>
+<div >
+<div >
+<div className="d-flex justify-content-start pt-4 pl-4">
+        <IconButton className="shadowstyle">
+          <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"#47441c",cursor:"pointer"}}/>
+          </IconButton>
+          {/* <IconButton className="shadowstyle">
+          <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
+          </IconButton> */}
   </div>
 <div className="justify-content-center text-center">
-              {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
-              <div className="d-flex justify-content-center">
-              <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
-              {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/> */}
- 
-              
-              </div>
-<p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
-              </div>
+                {/* <button className=""  style={{backgroundImage:`url(${logo1})`,height:"100px",width:"100px"}}></button> */}
+                                <div className="d-flex justify-content-center">
+                                <Avatar className="shadowstyle" alt={this.state.MerchantName} src={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.MerchantLogo} style={{ height: '70px', width: '70px' }}/>
+                                {/* <Avatar className="shadowstyle" alt={this.state.MerchantName} src={SpemaiLogo} style={{ height: '70px', width: '70px' }}/> */}
+                  
+                                
+                                  </div>
+                                          <p style={{fontFamily:"Nunito Sans",fontSize:"20px"}}><b>{this.state.MerchantName}</b></p>
+                                </div>
               
 
 
@@ -883,7 +926,7 @@ Swal.fire({
              
 
 
-<div >
+{/* <div >
   <GridList className={classes.gridList} cols={1.5} > 
 
     {this.state.categories.map((tile) => (
@@ -914,12 +957,29 @@ Swal.fire({
     ))}
     
   </GridList>
-</div>
+</div> */}
+
+
+
+         <div className="scrolling-wrapper">
+                {this.state.categories.map((tile,index) => (
+                    <div className="card pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
+                                <div  style={{backgroundImage:`url(${"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage})`,width:"100%",height: "95px",borderRadius:"15px",backgroundRepeat: 'no-repeat',backgroundSize:"cover"}}>
+                                  
+                                    
+                                      
+                                </div>
+                              <h5 className="text-center pt-2">{tile.catName}</h5>
+                    </div>
+
+                  ))}
+              
+          </div> 
 
 </div>
 
 
-<div className="justify-content-center" style={{paddingTop:"30px"}}>
+<div className="pt-3" >
 
 {this.state.filteredItems.length===0?<p>No items available</p>:
 <Menu item={this.state.filteredItems}/>}
@@ -941,10 +1001,11 @@ Swal.fire({
 <div  >
 
              <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
-          ItemsInCart:JSON.parse(localStorage.getItem('item'))
-        });this.toggleLarge2();}}>
-  <Badge  badgeContent={NoOfItems} color="secondary">
-    <ShoppingCart fontSize="large" />
+          ItemsInCart:localStorage.getItem('item')!==null? JSON.parse(localStorage.getItem('item')): localStorage.setItem("item",JSON.stringify(this.state.empty))
+        });this.toggleLarge2();}}
+        >
+  <Badge  badgeContent={localStorage.getItem('item')!==null? Object.keys(JSON.parse(localStorage.getItem('item'))).length: localStorage.setItem("item",JSON.stringify(this.state.empty))} color="secondary">
+    <ShoppingCart fontSize="large" style={{color:"#47441c",cursor:"pointer"}}/>
   </Badge >
 </IconButton>
 </div>
@@ -1084,7 +1145,7 @@ Swal.fire({
         <ListItemAvatar>
         <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.Image} style={{ height: '50px', width: '50px' }}/>
 
-          {/* <Avatar alt="Remy Sharp" src={pastry} /> */}
+         
         </ListItemAvatar>
         <ListItemText
            primary={tile.itemName}
@@ -1110,7 +1171,7 @@ Swal.fire({
       ))}
 
     
-{/* <Divider variant="inset" component="li" /> */}
+
     </List>
     :<p>No Items in cart</p>}
 

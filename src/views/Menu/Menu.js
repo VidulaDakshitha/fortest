@@ -64,16 +64,18 @@ const tileData=[
 const useStyles = theme => ({
   root: {
     width: '80%',
- 
+
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
-    color:"green"
+    color:"green",
+    margin:"10 10 10 10",
   },
   cardstyle:{
     maxWidth: 345,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor:"transparent"
   },
   successIcon: {
     color: 'green',
@@ -260,11 +262,11 @@ changeHandler=(e)=>{
   return (
     <div>
        
-    <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
+    {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
      
-      <ListItem alignItems="flex-start">
+      <ListItem alignItems="flex-start" >
         <ListItemAvatar>
           <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '50px', width: '50px' }}/>
         </ListItemAvatar>
@@ -294,8 +296,44 @@ changeHandler=(e)=>{
 
     
 <Divider variant="inset" component="li" />
-    </List>
+    </List> */}
 
+
+ {this.props.item.map(tile=>(
+    <div className="shadowstyle2 mb-3 row" style={{height:"100px",width:"102%",borderRadius:"8px"}}>
+
+    <div className="col-3 d-flex justify-content-start">
+      <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '90px' }}/>
+</div>
+
+<div className="col-7 d-flex align-content-between flex-wrap">
+   <ListItemText
+           primary={tile.item_name}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+               <b> LKR {tile.price}</b>
+              </Typography>
+              
+            </React.Fragment>
+          }
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+        />
+</div>
+<div className="col-2 d-flex align-items-center">
+    <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+>
+                <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
+              </IconButton>
+
+</div>
+    </div>
+ ))}
 
 
 

@@ -98,6 +98,20 @@ class HomePage extends React.Component {
                   </div> */}
                 </div>
               </li>
+
+                      <li className="nav-item">
+                <div className="dropdown">
+                  <a aria-expanded="false" href="http://merchant-uat.onepay.lk.s3-website-ap-southeast-1.amazonaws.com/#/login" target="_blank" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" role="button">Login</a>
+                  {/* <div className="row dropdown-menu">
+                    <div className="col-auto" data-dropdown-content>
+                      <div className="dropdown-grid-menu"><a href="index.html" className="dropdown-item fade-page">Overview</a><a href="landing-1.html" className="dropdown-item fade-page">Landing 1</a><a href="landing-2.html" className="dropdown-item fade-page">Landing 2</a><a href="landing-3.html"
+                        className="dropdown-item fade-page">Landing 3</a><a href="landing-4.html" className="dropdown-item fade-page">Landing 4</a><a href="landing-5.html" className="dropdown-item fade-page">Landing 5</a><a href="landing-6.html" className="dropdown-item fade-page">Landing 6</a>
+                      </div>
+                    </div>
+                  </div> */}
+                </div>
+              </li>
+
               <li className="nav-item">
                 <div className="dropdown">
                   <a aria-expanded="false" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" href="/#/scan" role="button">Scan QR</a>
