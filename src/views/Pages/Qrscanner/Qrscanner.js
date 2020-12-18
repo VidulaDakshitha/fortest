@@ -50,7 +50,7 @@ handleScan=(data)=>{
           //   })
 
           // }
-          window.location.replace=this.state.result
+          window.location.href=this.state.result
             
           }
         })
