@@ -37,6 +37,7 @@
     "image-to-base64": "^2.1.1",
     "install": "^0.13.0",
     "intl-tel-input": "^17.0.0",
+    "jquery": "^3.5.1",
     "mobiscroll": "^3.0.0-beta6",
     "moment": "^2.25.3",
     "mongoose": "^5.9.6",

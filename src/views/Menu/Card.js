@@ -236,42 +236,61 @@ class Cardimg extends React.Component {
 
       //         await this.getItems(1);
 
-      console.log("localstorage",localStorage.getItem("item"))
-      
-              let value=window.location.href.split("?");
-               const values=queryString.parse(value[1]);
-              console.log("values",value[1])
+      var subdomain =  window.location.host.split('.')[1] ? window.location.host.split('.')[0] : false;
+      console.log("subs",subdomain)
 
-
-
-              if(value[1]===undefined)
-              {
-                 Swal.fire({
-              icon:'error',
-              title:'Oopss....',
-              text:"please scan valid QR code for digital menu"
-            })
-             window.location.href="#/main"
-              }else  if(value[1].includes("sub_domain"))
-          {
-console.log("vidula",values.sub_domain)
-
-
-            this.setState({
-              QRsubdomain:values.sub_domain
+if(subdomain!==false)
+{             
+              this.setState({
+              QRsubdomain:subdomain
             },()=>{this.getItems(1);})
+ 
+
+}else{
+
+      Swal.fire({   
+              icon:'error',               
+              title:'Oopss....',
+             text:"Invalid URL for digital menu"
+             })
+
+}
+ 
+      
+//               let value=window.location.href.split("?");
+//                const values=queryString.parse(value[1]);
+//               console.log("values",value[1])
+
+
+
+//               if(value[1]===undefined)
+//               {
+//                  Swal.fire({
+//               icon:'error',
+//               title:'Oopss....',
+//               text:"please scan valid QR code for digital menu"
+//             })
+//              window.location.href="#/main"
+//               }else  if(value[1].includes("sub_domain"))
+//           {
+// console.log("vidula",values.sub_domain)
+
+
+//             this.setState({
+//               QRsubdomain:values.sub_domain
+//             },()=>{this.getItems(1);})
 
   
            
-          }else{
-            Swal.fire({
-              icon:'error',
-              title:'Oopss....',
-              text:"please scan valid QR code for digital menu"
-            })
-             window.location.href="#/main"
+//           }else{
+//             Swal.fire({
+//               icon:'error',
+//               title:'Oopss....',
+//               text:"please scan valid QR code for digital menu"
+//             })
+//              window.location.href="#/main"
 
-          }
+//           }
 
             
             }
@@ -411,7 +430,9 @@ this.onCatergoryClick(0,"");
 
               const someArray=[...this.state.categories];
               console.log("the color"+Object.values(someArray[index1]))
-         
+         this.setState({
+            styleArray:index1,
+         })
           
 
           this.state.Items.map(async(value)=>{
@@ -821,7 +842,7 @@ Swal.fire({
 
 <div className="justify-content-right" >
   <div className="text-right px-5 align-middle" >
-<img src={logo} width="32%" height="20%" alt=""></img>
+<img src={logo} width="42%" height="30%" alt=""></img>
 </div>
 </div>
 </div>

@@ -264,8 +264,8 @@ const regUsers={
   phone_number:this.state.phone,
   nic:this.state.nic,
   website:this.state.web,
-  fblink:"https://wwww.facebook.com/"+this.state.fb,
-  instagramlink:"https://wwww.instagram.com/"+this.state.insta,
+  fblink:this.state.fb,
+  instagramlink:this.state.insta,
   latitude:this.state.latitude,
   longitude:this.state.longitiude,
   logo_url:this.state.pictures
@@ -405,7 +405,7 @@ console.log(regUsers)
                           <i className="icon-pin"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Business Place" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} required/>
+                      <Input type="Text" placeholder="Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} required/>
                     </InputGroup>
 
 
@@ -426,9 +426,9 @@ console.log(regUsers)
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
+                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain (eg :- coffeebean)" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
                       <FormFeedback valid>Valid Subdomain</FormFeedback>
-                      <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+                      <FormFeedback>Oh nos! that name is already taken</FormFeedback>
                     </InputGroup>
 
 
@@ -457,14 +457,14 @@ console.log(regUsers)
 
 
 
-                    <InputGroup className="mb-3">
+                    {/* <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="Text" placeholder="Enter NIC" name="nic" id="nic" value={this.state.nic} onChange={this.onChangeHandler} required/>
-                    </InputGroup>
+                    </InputGroup> */}
 
 
                     <InputGroup className="mb-3">
@@ -473,7 +473,7 @@ console.log(regUsers)
                           <i className="icon-social-facebook"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Enter Website" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
+                      <Input type="Text" placeholder="Enter Website URL" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
                     </InputGroup>
 
                     <InputGroup className="mb-3">
@@ -482,7 +482,7 @@ console.log(regUsers)
                           <i className="icon-social-facebook"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Enter Facebook page Name" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
+                      <Input type="Text" placeholder="Enter Facebook page URL" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
                     </InputGroup>
 
                     <InputGroup className="mb-3">
@@ -491,7 +491,7 @@ console.log(regUsers)
                           <i className="icon-social-instagram"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Enter Instagram page Name" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
+                      <Input type="Text" placeholder="Enter Instagram page URL" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
                     </InputGroup>
 
                   
@@ -546,7 +546,7 @@ console.log(regUsers)
 
 <div className="justify-content-right" >
   <div className="text-right px-5 align-middle" >
-<img src={logo} width="32%" height="20%" alt=""></img>
+<img src={logo} width="42%" height="30%" alt=""></img>
 </div>
 </div>
 </div>
@@ -641,7 +641,7 @@ console.log(regUsers)
                    <i className="icon-pin"></i>
                  </InputGroupText>
                </InputGroupAddon>
-               <Input type="Text" placeholder="Business Place" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler}required />
+               <Input type="Text" placeholder="Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler}required />
              </InputGroup>
 
 
@@ -662,9 +662,9 @@ console.log(regUsers)
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
+                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain  eg:-coffee_place" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
                       <FormFeedback valid>Valid Subdomain</FormFeedback>
-                      <FormFeedback>Oh noes! that name is already taken</FormFeedback>
+                      <FormFeedback>Oh no! that name is already taken</FormFeedback>
                     </InputGroup>
 
 
@@ -693,14 +693,14 @@ console.log(regUsers)
 
 
 
-             <InputGroup className="mb-3">
+             {/* <InputGroup className="mb-3">
                <InputGroupAddon addonType="prepend">
                  <InputGroupText>
                    <i className="icon-user"></i>
                  </InputGroupText>
                </InputGroupAddon>
                <Input type="Text" placeholder="Enter NIC" name="nic" id="nic" value={this.state.nic} onChange={this.onChangeHandler} required/>
-             </InputGroup>
+             </InputGroup> */}
 
 
              <InputGroup className="mb-3">
@@ -709,7 +709,7 @@ console.log(regUsers)
                    <i className="icon-social-facebook"></i>
                  </InputGroupText>
                </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Website" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
+               <Input type="Text" placeholder="Enter Website URL" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
              </InputGroup>
 
              <InputGroup className="mb-3">
@@ -718,7 +718,7 @@ console.log(regUsers)
                    <i className="icon-social-facebook"></i>
                  </InputGroupText>
                </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Facebook page Name" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
+               <Input type="Text" placeholder="Enter Facebook page URL" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
              </InputGroup>
 
              <InputGroup className="mb-3">
@@ -727,7 +727,7 @@ console.log(regUsers)
                    <i className="icon-social-instagram"></i>
                  </InputGroupText>
                </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Instagram page Name" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
+               <Input type="Text" placeholder="Enter Instagram page URL" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
              </InputGroup>
 
              <GoogleComponent
