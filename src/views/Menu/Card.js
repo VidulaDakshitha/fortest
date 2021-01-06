@@ -224,6 +224,7 @@ class Cardimg extends React.Component {
             }
 
             componentDidMount=async()=>{
+               localStorage.setItem("item",JSON.stringify(this.state.empty));
       //localStorage.setItem("item",JSON.stringify(this.state.empty));
 
       //         if(localStorage.getItem("item")===undefined)
@@ -247,6 +248,7 @@ if(subdomain!==false)
  
 
 }else{
+  window.location.href="#/main";
 
       Swal.fire({   
               icon:'error',               

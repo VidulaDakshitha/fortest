@@ -57,6 +57,10 @@ class Register extends Component {
       place:"" ,
       validphone:false,
       invalidphone:false,
+      phoneMessage:"",
+      validemail:false,
+      invalidemail:false,
+      emailMessage:"",
     }
   }
 
@@ -168,6 +172,70 @@ class Register extends Component {
   }
 
 
+
+
+    HandleEmailConfirm=(e)=>{
+
+
+    
+    
+    this.setState({
+      [e.target.name]:e.target.value
+    },()=>{
+
+
+            const re = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+    
+    if(!re.test(this.state.email))
+    {
+
+          this.setState({
+            invalidemail:true,
+            validemail:false,
+            emailMessage:"Invalid Email format"
+          })
+    }else{
+
+      const data={
+        email:this.state.email
+      }
+  
+      const url = "/api/digital_user/checksubdomain/";
+  BaseService.PostService(url, data)
+    .then((res) => {
+  
+  
+     if(res.data.success===true){
+       this.setState({
+         validemail:true,
+         invalidemail:false
+       })
+     }else{
+
+      this.setState({
+        invalidemail:true,
+        validemail:false,
+        emailMessage:"This email is already taken"
+      })
+     }
+  
+  
+    }).catch((e)=>console.log())
+
+
+
+    
+      
+    }
+
+
+
+
+  })
+    }
+
+
   ValidatePhoneNumber=(e)=>{
 
     this.setState({
@@ -186,7 +254,8 @@ console.log(this.state.phone.length);
 
           this.setState({
             invalidphone:true,
-            validphone:false
+            validphone:false,
+            phoneMessage:"Invalid phone number format"
           })
       
          
@@ -194,16 +263,38 @@ console.log(this.state.phone.length);
         }else if(this.state.phone.length !== 12){
           this.setState({
             invalidphone:true,
-            validphone:false
+            validphone:false,
+            phoneMessage:"Invalid phone number format"
           })
       
       
         }else{
 
-          this.setState({
-            invalidphone:false,
-            validphone:true
-          })
+             const data={
+        phone_number:this.state.phone
+      }
+  
+      const url = "/api/digital_user/checksubdomain/";
+  BaseService.PostService(url, data)
+    .then((res) => {
+  
+  
+     if(res.data.success===true){
+       this.setState({
+         validphone:true,
+         invalidphone:false
+       })
+     }else{
+
+      this.setState({
+        invalidphone:true,
+        validphone:false,
+        phoneMessage:"This phone number is already in use"
+      })
+     }
+  
+  
+    }).catch((e)=>console.log())
         }
       
       }
@@ -233,7 +324,7 @@ console.log(this.state.phone.length);
   onSubmitHandler=(e)=>{
     e.preventDefault();
 
-    if(this.state.businesstype===""||this.state.businesscatergory===""||this.state.businessname===""||this.state.registernumber===""||this.state.trandingname===""||this.state.principalplace===""||this.state.address===""||this.state.subdomain===""||this.state.email===""||this.state.phone===""||this.state.nic===""){
+    if(this.state.businesstype===""||this.state.businesscatergory===""||this.state.businessname===""||this.state.registernumber===""||this.state.trandingname===""||this.state.principalplace===""||this.state.address===""||this.state.subdomain===""||this.state.email===""||this.state.phone===""){
 
       Swal.fire({
         allowOutsideClick: false,
@@ -244,6 +335,20 @@ console.log(this.state.phone.length);
 
 
     }else{
+
+if(this.state.invalidphone || this.state.invalidemail||this.state.invalid)
+{
+
+      Swal.fire({
+        allowOutsideClick: false,
+        icon:"error",
+        title:"oops...",
+        text:"Please make sure subdomain, email and phone number fields are valid"
+      })
+
+}else{
+
+  
 
 
 
@@ -262,7 +367,6 @@ const regUsers={
   sub_domain:this.state.subdomain,
   email:this.state.email,
   phone_number:this.state.phone,
-  nic:this.state.nic,
   website:this.state.web,
   fblink:this.state.fb,
   instagramlink:this.state.insta,
@@ -305,7 +409,7 @@ BaseService.PostService(url, regUsers)
 
 
 console.log(regUsers)
-
+    }
 }
   }
 
@@ -439,9 +543,9 @@ console.log(regUsers)
                           <i className="icon-phone"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input  valid={this.state.validphone} invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
+                      <Input  valid={this.state.validphone} autocomplete="off"  invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
                       <FormFeedback valid>Valid phone number</FormFeedback>
-                      <FormFeedback>Invalid Phone number</FormFeedback>
+                      <FormFeedback>{this.state.phoneMessage}</FormFeedback>
                     </InputGroup>
 
 
@@ -452,7 +556,9 @@ console.log(regUsers)
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.onChangeHandler} required/>
+                      <Input valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} required/>
+                        <FormFeedback valid>Valid Email address</FormFeedback>
+                      <FormFeedback>{this.state.emailMessage}</FormFeedback>
                     </InputGroup>
 
 
@@ -675,8 +781,8 @@ console.log(regUsers)
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input  valid={this.state.validphone} invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
-                      <FormFeedback valid>Valid phone number</FormFeedback>
-                      <FormFeedback>Invalid Phone number</FormFeedback>
+                         <FormFeedback valid>Valid phone number</FormFeedback>
+                      <FormFeedback>{this.state.phoneMessage}</FormFeedback>
                     </InputGroup>
 
 
@@ -688,7 +794,9 @@ console.log(regUsers)
                <InputGroupAddon addonType="prepend">
                  <InputGroupText>@</InputGroupText>
                </InputGroupAddon>
-               <Input type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.onChangeHandler} required/>
+               <Input  valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} required/>
+            <FormFeedback valid>Valid Email address</FormFeedback>
+                      <FormFeedback>{this.state.emailMessage}</FormFeedback>
              </InputGroup>
 
 
