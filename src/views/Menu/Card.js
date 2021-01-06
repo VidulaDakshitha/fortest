@@ -434,6 +434,7 @@ this.onCatergoryClick(0,"");
               console.log("the color"+Object.values(someArray[index1]))
          this.setState({
             styleArray:index1,
+              catergoryName:name
          })
           
 
@@ -662,7 +663,7 @@ Swal.fire({
 
 
 
-<div >
+{/* <div >
   <GridList className={classes.gridList} cols={2.5} style={{cursor:"pointer"}}> 
 
     {this.state.categories.map((tile,index) => (
@@ -693,7 +694,44 @@ Swal.fire({
     ))}
     
   </GridList>
-</div>
+</div> */}
+
+         {/* <div className="scrolling-wrapper">
+                {this.state.categories.map((tile,index) => (
+                    <div className="card pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
+                                <div  style={{backgroundImage:`url(${"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage})`,width:"100%",height: "95px",borderRadius:"15px",backgroundRepeat: 'no-repeat',backgroundSize:"cover"}}>
+                                  
+                                    
+                                      
+                                </div>
+                              <h5 className="text-center pt-2">{tile.catName}</h5>
+                    </div>
+
+                  ))}
+              
+          </div>  */}
+
+
+
+
+
+
+          
+<div class="wrapper">
+  <div class="scrolls">
+{this.state.categories.map((tile,index) => (
+                    <div className="card1 pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
+                                <div  style={{backgroundImage:`url(${"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage})`,width:"100%",height: "95px",borderRadius:"15px",backgroundRepeat: 'no-repeat',backgroundSize:"cover"}}>
+                                  
+                                    
+                                      
+                                </div>
+                              <h5 className="text-center pt-2">{tile.catName}</h5>
+                    </div>
+
+                  ))}
+  </div>
+  </div>
 
 <h4 className="heading mt-4" ><b>{this.state.catergoryName}</b></h4>
 

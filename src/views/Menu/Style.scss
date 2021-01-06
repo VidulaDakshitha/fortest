@@ -1,11 +1,12 @@
 
   
   .scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
+   overflow-x: scroll;
+        overflow-y: hidden;
     white-space: nowrap;
-    
+ 
     .card {
+    
       display: inline-block;
     }
   }
@@ -115,3 +116,38 @@
 }
 
 
+
+
+.wrapper { 
+  background:#ffffff; 
+
+  margin: auto; 
+  text-align: center; 
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 20px !important;
+  width: 100%;
+  padding-top: 5px;
+}
+.scrolls { 
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 180px;
+white-space:nowrap
+} 
+ .card1 { 
+ 
+  margin: 2px;
+
+  cursor: pointer;
+display:inline-block;
+*display:inline;
+*zoom:1;
+vertical-align:top;
+border: 2px solid white;
+width: 150px;
+height: 140px;
+background: white;
+}
