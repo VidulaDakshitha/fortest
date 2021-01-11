@@ -205,6 +205,7 @@ class Cardimg extends React.Component {
                pageNumber:1,
                large:false,
                is_first_time:"",
+               is_come_back:"",
                satisfactionrating:"",
                hygeinerating:"",
                foodrating:"",
@@ -500,6 +501,17 @@ await this.setState({
 
               e.preventDefault();
 
+if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||this.state. is_first_time==="" ||this.state. is_come_back==="" ||this.state. satisfactionrating===""||this.state. hygeinerating===""||this.state. foodrating==="")
+{
+
+       Swal.fire({
+                  icon:'error',
+                  title:'Oopss....',
+                  text:"Please provide required details"
+                })
+}else{
+
+
               const formData={
 
                 feedback:this.state.feedback,
@@ -510,7 +522,7 @@ await this.setState({
                 rate_hygiene:this.state.hygeinerating,
                 rate_taste:this.state.foodrating,
                 is_come_back:this.state. is_come_back,
-                sub_domain:localStorage.getItem("sub_domain")
+                sub_domain:this.state.QRsubdomain
               }
 
               const url="/api/digital_user/getcustomerfeedback/";              
@@ -532,7 +544,16 @@ await this.setState({
                     email:"",
                     rate_hygiene:0,
                     rate_satisfaction:0,
-                    rate_taste:0
+                    rate_taste:0,
+                    is_first_time:"",
+                    is_come_back:"",
+                    hygeinerating:"",
+                    satisfactionrating:"",
+                    foodrating:"",
+                    color:"green",
+                    color2:"green",
+                    color3:"green",
+                    color4:"green"
 
                   })
 
@@ -548,13 +569,8 @@ await this.setState({
                 })
 
               })
-
-Swal.fire({
-  icon:'error',
-  title:'Oopss....',
-  text:'cannot perform operation'
-})
-            }
+}
+          }
 
 
 
@@ -859,12 +875,12 @@ Swal.fire({
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">Name</Label>
+        <Label for="exampleEmail">*Name</Label>
         <Input type="text" name="name" id="name" placeholder="Enter your name" value={this.state.name} onChange={this.changeHandler} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
+        <Label for="exampleEmail">*Email</Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="Enter email" value={this.state.email} onChange={this.changeHandler} />
       </FormGroup>
 
@@ -1188,12 +1204,12 @@ Swal.fire({
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">Name</Label>
+        <Label for="exampleEmail">*Name</Label>
         <Input type="text" name="name" id="name" placeholder="Enter your name" value={this.state.name} onChange={this.changeHandler} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
+        <Label for="exampleEmail">*Email</Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="Enter email" value={this.state.email} onChange={this.changeHandler} />
       </FormGroup>
 
