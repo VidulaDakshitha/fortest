@@ -323,7 +323,23 @@ if(subdomain!==false)
                   if (res.data.success === true) {
 
                   
-                    
+                    if(res.data.data.data.length===0)
+                    {
+
+                     
+
+                window.location.href="#/main";
+                    Swal.fire({
+                      icon:'error',
+                      title:'Oopss....',
+                      text:'Please login and add items first before viewing cart.'
+                    })
+
+                    }else{
+
+
+                      
+                   
                    
                       
                       res.data.data.data.map(async(value)=>{
@@ -377,15 +393,20 @@ if(subdomain!==false)
 
                         })
                       })//end of catergory
-                   
-                  
-                    
-                     
-                  }
-                await  this.setState({
+
+                                      await  this.setState({
                     initialCatID:res.data.data.data[0].Category.id
                 },console.log("hi"))
 this.onCatergoryClick(0,"");
+                   
+                   }
+                    
+                     
+                  }
+
+
+
+
 }
 
               }).catch((err)=>{
