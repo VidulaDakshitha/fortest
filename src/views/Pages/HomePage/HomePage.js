@@ -65,6 +65,12 @@ import sixthImage from "../../../assets/img/img/mobile-app/sixthImage.png";
 
 import CEO from "../../../assets/evnt1.jpg";
 
+import kawshali from "../../../assets/evnt2.jpg";
+
+import dinal from "../../../assets/evnt3.jpg";
+
+import vidula from "../../../assets/evnt4.jpg";
+
 import productivity from "../../../assets/productivity.png";
 
 import organize from "../../../assets/organize.png";
@@ -223,25 +229,25 @@ class HomePage extends React.Component {
 
     <section className="bg-primary-3 text-white">
       <div className="container">
-        <div className="row text-center">
-          <div className="col-md-4 mb-5 mb-lg-0">
+        <div className="d-flex justify-content-center text-center">
+          {/* <div className="col-md-4 mb-5 mb-lg-0">
             <img src={Spemai} alt="Kyan company logo" className="img1 my-4" ></img>
             <div className="px-xl-4">
               &ldquo;A polished product from a solid performer in the brutal and ever-changing fintech industry.&rdquo;
             </div>
-          </div>
-          <div className="col-md-4 mb-5 mb-lg-0">
+          </div> */}
+          <div className="col-md-8">
             <img src={Onepaylogo} height="70px" width="200px" alt="Goldline company logo" className=" opacity-50 my-4" ></img>
             <div className="px-xl-4">
-              &ldquo;It's clear that the team spemai have been listening to their customers to provide the best solution.&rdquo;
+              &ldquo;It's clear that the team spemai have been listening to their customers to provide the best solution. A polished product from a solid performer in the brutal and ever-changing fintech industry &rdquo;
             </div>
           </div>
-          <div className="col-md-4 mb-5 mb-lg-0">
+          {/* <div className="col-md-4 mb-5 mb-lg-0">
             <img src={SpemaiLogo} style={{width:"20%"}} alt="Aven company logo" className="img1 my-4"></img>
             <div className="px-xl-4">
               &ldquo;The future is looking bright for this punky young startup. .&rdquo;
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -480,37 +486,37 @@ class HomePage extends React.Component {
             {/* <div className="lead">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</div> */}
           </div>
         </div>
-        <div className="d-flex justify-content-center">
-          {/* <div className="col-md-4 text-center mb-4 mb-md-0">
-            <img src={Female4} alt="Shelley McNabb avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
+        <div className="row">
+          <div className="col-md-4 text-center mb-4 mb-md-0">
+            <img src={kawshali} alt="Shelley McNabb avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;<mark data-aos="highlight-text" className="mark1" data-aos-delay="200">We cut our build times in half</mark> compared to our previous process. Love it.&rdquo;
+                    &ldquo;<mark data-aos="highlight-text" className="mark1" data-aos-delay="200">Guaranteeing customer satisfaction</mark> is our main objective.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
-              <h6 className="mb-1">Shelley McNabb</h6>
+              <h6 className="mb-1">Ms. kawshali Hadunneththi</h6>
               <span>Software Engineer</span>
             </div>
-          </div> */}
+          </div>
           <div className="col-md-4 text-center mb-4 mb-md-0">
-            <img src={CEO} alt="Mary Goddard avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
+            <img src={dinal} alt="Mary Goddard avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
                     &ldquo;We're one strong and highly enthusiastic team working to make lives easier.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
-              <h6 className="mb-1">Mr. Amila Fernando</h6>
-              <span>Chief Executive Officer</span>
+              <h6 className="mb-1">Mr. Dinal Fernando</h6>
+              <span>Associate Software Engineer</span>
             </div>
           </div>
-          {/* <div className="col-md-4 text-center mb-4 mb-md-0">
-            <img src={Male2} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
+          <div className="col-md-4 text-center mb-4 mb-md-0">
+            <img src={vidula} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;Reliability is what Jumpstart is known for, and <mark className="mark1" data-aos='highlight-text' data-aos-delay='200'>they've totally delivered</mark> this time.&rdquo;
+                    &ldquo;Reliability is what Alacartes is known for, and <mark className="mark1" data-aos='highlight-text' data-aos-delay='200'>its totally delivered</mark> this time.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
-              <h6 className="mb-1">Bradley Singleton</h6>
-              <span>Keeper of Tunes</span>
+              <h6 className="mb-1">Mr. Vidula Dantanarayana</h6>
+              <span>Associate Software Engineer</span>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
       <div className="divider divider-bottom bg-white"></div>
