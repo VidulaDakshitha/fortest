@@ -487,7 +487,19 @@ class HomePage extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-4 text-center mb-4 mb-md-0">
+
+             <div className="col-md-3 text-center mb-3 mb-md-0">
+            <img src={CEO} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
+            <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
+                    &ldquo;For existence quality output is what matters the most.&rdquo;
+                </blockquote>
+            <div className="d-flex flex-column align-items-center">
+              <h6 className="mb-1">Mr. Harshan Senarathna</h6>
+              <span>Software Engineer</span>
+            </div>
+          </div>
+
+          <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={kawshali} alt="Shelley McNabb avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
                     &ldquo;<mark data-aos="highlight-text" className="mark1" data-aos-delay="200">Guaranteeing customer satisfaction</mark> is our main objective.&rdquo;
@@ -497,7 +509,7 @@ class HomePage extends React.Component {
               <span>Software Engineer</span>
             </div>
           </div>
-          <div className="col-md-4 text-center mb-4 mb-md-0">
+          <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={dinal} alt="Mary Goddard avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
                     &ldquo;We're one strong and highly enthusiastic team working to make lives easier.&rdquo;
@@ -507,7 +519,7 @@ class HomePage extends React.Component {
               <span>Associate Software Engineer</span>
             </div>
           </div>
-          <div className="col-md-4 text-center mb-4 mb-md-0">
+          <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={vidula} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
                     &ldquo;Reliability is what Alacartes is known for, and <mark className="mark1" data-aos='highlight-text' data-aos-delay='200'>its totally delivered</mark> this time.&rdquo;
