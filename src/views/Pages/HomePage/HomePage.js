@@ -114,9 +114,9 @@ class HomePage extends React.Component {
           </div>
           <div className="collapse navbar-collapse order-3 order-lg-2 justify-content-lg-end" id="navigation-menu">
             <ul className="navbar-nav my-3 my-lg-0">
-              <li className="nav-item">
+              <li className="nav-item d-sm-none">
                 <div className="dropdown">
-                  <a aria-expanded="false" href="/#/register" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" role="button">Register</a>
+                  <a aria-expanded="false" href="/#/register" aria-haspopup="true" className=" nav-link nav-item " data-toggle="dropdown-grid" role="button">Register</a>
                   {/* <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu"><a href="index.html" className="dropdown-item fade-page">Overview</a><a href="landing-1.html" className="dropdown-item fade-page">Landing 1</a><a href="landing-2.html" className="dropdown-item fade-page">Landing 2</a><a href="landing-3.html"
@@ -129,7 +129,7 @@ class HomePage extends React.Component {
 
                       <li className="nav-item">
                 <div className="dropdown">
-                  <a aria-expanded="false" href="http://merchant-uat.onepay.lk.s3-website-ap-southeast-1.amazonaws.com/#/login" target="_blank" aria-haspopup="true" className="dropdown-toggle nav-link nav-item arrow-bottom" data-toggle="dropdown-grid" role="button">Login</a>
+                  <a aria-expanded="false" href="http://merchant-uat.onepay.lk.s3-website-ap-southeast-1.amazonaws.com/#/login" target="_blank" aria-haspopup="true" className=" nav-link nav-item " data-toggle="dropdown-grid" role="button">Login</a>
                   {/* <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu"><a href="index.html" className="dropdown-item fade-page">Overview</a><a href="landing-1.html" className="dropdown-item fade-page">Landing 1</a><a href="landing-2.html" className="dropdown-item fade-page">Landing 2</a><a href="landing-3.html"
@@ -180,7 +180,7 @@ class HomePage extends React.Component {
         <div className="row align-items-center justify-content-between">
           <div className="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
             <div className="pr-xl-5">
-              <h3 className="display-33">Register with us and, <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> view menu in style.</mark></h3>
+              <h3 className="display-33">Register with us and,  view menu in style.</h3>
               <p className="lead">Register with alacartes as a merchant and enjoy the innovation of a digital menu. The modern way to view menu.
               </p>
               {/* <div className="mt-4 mt-lg-5">
@@ -239,7 +239,7 @@ class HomePage extends React.Component {
           <div className="col-md-8">
             <img src={Onepaylogo} height="70px" width="200px" alt="Goldline company logo" className=" opacity-50 my-4" ></img>
             <div className="px-xl-4">
-              &ldquo;It's clear that the team spemai have been listening to their customers to provide the best solution. A polished product from a solid performer in the brutal and ever-changing fintech industry &rdquo;
+              &ldquo;It's clear that the team Spemai have been listening to their customers to provide the best solution. A polished product from a solid performer in the brutal and ever-changing fintech industry &rdquo;
             </div>
           </div>
           {/* <div className="col-md-4 mb-5 mb-lg-0">
@@ -260,7 +260,7 @@ class HomePage extends React.Component {
           <div className="col-xl-4 mb-5 mb-xl-0" data-aos="fade-right">
             <div className="text-center text-xl-left mb-lg-5">
               <h3 className="h1">
-                        Great <mark className="mark1" data-aos="highlight-text" data-aos-delay="250"> features</mark> of alacartes
+                        Great features of alacartes
                     </h3>
             </div>
             <ul className="nav nav-pills justify-content-center flex-xl-column pr-xl-5" role="tablist">
@@ -276,7 +276,7 @@ class HomePage extends React.Component {
                 <a className="btn1 btn1-lg btn-primary1 w-100" id="tab-2" data-toggle="tab" href="#profile-6" role="tab" aria-controls="tab-2" aria-selected="false">
                   <div className="d-flex align-items-center">
                     <img src={Display1} alt="Icon" className="icon " ></img>
-                    <span>Convinient</span>
+                    <span>Convenient</span>
                   </div>
                 </a>
               </li>
@@ -320,9 +320,9 @@ class HomePage extends React.Component {
 
 
                   <div className="col-sm col-md-6 mt-4 mt-sm-0">
-                    <h5>Convinient Approach</h5>
+                    <h5>Convenient Approach</h5>
                     <p>
-                     Alacartes provides convinience for you and your clients to view menu in style. you've just got to do is register as a merchant with us.
+                     Alacartes provides convenience for you and your clients to view menu in style. you've just got to do is register as a merchant with us.
                     </p>
                     <div className="mt-4">
                       <div className="media rounded align-items-center pl-3 pr-3 pr-md-4 py-2 d-inline-flex text-left bg-secondary">
@@ -441,7 +441,7 @@ class HomePage extends React.Component {
                     <div>
                       <h5>Well Structured</h5>
                       <div>
-                       Alacartes is well structured to cater the needs of a didgital menu along with a possible way of tracking customer satisfactions
+                       Alacartes is well structured to cater the needs of a digital menu along with a possible way of tracking customer satisfactions
                       </div>
                     </div>
                   </div>
@@ -491,7 +491,7 @@ class HomePage extends React.Component {
              <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={CEO} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;For existence quality output is what matters the most.&rdquo;
+                    &ldquo;For our existence quality output is what matters the most.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
               <h6 className="mb-1">Mr. Harshan Senarathna</h6>
@@ -502,7 +502,7 @@ class HomePage extends React.Component {
           <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={kawshali} alt="Shelley McNabb avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;<mark data-aos="highlight-text" className="mark1" data-aos-delay="200">Guaranteeing customer satisfaction</mark> is our main objective.&rdquo;
+                    &ldquo;Guaranteeing customer satisfaction is our main objective.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
               <h6 className="mb-1">Ms. kawshali Hadunneththi</h6>
@@ -522,7 +522,7 @@ class HomePage extends React.Component {
           <div className="col-md-3 text-center mb-3 mb-md-0">
             <img src={vidula} alt="Bradley Singleton avatar image" className="avatar avatar-lg mb-3 mb-md-4"></img>
             <blockquote className="blockquote p-0 border-0 text-body pr-xl-4">
-                    &ldquo;Reliability is what Alacartes is known for, and <mark className="mark1" data-aos='highlight-text' data-aos-delay='200'>its totally delivered</mark> this time.&rdquo;
+                    &ldquo;Reliability is what Alacartes is known for, and its totally delivered this time.&rdquo;
                 </blockquote>
             <div className="d-flex flex-column align-items-center">
               <h6 className="mb-1">Mr. Vidula Dantanarayana</h6>

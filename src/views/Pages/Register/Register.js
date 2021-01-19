@@ -61,6 +61,8 @@ class Register extends Component {
       validemail:false,
       invalidemail:false,
       emailMessage:"",
+      isSubmit:false,
+      subdomainMessage:"",
     }
   }
 
@@ -158,7 +160,8 @@ class Register extends Component {
 
       this.setState({
         invalid:true,
-        valid:false
+        valid:false,
+        subdomainMessage:"Oh no! that name is already taken"
       })
      }
   
@@ -324,7 +327,91 @@ console.log(this.state.phone.length);
   onSubmitHandler=(e)=>{
     e.preventDefault();
 
-    if(this.state.businesstype===""||this.state.businesscatergory===""||this.state.businessname===""||this.state.registernumber===""||this.state.trandingname===""||this.state.principalplace===""||this.state.address===""||this.state.subdomain===""||this.state.email===""||this.state.phone===""){
+    if(this.state.businesstype===""||this.state.businesscatergory===""||this.state.businessname===""||this.state.registernumber===""||this.state.trandingname===""||this.state.principalplace===""||this.state.address===""||this.state.subdomain===""||this.state.email===""||this.state.phone==="" ||this.state.pictures==="" ||this.state.latitude==="" ||this.state.longitiude==="" ){
+
+this.setState({
+  isSubmit:true
+})
+
+if(this.state.phone==="" && this.state.email!=="" && this.state.subdomain!=="")
+{
+  this.setState({
+  invalidphone:true,
+  phoneMessage:"Cannot keep this field blank"
+})
+}else if(this.state.email==="" && this.state.phone!=="" && this.state.subdomain!=="")
+{
+   this.setState({
+        invalidemail:true,
+        validemail:false,
+        emailMessage:"Cannot keep this field blank"
+      })
+
+}else if(this.state.subdomain==="" && this.state.phone!=="" && this.state.email!=="")
+{
+      this.setState({
+        invalid:true,
+        valid:false,
+        subdomainMessage:"Cannot keep this field blank"
+      })
+
+}else if(this.state.subdomain==="" && this.state.phone==="" && this.state.email!=="")
+{
+
+      this.setState({
+        invalid:true,
+        valid:false,
+        subdomainMessage:"Cannot keep this field blank",
+         invalidphone:true,
+        phoneMessage:"Cannot keep this field blank",
+       
+
+      })
+
+}else if(this.state.email==="" && this.state.phone==="" && this.state.subdomain!=="")
+{
+
+      this.setState({
+       
+         invalidphone:true,
+        phoneMessage:"Cannot keep this field blank",
+        invalidemail:true,
+        validemail:false,
+        emailMessage:"Cannot keep this field blank"
+
+      })
+
+}else if(this.state.subdomain==="" && this.state.email==="" && this.state.phone!=="")
+{
+
+      this.setState({
+        invalid:true,
+        valid:false,
+        subdomainMessage:"Cannot keep this field blank",
+        invalidemail:true,
+        validemail:false,
+        emailMessage:"Cannot keep this field blank"
+
+      })
+
+}else if(this.state.subdomain==="" && this.state.phone==="" && this.state.email==="")
+{
+
+      this.setState({
+        invalid:true,
+        valid:false,
+        subdomainMessage:"Cannot keep this field blank",
+         invalidphone:true,
+        phoneMessage:"Cannot keep this field blank",
+        invalidemail:true,
+        validemail:false,
+        emailMessage:"Cannot keep this field blank"
+
+      })
+
+}
+
+
 
       Swal.fire({
         allowOutsideClick: false,
@@ -438,7 +525,7 @@ console.log(regUsers)
               <Card className="mx-4" className="shadowstyle">
                 <CardBody className="p-4">
                   <Form onSubmit={this.onSubmitHandler}>
-                    <h1>Business Register</h1>
+                    <h1>Business Registration</h1>
                     <p className="text-muted">Create your account</p>
                     
 
@@ -448,12 +535,14 @@ console.log(regUsers)
                           <i className="icon-bag"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-        <Input type="select" name="businesstype" id="businesstype" onChange={this.onChangeHandler}>
-         <option value="">Select Business Type</option>
+        <Input invalid={this.state.businesstype==="" && this.state.isSubmit?true:false} type="select" name="businesstype" id="businesstype" onChange={this.onChangeHandler}>
+         <option value="">*Select Business Type</option>
          {this.state.businessTypeData.map((val)=>(
           <option value={val.id}>{val.type}</option>
          ))}
         </Input>
+        <FormFeedback valid>Valid Business Type</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
       </InputGroup>
 
 
@@ -463,12 +552,14 @@ console.log(regUsers)
                           <i className="icon-basket"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-        <Input type="select" name="businesscatergory" id="businesscatergory" onChange={this.onChangeHandler}>
-         <option value="">Select Business Catergory</option>
+        <Input  invalid={this.state.businesscatergory==="" && this.state.isSubmit?true:false} type="select" name="businesscatergory" id="businesscatergory" onChange={this.onChangeHandler}>
+         <option value="">*Select Business Catergory</option>
          {this.state.businessCatergoryData.map((val)=>(
           <option value={val.id}>{val.type}</option>
          ))}
         </Input>
+         <FormFeedback valid>Valid Business Catergory</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
       </InputGroup>
 
 
@@ -479,7 +570,9 @@ console.log(regUsers)
                           <i className="icon-basket-loaded"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Business Name" name="businessname" id="businessname" value={this.state.businessname} onChange={this.onChangeHandler} required/>
+                      <Input  invalid={this.state.businessname==="" && this.state.isSubmit?true:false} type="text" placeholder="*Business Name" name="businessname" id="businessname" value={this.state.businessname} onChange={this.onChangeHandler} />
+                     <FormFeedback valid>Valid Business Name</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
                     </InputGroup>
 
 
@@ -489,7 +582,9 @@ console.log(regUsers)
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Number" placeholder="Business Registration Number" name="registernumber" onChange={this.onChangeHandler} value={this.state.registernumber} id="registernumber" required/>
+                      <Input invalid={this.state.registernumber==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Business Registration Number" name="registernumber" onChange={this.onChangeHandler} value={this.state.registernumber} id="registernumber" />
+                     <FormFeedback valid>Valid Registration Number</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
                     </InputGroup>
 
 
@@ -499,7 +594,10 @@ console.log(regUsers)
                           <i className="icon-globe"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Business Trading Name" name="trandingname" id="trandingname" value={this.state.trandingname} onChange={this.onChangeHandler} required/>
+                      <Input invalid={this.state.trandingname==="" && this.state.isSubmit?true:false} type="text" placeholder="*Business Trading Name" name="trandingname" id="trandingname" value={this.state.trandingname} onChange={this.onChangeHandler} />
+                    <FormFeedback valid>Valid Business Trading Name</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                   
                     </InputGroup>
 
 
@@ -509,7 +607,9 @@ console.log(regUsers)
                           <i className="icon-pin"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} required/>
+                      <Input invalid={this.state.principalplace==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} />
+                     <FormFeedback valid>Valid principal place</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
                     </InputGroup>
 
 
@@ -519,7 +619,9 @@ console.log(regUsers)
                           <i className="icon-location-pin"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="Text" placeholder="Corresponding Address" name="address" id="address" value={this.state.address} onChange={this.onChangeHandler}  required/>
+                      <Input invalid={this.state.address==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Corresponding Address" name="address" id="address" value={this.state.address} onChange={this.onChangeHandler}  />
+                    <FormFeedback valid>Valid Corresponding Address</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
                     </InputGroup>
 
 
@@ -530,9 +632,9 @@ console.log(regUsers)
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain (eg :- coffeebean)" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
+                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="*Business Subdomain (eg :- coffeebean)" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} />
                       <FormFeedback valid>Valid Subdomain</FormFeedback>
-                      <FormFeedback>Oh nos! that name is already taken</FormFeedback>
+                      <FormFeedback>Oh no! that name is already taken</FormFeedback>
                     </InputGroup>
 
 
@@ -543,7 +645,7 @@ console.log(regUsers)
                           <i className="icon-phone"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input  valid={this.state.validphone} autocomplete="off"  invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
+                      <Input  valid={this.state.validphone} autocomplete="off"  invalid={this.state.invalidphone} type="Text" placeholder="*Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber}  />
                       <FormFeedback valid>Valid phone number</FormFeedback>
                       <FormFeedback>{this.state.phoneMessage}</FormFeedback>
                     </InputGroup>
@@ -556,7 +658,7 @@ console.log(regUsers)
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} required/>
+                      <Input valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="*Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} />
                         <FormFeedback valid>Valid Email address</FormFeedback>
                       <FormFeedback>{this.state.emailMessage}</FormFeedback>
                     </InputGroup>
@@ -576,7 +678,7 @@ console.log(regUsers)
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="icon-social-facebook"></i>
+                          <i className="icon-globe"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="Text" placeholder="Enter Website URL" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
@@ -607,25 +709,27 @@ console.log(regUsers)
          language={'en'}
          country={'country:lk'}
          coordinates={true}
-        
+        placeholder="hello"
          onChange={(e) => {this.setState({latitude:e.coordinates.lat,longitiude:e.coordinates.lng}) }} />
-
+<span style={{display:this.state.latitude==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep this field blank</span>
 
 
 
 
       <ImageUploader
         withIcon={true}
-        buttonText="Choose image for logo"
+        buttonText="*Choose image for logo"
         onChange={this.onDrop}
         imgExtension={[".jpg",".png"]}
         maxFileSize={5242880}
         singleImage={true}
         withPreview={true}
       />
+      <span className="pb-2" style={{display:this.state.pictures==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep image field blank</span>
+
 
                     <div >
-                    <Button color="success" block type="submit">Create Account</Button>
+                    <Button  color="success" block type="submit">Create Account</Button>
                     </div>
                   </Form>
                 </CardBody>
@@ -670,28 +774,30 @@ console.log(regUsers)
   </IconButton>
   </div>
  
- <Container >
-   <Row className="justify-content-center">
-     <Col >
-       <Card className="mx-4" className="shadowstyle" >
-         <CardBody className="p-4">
-           <Form onSubmit={this.onSubmitHandler}>
-             <h1>Business Register</h1>
-             <p className="text-muted">Create your account</p>
-             
+  <Container style={{position:"relative"}} >
+          <Row className="justify-content-center">
+            <Col style={{paddingTop:"20px"}}>
+              <Card className="mx-4" className="shadowstyle">
+                <CardBody className="p-4">
+                  <Form onSubmit={this.onSubmitHandler}>
+                    <h1>Business Registration</h1>
+                    <p className="text-muted">Create your account</p>
+                    
 
-             <InputGroup className="mb-3">
+                    <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-bag"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-        <Input type="select" name="businesstype" id="businesstype" onChange={this.onChangeHandler}>
-         <option value="">Select Business Type</option>
+        <Input invalid={this.state.businesstype==="" && this.state.isSubmit?true:false} type="select" name="businesstype" id="businesstype" onChange={this.onChangeHandler}>
+         <option value="">*Select Business Type</option>
          {this.state.businessTypeData.map((val)=>(
           <option value={val.id}>{val.type}</option>
          ))}
         </Input>
+        <FormFeedback valid>Valid Business Type</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
       </InputGroup>
 
 
@@ -701,77 +807,91 @@ console.log(regUsers)
                           <i className="icon-basket"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-        <Input type="select" name="businesscatergory" id="businesscatergory" onChange={this.onChangeHandler}>
-         <option value="">Select Business Catergory</option>
+        <Input  invalid={this.state.businesscatergory==="" && this.state.isSubmit?true:false} type="select" name="businesscatergory" id="businesscatergory" onChange={this.onChangeHandler}>
+         <option value="">*Select Business Catergory</option>
          {this.state.businessCatergoryData.map((val)=>(
           <option value={val.id}>{val.type}</option>
          ))}
         </Input>
+         <FormFeedback valid>Valid Business Catergory</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
       </InputGroup>
 
 
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-basket-loaded"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="text" placeholder="Business Name" name="businessname" id="businessname" value={this.state.businessname} onChange={this.onChangeHandler} required/>
-             </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-basket-loaded"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input  invalid={this.state.businessname==="" && this.state.isSubmit?true:false} type="text" placeholder="*Business Name" name="businessname" id="businessname" value={this.state.businessname} onChange={this.onChangeHandler} />
+                     <FormFeedback valid>Valid Business Name</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                    </InputGroup>
 
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-user"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Number" placeholder="Business Registration Number" name="registernumber" onChange={this.onChangeHandler} value={this.state.registernumber} id="registernumber" required/>
-             </InputGroup>
-
-
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-globe"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="text" placeholder="Business Trading Name" name="trandingname" id="trandingname" value={this.state.trandingname} onChange={this.onChangeHandler} required/>
-             </InputGroup>
-
-
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-pin"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler}required />
-             </InputGroup>
-
-
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-location-pin"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Corresponding Address" name="address" id="address" value={this.state.address} onChange={this.onChangeHandler} required />
-             </InputGroup>
-
-
-
-             <InputGroup className="mb-3">
+                    <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-user"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="Business Subdomain  eg:-coffee_place" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} required/>
+                      <Input invalid={this.state.registernumber==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Business Registration Number" name="registernumber" onChange={this.onChangeHandler} value={this.state.registernumber} id="registernumber" />
+                     <FormFeedback valid>Valid Registration Number</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                    </InputGroup>
+
+
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-globe"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input invalid={this.state.trandingname==="" && this.state.isSubmit?true:false} type="text" placeholder="*Business Trading Name" name="trandingname" id="trandingname" value={this.state.trandingname} onChange={this.onChangeHandler} />
+                    <FormFeedback valid>Valid Business Trading Name</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                   
+                    </InputGroup>
+
+
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-pin"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input invalid={this.state.principalplace==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Business Place Address" name="principalplace" id="principalplace" value={this.state.principalplace} onChange={this.onChangeHandler} />
+                     <FormFeedback valid>Valid principal place</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                    </InputGroup>
+
+
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-location-pin"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input invalid={this.state.address==="" && this.state.isSubmit?true:false} type="Text" placeholder="*Corresponding Address" name="address" id="address" value={this.state.address} onChange={this.onChangeHandler}  />
+                    <FormFeedback valid>Valid Corresponding Address</FormFeedback>
+                      <FormFeedback>Cannot keep this field blank</FormFeedback>
+                    </InputGroup>
+
+
+
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-user"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input valid={this.state.valid} invalid={this.state.invalid}  type="text" placeholder="*Business Subdomain (eg :- coffeebean)" name="subdomain" id="subdomain" value={this.state.subdomain} onChange={this.HandleDomainConfirm} />
                       <FormFeedback valid>Valid Subdomain</FormFeedback>
                       <FormFeedback>Oh no! that name is already taken</FormFeedback>
                     </InputGroup>
+
 
 
                     <InputGroup className="mb-3">
@@ -780,100 +900,99 @@ console.log(regUsers)
                           <i className="icon-phone"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input  valid={this.state.validphone} invalid={this.state.invalidphone} type="Text" placeholder="Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber} required />
-                         <FormFeedback valid>Valid phone number</FormFeedback>
+                      <Input  valid={this.state.validphone} autocomplete="off"  invalid={this.state.invalidphone} type="Text" placeholder="*Enter Mobile Number (eg: +94771234567)" name="phone" id="phone" value={this.state.phone} onChange={this.ValidatePhoneNumber}  />
+                      <FormFeedback valid>Valid phone number</FormFeedback>
                       <FormFeedback>{this.state.phoneMessage}</FormFeedback>
                     </InputGroup>
 
 
+                   
 
-            
 
-
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>@</InputGroupText>
-               </InputGroupAddon>
-               <Input  valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} required/>
-            <FormFeedback valid>Valid Email address</FormFeedback>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>@</InputGroupText>
+                      </InputGroupAddon>
+                      <Input valid={this.state.validemail} autocomplete="off"  invalid={this.state.invalidemail} type="text" placeholder="*Email" autoComplete="email" name="email" id="email" value={this.state.email} onChange={this.HandleEmailConfirm} />
+                        <FormFeedback valid>Valid Email address</FormFeedback>
                       <FormFeedback>{this.state.emailMessage}</FormFeedback>
-             </InputGroup>
+                    </InputGroup>
 
 
 
-             {/* <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-user"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Enter NIC" name="nic" id="nic" value={this.state.nic} onChange={this.onChangeHandler} required/>
-             </InputGroup> */}
+                    {/* <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-user"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="Text" placeholder="Enter NIC" name="nic" id="nic" value={this.state.nic} onChange={this.onChangeHandler} required/>
+                    </InputGroup> */}
 
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-social-facebook"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Website URL" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
-             </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-globe"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="Text" placeholder="Enter Website URL" name="web" id="web" value={this.state.web} onChange={this.onChangeHandler} />
+                    </InputGroup>
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-social-facebook"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Facebook page URL" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
-             </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-social-facebook"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="Text" placeholder="Enter Facebook page URL" name="fb" id="fb" value={this.state.fb} onChange={this.onChangeHandler}/>
+                    </InputGroup>
 
-             <InputGroup className="mb-3">
-               <InputGroupAddon addonType="prepend">
-                 <InputGroupText>
-                   <i className="icon-social-instagram"></i>
-                 </InputGroupText>
-               </InputGroupAddon>
-               <Input type="Text" placeholder="Enter Instagram page URL" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
-             </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-social-instagram"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="Text" placeholder="Enter Instagram page URL" name="insta" id="insta" value={this.state.insta} onChange={this.onChangeHandler}/>
+                    </InputGroup>
 
-             <GoogleComponent
+                  
+                    <GoogleComponent
          
          apiKey="AIzaSyAjT5CUd_6F5bb5gWErov6Ns2evmXHuKKM"
          language={'en'}
          country={'country:lk'}
          coordinates={true}
-        
+        placeholder="hello"
          onChange={(e) => {this.setState({latitude:e.coordinates.lat,longitiude:e.coordinates.lng}) }} />
-             
-          
+<span style={{display:this.state.latitude==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep this field blank</span>
 
-             <ImageUploader
+
+
+
+      <ImageUploader
         withIcon={true}
-        buttonText="Choose image for logo"
+        buttonText="*Choose image for logo"
         onChange={this.onDrop}
-        imgExtension={[".jpg", ".png"]}
+        imgExtension={[".jpg",".png"]}
         maxFileSize={5242880}
-        singleImage="true"
-        withPreview="true"
+        singleImage={true}
+        withPreview={true}
       />
+      <span className="pb-2" style={{display:this.state.pictures==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep image field blank</span>
 
 
-             <div >
-             <Button color="success" block type="submit">Create Account</Button>
-             </div>
-           </Form>
-
-
-
-         </CardBody>
-      
-       </Card>
-     </Col>
-   </Row>
- </Container>
-
+                    <div >
+                    <Button  color="success" block type="submit">Create Account</Button>
+                    </div>
+                  </Form>
+                </CardBody>
+               
+              </Card>
+            </Col>
+          </Row>
+        </Container>
 
 
  </div>
