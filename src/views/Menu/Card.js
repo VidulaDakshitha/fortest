@@ -669,10 +669,10 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
                     hygeinerating:"",
                     satisfactionrating:"",
                     foodrating:"",
-                    color:"green",
-                    color2:"green",
-                    color3:"green",
-                    color4:"green"
+                    color:"#32CD32",
+                    color2:"#32CD32",
+                    color3:"#32CD32",
+                    color4:"#32CD32"
 
                   })
 
@@ -916,8 +916,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
               <form onSubmit={this.onSubmitHandler}>
               <FormGroup>
               <p>Is this first time at our restaurant?</p>
-              <Button color="success" style={{borderColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:"yellow",color2:"green"});}}>Yes</Button>{' '}
-              <Button color="success" style={{borderColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"green",color2:"yellow"});}}>No</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color,backgroundColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:'#006400',color2:"#32CD32"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color2,backgroundColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"#32CD32",color2:"#006400"});}}>No</Button>{' '}
               </FormGroup>
 
 
@@ -987,8 +987,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
               <FormGroup>
               <p>Would you come back to eat with us again?</p>
-              <Button color="success" style={{borderColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"yellow",color4:"green"});}}>Yes</Button>{' '}
-              <Button color="success" style={{borderColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"yellow",color3:"green"});}}>No</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color3,backgroundColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"#006400",color4:"#32CD32"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color4,backgroundColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"#006400",color3:"#32CD32"});}}>No</Button>{' '}
               </FormGroup>
 
               <FormGroup>
@@ -1256,8 +1256,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
               <form onSubmit={this.onSubmitHandler}>
               <FormGroup>
               <p>Is this first time at our restaurant?</p>
-              <Button color="success" style={{borderColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:"yellow",color2:"green"});}}>Yes</Button>{' '}
-              <Button color="success" style={{borderColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"green",color2:"yellow"});}}>No</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color,backgroundColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:"#006400",color2:"#32CD32"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color2,backgroundColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"#32CD32",color2:"#006400"});}}>No</Button>{' '}
               </FormGroup>
 
 
@@ -1327,8 +1327,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
               <FormGroup>
               <p>Would you come back to eat with us again?</p>
-              <Button color="success" style={{borderColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"yellow",color4:"green"});}}>Yes</Button>{' '}
-              <Button color="success" style={{borderColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"yellow",color3:"green"});}}>No</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color3,backgroundColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"#006400",color4:"#32CD32"});}}>Yes</Button>{' '}
+              <Button color="success" style={{borderColor:this.state.color4,backgroundColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"#006400",color3:"#32CD32"});}}>No</Button>{' '}
               </FormGroup>
 
               <FormGroup>
