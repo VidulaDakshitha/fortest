@@ -633,7 +633,7 @@ class HomePage extends React.Component {
                     <img className="rounded img-fluid hover-fade-out" src={sixthImage} alt="blog.2.image"></img>
                   </a>
                   <div className="col">
-                    <a className="h6" href="#">A name you can trust</a>
+                    <p className="h6" >A name you can trust</p>
                     <div className="text-small text-muted mt-2">We provide high quality customer service experience</div>
                   </div>
                 </div>

@@ -175,7 +175,7 @@ const useStyles =theme => ({
     color:"green"
   },
   cardstyle:{
-    maxWidth: 345,
+    maxWidth: 350,
     alignItems: 'center'
   },
   root1: {
@@ -195,7 +195,7 @@ class Cardimg extends React.Component {
   constructor(props){
              super(props);
              this.state={
-              matches: window.matchMedia("(min-width: 990px)").matches,
+              matches: window.matchMedia("(min-width: 1025px)").matches,
                categories:[],
                Items:[],
                initialCatID:"",
@@ -220,6 +220,7 @@ class Cardimg extends React.Component {
               styleArray:"",
               catergoryName:"",
               empty:[],
+              cartLength:0
              }
             
             }
@@ -421,6 +422,124 @@ this.onCatergoryClick(0,"");
               })
         
 
+            }
+
+
+            AddItemsToCart=async(amountOfItems,ItemID,name,price,image)=>{
+
+              if (JSON.parse(localStorage.getItem('item')).length===0)
+              {
+                console.log("inside empty")
+
+                        const cart={
+                itemID:ItemID,
+                itemName:name,
+                price:price,
+                totalPrice:price*amountOfItems,
+                NoOfitems:amountOfItems,
+                Image:image
+
+              }
+
+              
+
+             
+            this.setState({
+              cartItem:[cart,...JSON.parse(localStorage.getItem('item'))],
+           
+            },()=>{
+              localStorage.setItem("item",JSON.stringify(this.state.cartItem)   
+              );
+          
+          this.setState({
+                cartLength:Object.keys(JSON.parse(localStorage.getItem('item'))).length
+              })
+          })
+
+              }else{
+
+
+
+              JSON.parse(localStorage.getItem('item')).map(async (val,index)=>{
+
+if (parseInt(val.itemID)===parseInt(ItemID))
+{
+
+   console.log("items matched")
+console.log(val.itemID)
+console.log(ItemID)
+
+
+  let items = await JSON.parse(localStorage.getItem('item'))
+
+  items[index].NoOfitems=await val.NoOfitems+amountOfItems
+
+          const cart={
+                itemID:ItemID,
+                itemName:name,
+                price:price,
+                totalPrice:price*amountOfItems,
+                NoOfitems:amountOfItems,
+                Image:image
+
+              }
+
+              
+
+             
+            this.setState({
+              cartItem:items,
+           
+            },()=>{
+              localStorage.setItem("item",JSON.stringify(this.state.cartItem)   
+              );
+          
+          this.setState({
+                cartLength:Object.keys(JSON.parse(localStorage.getItem('item'))).length
+              })
+          })
+
+
+}else if(index===JSON.parse(localStorage.getItem('item')).length-1 && parseInt(val.itemID)!==parseInt(ItemID))
+{
+ console.log("not matched",index)
+
+console.log("not matched",JSON.parse(localStorage.getItem('item')).length-1)
+console.log(val.itemID)
+console.log(ItemID)
+        const cart={
+                itemID:ItemID,
+                itemName:name,
+                price:price,
+                totalPrice:price*amountOfItems,
+                NoOfitems:amountOfItems,
+                Image:image
+
+              }
+
+              
+
+             
+            this.setState({
+              cartItem:[cart,...JSON.parse(localStorage.getItem('item'))],
+           
+            },()=>{
+              localStorage.setItem("item",JSON.stringify(this.state.cartItem)   
+              );
+          
+          this.setState({
+                cartLength:Object.keys(JSON.parse(localStorage.getItem('item'))).length
+              })
+          })
+
+
+
+              }
+
+
+
+              })}
+ 
             }
 
 
@@ -633,8 +752,11 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
                    
                   this.setState({
                     ItemsInCart:copy
-                  },()=>{localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
-                
+                  },()=>{
+                    localStorage.setItem("item",JSON.stringify(this.state.ItemsInCart));
+                    this.setState({
+                cartLength:Object.keys(JSON.parse(localStorage.getItem('item'))).length
+              })
                
                 })
 
@@ -773,11 +895,11 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 <h4 className="heading mt-4" ><b>{this.state.catergoryName}</b></h4>
 
 
-<div className="justify-content-center" style={{paddingTop:"20px"}}>
+<div className="justify-content-center pb-5" style={{paddingTop:"20px"}}>
  
 
 {this.state.filteredItems.length===0?<p>No items available</p>:
-<Menu item={this.state.filteredItems}/>}
+<Menu item={this.state.filteredItems} AddItemsToCart = {this.AddItemsToCart}/>}
 
 </div>
 
@@ -958,7 +1080,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
                 className={classes.inline}
                 color="textPrimary"
               >
-               <b>LKR {tile.price} X {tile.NoOfitems} = LKR {tile.price*tile.NoOfitems}</b>
+               <b>LKR {parseFloat(tile.price).toFixed(2)} X {tile.NoOfitems} = LKR {parseFloat(tile.price*tile.NoOfitems).toFixed(2)}</b>
               </Typography>
               
             </React.Fragment>
@@ -1077,10 +1199,10 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 </div>
 
 
-<div className="pt-3" >
+<div className="pt-3 pb-5 " >
 
-{this.state.filteredItems.length===0?<p>No items available</p>:
-<Menu item={this.state.filteredItems}/>}
+{this.state.filteredItems.length===0?<p className="pl-3">No items available</p>:
+<Menu item={this.state.filteredItems} AddItemsToCart = {this.AddItemsToCart}/>}
 
 </div>
 
@@ -1096,7 +1218,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
 
-<div  >
+{/* <div  >
 
              <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
           ItemsInCart:localStorage.getItem('item')!==null? JSON.parse(localStorage.getItem('item')): localStorage.setItem("item",JSON.stringify(this.state.empty))
@@ -1106,8 +1228,19 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
     <ShoppingCart fontSize="large" style={{color:"#47441c",cursor:"pointer"}}/>
   </Badge >
 </IconButton>
-</div>
+</div> */}
 
+<div  >
+
+             <IconButton className="shadowstyle" aria-label="cart" style={{bottom:"15px",right:"20px",position:"fixed",zIndex:"3",backgroundColor:"white"}} onClick={()=>{this.setState({
+          ItemsInCart:localStorage.getItem('item')!==null? JSON.parse(localStorage.getItem('item')): localStorage.setItem("item",JSON.stringify(this.state.empty))
+        });this.toggleLarge2();}}
+        >
+  <Badge  badgeContent={this.state.cartLength} color="secondary">
+    <ShoppingCart fontSize="large" style={{color:"#47441c",cursor:"pointer"}}/>
+  </Badge >
+</IconButton>
+</div>
 
 
 
@@ -1255,7 +1388,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
                 className={classes.inline}
                 color="textPrimary"
               >
-                <b>LKR {tile.price} X {tile.NoOfitems} = LKR {tile.price*tile.NoOfitems}</b>
+                <b>LKR {parseFloat(tile.price).toFixed(2)} X {tile.NoOfitems} = LKR {parseFloat(tile.price*tile.NoOfitems).toFixed(2)}</b>
               </Typography>
               
             </React.Fragment>
@@ -1271,7 +1404,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
     
 
     </List>
-    :<p>No Items in cart</p>}
+    :<p className="pl-3">No Items in cart</p>}
 
             </ModalBody>
             {/* <ModalFooter><button className="btn btn-danger" onClick={()=>{this.setState({large2:false})}}>Update Cart</button></ModalFooter> */}

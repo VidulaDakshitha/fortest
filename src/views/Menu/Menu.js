@@ -103,7 +103,7 @@ class Menu extends React.Component {
   constructor(props){
              super(props);
              this.state={
-              matches: window.matchMedia("(min-width: 1000px)").matches,
+               matches: window.matchMedia("(min-width: 1025px)").matches,
               large: false,
               name:"",
               price:"",
@@ -117,6 +117,7 @@ class Menu extends React.Component {
               Items:1,
               cartItem:[],
               itemImage:"",
+              toggledImage:false,
              }
             
             }
@@ -140,15 +141,16 @@ changeHandler=(e)=>{
             }
 
             dataAssign=(name,price,time,desc,item,image)=>{
-                  console.log("item"+image)
+               
                   this.setState({
                     name:name,
                     price:price,
                     time:time,
                     description:desc,
                     itemID:item,
-                    itemImage:image
-                  },()=>console.log(this.state.itemImage))
+                    itemImage:image,
+                    toggledImage:false
+                  })
             }
 
 
@@ -257,11 +259,12 @@ changeHandler=(e)=>{
             render() { 
               //console.log(this.props.item)
               const {classes} = this.props;
-
+ var AddItemsToCart  =   this.props.AddItemsToCart;
  
   return (
     <div>
-       
+    {this.state.matches && (
+       <div>
     {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
@@ -302,11 +305,11 @@ changeHandler=(e)=>{
  {this.props.item.map(tile=>(
     <div className="shadowstyle2 mb-3 row" style={{height:"100px",width:"102%",borderRadius:"8px"}}>
 
-    <div className="col-3 d-flex justify-content-start">
+    <div className="col-2 ">
       <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '90px' }}/>
 </div>
 
-<div className="col-7 d-flex align-content-between flex-wrap">
+<div className="col-8 d-flex align-content-start flex-wrap">
    <ListItemText
            primary={tile.item_name}
           secondary={
@@ -317,7 +320,7 @@ changeHandler=(e)=>{
                 className={classes.inline}
                 color="textPrimary"
               >
-               <b> LKR {tile.price}</b>
+               <b> LKR {parseFloat(tile.price).toFixed(2)}</b>
               </Typography>
               
             </React.Fragment>
@@ -350,22 +353,31 @@ changeHandler=(e)=>{
             
 
  
-            <Card >
-      <CardActionArea>
+      
+      <Card >
+              <CardActionArea>
+  
+      
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
-          height="140"
+          height={this.state.toggledImage?'100%':'200'}
+      title="Click to view Image"
           image={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.itemImage}
-          title="Contemplative Reptile"
+          
+          onClick={()=>this.setState({
+toggledImage:!this.state.toggledImage
+          })}
         />
+     
+        
         <CardContent className="text-center">
           <Typography gutterBottom variant="h4" component="h4">
           {this.state.name}
           </Typography>
         
           <Typography variant="body2" color="textSecondary" component="p">
-          <p style={{fontSize:"18px"}}><b>LKR {this.state.price}</b></p>
+          <p style={{fontSize:"18px"}}><b>LKR {parseFloat(this.state.price).toFixed(2)}</b></p>
           <p style={{fontSize:"16px"}}><b>{this.state.time}</b></p>
           <p style={{fontSize:"14px"}}>{this.state.description}</p>
           
@@ -397,7 +409,7 @@ changeHandler=(e)=>{
         </Button> */}
       </CardActions>
       <CardFooter className="d-flex justify-content-center">
-      <button className="btn btn-success" block onClick={()=>{this.AddItemsToCart(this.state.Items);this.setState({large:false})}}>Add {this.state.Items} Item To Cart</button>
+      <button className="btn btn-success" block onClick={()=>{this.props.AddItemsToCart(this.state.Items,this.state.itemID,this.state.name,this.state.price,this.state.itemImage);this.setState({large:false,Items:1})}}>Add {this.state.Items} Item To Cart</button>
       </CardFooter>
 
     </Card>
@@ -407,6 +419,161 @@ changeHandler=(e)=>{
              
           </Modal>
 
+    </div>
+    
+)}
+{!this.state.matches && (
+  <div >
+      {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
+      {this.props.item.map(tile=>(
+
+     
+      <ListItem alignItems="flex-start" >
+        <ListItemAvatar>
+          <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '50px', width: '50px' }}/>
+        </ListItemAvatar>
+        <ListItemText
+           primary={tile.item_name}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+               <b> LKR {tile.price}</b>
+              </Typography>
+              
+            </React.Fragment>
+          }
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+        />
+        <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+>
+                <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
+              </IconButton>
+      </ListItem>
+      ))}
+
+    
+<Divider variant="inset" component="li" />
+    </List> */}
+
+
+ {this.props.item.map(tile=>(
+    <div className="shadowstyle2 mb-3 row" style={{height:"100px",width:"101%",borderRadius:"8px"}}>
+
+    <div className="col-4 d-flex justify-content-center">
+      <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '100%' }}/>
+</div>
+
+<div className="col-6 d-flex justify-content-start align-content-between flex-wrap">
+   <ListItemText
+           primary={tile.item_name}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+               <b> LKR {parseFloat(tile.price).toFixed(2)}</b>
+              </Typography>
+              
+            </React.Fragment>
+          }
+          onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+        />
+</div>
+<div className="col-2  d-flex justify-content-start ">
+    <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
+>
+                <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
+              </IconButton>
+
+</div>
+    </div>
+ ))}
+
+
+
+    <Modal
+            isOpen={this.state.large}
+            toggle={this.toggleLarge1}
+            className={"modal-lg " + this.props.className}
+          >
+            <ModalHeader><KeyboardBackspaceIcon onClick={this.toggleLarge1}/>    View Item</ModalHeader>
+
+            <ModalBody>
+
+            
+            
+
+ 
+            <Card >
+      <CardActionArea>
+        <CardMedia
+          title="Click to view Image"
+          component="img"
+          alt="Contemplative Reptile"
+            height={this.state.toggledImage?'100%':'210'}
+          image={"https://onepayserviceimages.s3.amazonaws.com/"+this.state.itemImage}
+          
+           onClick={()=>this.setState({
+toggledImage:!this.state.toggledImage
+          })}
+        />
+        <CardContent className="text-center">
+          <Typography gutterBottom variant="h4" component="h4">
+          {this.state.name}
+          </Typography>
+        
+          <Typography variant="body2" color="textSecondary" component="p">
+          <p style={{fontSize:"18px"}}><b>LKR {parseFloat(this.state.price).toFixed(2)}</b></p>
+          <p style={{fontSize:"16px"}}><b>{this.state.time}</b></p>
+          <p style={{fontSize:"14px"}}>{this.state.description}</p>
+          
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions className="justify-content-center">
+
+          
+        <div>
+        <Button style={{borderRadius:"20px"}} onClick={()=>this.RemoveItem()}><i className="fa fa-minus"></i></Button>
+        </div>
+        <b>{this.state.Items}</b>
+        <div>
+        <Button style={{borderRadius:"20px"}} onClick={()=>this.AddItem()}><i className="fa fa-plus"></i></Button>
+        </div>
+
+        
+        
+        {/* <Button size="small" color="primary" onClick={()=>{
+          this.setState({
+            btnclicked:true
+          })
+        }}>
+          Give feedback
+        </Button>
+        <Button size="small" color="primary" onClick={()=>{this.toggleLarge1();this.setState({rating:"",btnclicked:false})}}>
+          cancel
+        </Button> */}
+      </CardActions>
+      <CardFooter className="d-flex justify-content-center">
+      <button className="btn btn-success" block onClick={()=>{this.props.AddItemsToCart(this.state.Items,this.state.itemID,this.state.name,this.state.price,this.state.itemImage);this.setState({large:false,Items:1})}}>Add {this.state.Items} Item To Cart</button>
+      </CardFooter>
+
+    </Card>
+             
+   
+              </ModalBody>
+             
+          </Modal>
+  </div>
+  )}
     </div>
   );
 }

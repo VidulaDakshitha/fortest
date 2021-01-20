@@ -151,6 +151,7 @@
 
 .f-contact-list {
   list-style: none;
+  padding-inline-start: 0px !important;
 }
 
 .f-contact-list > li {
@@ -233,6 +234,13 @@
   top: 0;
   left: 15px;
 }
+
+.zoom {
+    zoom: 0 !important;
+    -moz-transform: scale(0);
+    -moz-transform-origin: 0 0;
+}
+
 
     </style>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -365,7 +373,7 @@
 
   -->
 
-  <body>
+  <body class="zoom">
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>

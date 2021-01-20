@@ -709,7 +709,7 @@ console.log(regUsers)
          language={'en'}
          country={'country:lk'}
          coordinates={true}
-        placeholder="hello"
+  
          onChange={(e) => {this.setState({latitude:e.coordinates.lat,longitiude:e.coordinates.lng}) }} />
 <span style={{display:this.state.latitude==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep this field blank</span>
 
@@ -964,7 +964,7 @@ console.log(regUsers)
          language={'en'}
          country={'country:lk'}
          coordinates={true}
-        placeholder="hello"
+
          onChange={(e) => {this.setState({latitude:e.coordinates.lat,longitiude:e.coordinates.lng}) }} />
 <span style={{display:this.state.latitude==="" &&this.state.isSubmit?'block':'none',color:"red",fontSize:'80%'}}>Cannot keep this field blank</span>
 
