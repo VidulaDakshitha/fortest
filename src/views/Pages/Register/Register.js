@@ -752,16 +752,24 @@ console.log(regUsers)
 </div>
 </div> */}
 
-<div >
+{/* <div >
 
 <div className="justify-content-right" >
   <div className="text-right px-5 align-middle" >
-<img src={logo} width="42%" height="30%" alt=""></img>
+<img src={logo} width="52%" height="40%" alt=""></img>
 </div>
 </div>
-</div>
+</div> */}
 
+<div >
+<div >
+<div className="d-flex align-items-end flex-column px-51" >
 
+<img src={logo} width="52%" height="40%" alt="" ></img>
+
+</div>
+</div>
+</div>
 
 </div>
 

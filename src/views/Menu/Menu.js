@@ -303,9 +303,9 @@ changeHandler=(e)=>{
 
 
  {this.props.item.map(tile=>(
-    <div className="shadowstyle2 mb-3 row" style={{height:"100px",width:"102%",borderRadius:"8px"}}>
+    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",width:"102%",borderRadius:"8px"}}>
 
-    <div className="col-2 ">
+    <div className="col-2 removePaading">
       <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '90px' }}/>
 </div>
 
@@ -328,7 +328,7 @@ changeHandler=(e)=>{
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
         />
 </div>
-<div className="col-2 d-flex align-items-center">
+<div className="col-2 d-flex align-items-center removePaading">
     <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
 >
                 <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
@@ -423,7 +423,7 @@ toggledImage:!this.state.toggledImage
     
 )}
 {!this.state.matches && (
-  <div >
+  <div className="">
       {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
@@ -462,13 +462,15 @@ toggledImage:!this.state.toggledImage
 
 
  {this.props.item.map(tile=>(
-    <div className="shadowstyle2 mb-3 row" style={{height:"100px",width:"101%",borderRadius:"8px"}}>
+   
+    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",borderRadius:"8px"}}>
 
-    <div className="col-4 d-flex justify-content-center">
-      <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '100%' }}/>
+    <div className="col-3 d-flex justify-content-start removePaading">
+   
+      <Avatar  variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '100%'}}/>
 </div>
 
-<div className="col-6 d-flex justify-content-start align-content-between flex-wrap">
+<div className="col-7 d-flex justify-content-start align-content-between flex-wrap">
    <ListItemText
            primary={tile.item_name}
           secondary={
@@ -487,7 +489,7 @@ toggledImage:!this.state.toggledImage
           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
         />
 </div>
-<div className="col-2  d-flex justify-content-start ">
+<div className="col-2 removePaading  d-flex justify-content-start ">
     <IconButton  edge="end" aria-label="comments"           onClick={()=>{this.toggleLarge1();this.dataAssign(tile.item_name,tile.price,tile.preparing_time,tile.description,tile.itemID,tile.itemImage);}}
 >
                 <AddCircleIcon className={classes.successIcon}  fontSize="large"/>
@@ -573,7 +575,9 @@ toggledImage:!this.state.toggledImage
              
           </Modal>
   </div>
+  
   )}
+  
     </div>
   );
 }

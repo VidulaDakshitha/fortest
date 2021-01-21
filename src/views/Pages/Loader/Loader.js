@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { css } from "@emotion/core";
 import CircleLoader from "react-spinners/CircleLoader";
 import "./loaderstyle.css";
-
+import {Link,withRouter } from "react-router-dom";
 const override = css`
   display: absolute;
   margin: 0 auto;
@@ -22,12 +22,37 @@ class Loader extends Component{
 
       componentDidMount(){
  
+      var subdomain =  window.location.host.split('.')[1] ? window.location.host.split('.')[0] : false;
+      console.log("subs",subdomain)
 
-        setTimeout(()=>{
+if(subdomain!==false)
+{             
+             setTimeout(()=>{
           this.setState({
             loading:false
-          },()=>{window.location.href="/#/main";})
+          },()=>{
+            this.props.history.push('/menu');
+            //window.location.href="/main";
+            
+            
+            })
         },1500)
+ 
+
+}else{
+    setTimeout(()=>{
+          this.setState({
+            loading:false
+          },()=>{
+            this.props.history.push('/main');
+            //window.location.href="/main";
+            
+            
+            })
+        },1500)
+
+}
+    
         
         }
 

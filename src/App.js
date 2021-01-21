@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HashRouter, Route, Switch,Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch,Redirect,BrowserRouter as Router } from "react-router-dom";
 // import { renderRoutes } from 'react-router-config';
 import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -7,6 +7,11 @@ import DotLoader from "react-spinners/DotLoader";
 import "./App.scss";
 import Loader from "react-spinners/CircleLoader";
 import "./style.css";
+import HomePage from "./views/Pages/HomePage/HomePage";
+import Loaders from "./views/Pages/Loader";
+import Register from "./views/Pages/Register";
+import Menupage from "./views/Menu/Card" ;
+import RegisterConfirm from "./views/Pages/RegisterConfirm/RegisterConfirm" ;
 const override = css`
   display: block;
   margin: 0 auto;
@@ -21,20 +26,21 @@ const loading = () => (
 const DefaultLayout = React.lazy(() => import("./containers/DefaultLayout"));
 
 // Pages
-const HomePage=React.lazy(() => import("./views/Pages/HomePage/HomePage"));
-const Qrscanner=React.lazy(()=>import("./views/Pages/Qrscanner"));
-const Loaders = React.lazy(()=>import("./views/Pages/Loader"));
-const Login = React.lazy(() => import("./views/Pages/Login"));
-const Register = React.lazy(() => import("./views/Pages/Register"));
-const Page404 = React.lazy(() => import("./views/Pages/Page404"));
-const Page500 = React.lazy(() => import("./views/Pages/Page500"));
-const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
-const Menupage=React.lazy(() => import("./views/Menu/Card"));
-const RegisterConfirm=React.lazy(() => import("./views/Pages/RegisterConfirm/RegisterConfirm"));
-const QRgenerator=React.lazy(() => import("./views/Pages/QRgenerator/QRgenerator"));
+// const HomePage=React.lazy(() => import("./views/Pages/HomePage/HomePage"));
+// const Qrscanner=React.lazy(()=>import("./views/Pages/Qrscanner"));
+// const Loaders = React.lazy(()=>import("./views/Pages/Loader"));
+// const Login = React.lazy(() => import("./views/Pages/Login"));
+// const Register = React.lazy(() => import("./views/Pages/Register"));
+// const Page404 = React.lazy(() => import("./views/Pages/Page404"));
+// const Page500 = React.lazy(() => import("./views/Pages/Page500"));
+// const MainPage= React.lazy(() => import("./views/Pages/MainPage/MainPage"));
+// const Menupage=React.lazy(() => import("./views/Menu/Card"));
+// const RegisterConfirm=React.lazy(() => import("./views/Pages/RegisterConfirm/RegisterConfirm"));
+// const QRgenerator=React.lazy(() => import("./views/Pages/QRgenerator/QRgenerator"));
 
 
-const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
+// const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
+
 
 // const PrivateRouteUser = ({ component: Component, ...rest }) => (
 //   <Route {...rest} render={(props) => (
@@ -52,11 +58,50 @@ const Sample=React.lazy(() => import("./views/Pages/Sample/Sample"));
 class App extends Component {
   render() {
     return (
-      <HashRouter>
-        <React.Suspense fallback={loading()}>
+      <Router>
+ 
           <Switch>
 
           <Route
+              exact
+              path="/"
+              name="Loader Page"
+            component={Loaders}
+           
+            />
+
+            <Route
+              exact
+              path="/main"
+              name="Main Page"
+                component={HomePage}
+             
+        
+            />
+
+                    <Route
+              exact
+              path="/register"
+              name="Register Page"
+              component={Register}
+            />
+
+            <Route
+              path="/menu"
+              name="Menu Page"
+              component={Menupage}
+             
+            />
+
+               <Route
+              exact
+              path="/regsiterconfirm"
+              name="regsiter confirm"
+               component={RegisterConfirm}
+            
+            />
+
+          {/* <Route
               exact
               path="/"
               name="Loader Page"
@@ -137,10 +182,10 @@ class App extends Component {
               path="/"
               name="Home"
               render={(props) => <DefaultLayout {...props} />}
-            />
+            /> */}
           </Switch>
-        </React.Suspense>
-      </HashRouter>
+  
+      </Router>
     );
   }
 }

@@ -104,8 +104,14 @@ z-index: 1;
 
   .px-5 {
      padding-top: ($spacer * 10) !important;
-    padding-right: ($spacer * 14) !important;
+    padding-right: ($spacer * 8) !important;
   }
+
+  .px-51 {
+    padding-top: ($spacer * 6) !important;
+    padding-right: ($spacer * 2) !important;
+ }
+
 
   .files-list {
     display: flex;
@@ -136,4 +142,9 @@ Input[type=number] {
 .boxheight{
   height: 110px !important;
   display: block;
+}
+
+.removePaading{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }

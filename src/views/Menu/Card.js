@@ -92,7 +92,7 @@
 
 
 import React from 'react';
-
+import {Link,withRouter } from "react-router-dom";
 import "./Style.scss";
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -250,7 +250,7 @@ if(subdomain!==false)
  
 
 }else{
-  window.location.href="#/main";
+ this.props.history.push('/main');
 
       Swal.fire({   
               icon:'error',               
@@ -314,11 +314,12 @@ if(subdomain!==false)
                 .then(async(res) => {
 
                   if(res.data.data===null)
-                  {window.location.href="#/main";
+                  {
+                   this.props.history.push('/main');
                     Swal.fire({
                       icon:'error',
                       title:'Oopss....',
-                      text:'Invalid Sub_Domain.'
+                      text:'There is  no menu associated with this merchant.'
                     })
                   }else{
                   
@@ -330,7 +331,7 @@ if(subdomain!==false)
 
                      
 
-                window.location.href="#/main";
+                this.props.history.push('/main');
                     Swal.fire({
                       icon:'error',
                       title:'Oopss....',
@@ -1037,18 +1038,26 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
 
-<div >
+{/* <div >
 
 <div className="justify-content-right" >
   <div className="text-right px-5 align-middle" >
 <img src={logo} width="42%" height="30%" alt=""></img>
 </div>
 </div>
+</div> */}
+
+
+
+<div >
+<div >
+<div className="d-flex align-items-end flex-column px-51" >
+
+<img src={logo} width="52%" height="40%" alt="" ></img>
+
 </div>
-
-
-
-
+</div>
+</div>
 
 
 <Modal

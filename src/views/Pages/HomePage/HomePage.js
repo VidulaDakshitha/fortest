@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from "jquery";
-
+import {Link} from "react-router-dom";
 import JumpStart from "../../../assets/img/img/logos/jumpstart.svg";
 
 import IconMenu from "../../../assets/img/img/icons/interface/icon-menu.svg";
@@ -81,6 +81,9 @@ class HomePage extends React.Component {
         super(props);
     }
 
+
+  
+
     render() { 
 
             
@@ -106,7 +109,7 @@ class HomePage extends React.Component {
             <img alt="Jumpstart" src={Onepaylogo} height="100px" width="200px" alt="JumpStart"></img>
           </a>
           <div className="d-flex align-items-center order-lg-3">
-            <a href="#/register" className="btn1 btn-primary1 ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-none d-sm-block order-lg-3">Register As Merchant</a>
+            <Link style={{ textDecoration: 'none' }} to="/register"><a href="" className="btn1 btn-primary1 ml-lg-4 mr-3 mr-md-4 mr-lg-0 d-none d-sm-block order-lg-3">Register As Merchant</a></Link>
             <button aria-expanded="false" aria-label="Toggle navigation" className="navbar-toggler" data-target=".navbar-collapse" data-toggle="collapse" type="button">
               <img alt="Navbar Toggler Open Icon" className="navbar-toggler-open icon icon-sm" src={IconMenu}></img>
               <img alt="Navbar Toggler Close Icon" className="navbar-toggler-close icon icon-sm" src={Iconx}></img>
@@ -116,7 +119,7 @@ class HomePage extends React.Component {
             <ul className="navbar-nav my-3 my-lg-0">
               <li className="nav-item d-sm-none">
                 <div className="dropdown">
-                  <a aria-expanded="false" href="/#/register" aria-haspopup="true" className=" nav-link nav-item " data-toggle="dropdown-grid" role="button">Register</a>
+                   <Link style={{ textDecoration: 'none' }} to="/register"><a aria-expanded="false" href="" aria-haspopup="true" className=" nav-link nav-item " data-toggle="dropdown-grid" role="button">Register</a></Link>
                   {/* <div className="row dropdown-menu">
                     <div className="col-auto" data-dropdown-content>
                       <div className="dropdown-grid-menu"><a href="index.html" className="dropdown-item fade-page">Overview</a><a href="landing-1.html" className="dropdown-item fade-page">Landing 1</a><a href="landing-2.html" className="dropdown-item fade-page">Landing 2</a><a href="landing-3.html"
