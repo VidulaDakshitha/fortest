@@ -653,7 +653,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
                 {
                   Swal.fire(
                     'Good Job!',
-                    'Your feedback is succesfully submitted',
+                    'Your feedback is successfully submitted',
                     'success'
                   )
 
