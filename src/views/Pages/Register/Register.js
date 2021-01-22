@@ -513,7 +513,7 @@ console.log(regUsers)
        {this.state.matches && (
     <div >
       
-       <div className="divstyle col-lg-5">
+       <div className=" divstyle col-lg-5" id="style-15">
        <div className="d-flex justify-content-between pt-2 pl-2">
        <IconButton className="shadowstyle">
   <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>

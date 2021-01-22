@@ -788,7 +788,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 <div>
   
 
-<div className="divstyle col-lg-5">
+<div className="divstyle col-lg-5" id="style-15">
   
 
 
@@ -878,7 +878,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
           
 <div class="wrapper">
-  <div class="scrolls">
+  <div class="scrolls" id="style-1">
 {this.state.categories.map((tile,index) => (
                     <div className="card1 pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
                                 <div  style={{backgroundImage:`url(${"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage})`,width:"100%",height: "95px",borderRadius:"15px",backgroundRepeat: 'no-repeat',backgroundSize:"cover"}}>
