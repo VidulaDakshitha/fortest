@@ -306,7 +306,7 @@ changeHandler=(e)=>{
     <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",width:"95%",borderRadius:"8px"}}>
 
     <div className="col-2 removePaading">
-      <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '90px' }}/>
+      <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '100%' }}/>
 </div>
 
 <div className="col-8 d-flex align-content-start flex-wrap">

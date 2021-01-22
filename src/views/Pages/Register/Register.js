@@ -518,7 +518,7 @@ console.log(regUsers)
        <div className="d-flex justify-content-between pt-2 pl-2">
        <Link style={{ textDecoration: 'none' }} to="/main">
        <IconButton className="shadowstyle3">
-  <Home fontSize="medium" style={{cursor:"pointer"}}/>
+  <Home fontSize="default" style={{cursor:"pointer"}}/>
   </IconButton></Link>
   </div>
         <Container style={{position:"relative"}} >

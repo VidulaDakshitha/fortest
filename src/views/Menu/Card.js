@@ -795,7 +795,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 <div className="d-flex justify-content-start pt-4 pl-4">
 <IconButton className="shadowstyle3" onClick={this.toggleLarge1}>
-  <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{cursor:"pointer"}}/>
+  <EmojiEmotionsRoundedIcon fontSize="default" onClick={this.toggleLarge1} style={{cursor:"pointer",outlineOffest:"10px",outlineColor:"white"}}/>
   </IconButton>
   {/* <IconButton className="shadowstyle">
   <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
