@@ -794,8 +794,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
 <div className="d-flex justify-content-start pt-4 pl-4">
-<IconButton className="shadowstyle">
-  <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"#47441c",cursor:"pointer"}}/>
+<IconButton className="shadowstyle3" onClick={this.toggleLarge1}>
+  <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{cursor:"pointer"}}/>
   </IconButton>
   {/* <IconButton className="shadowstyle">
   <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
@@ -1127,8 +1127,8 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 <div >
 <div >
 <div className="d-flex justify-content-start pt-4 pl-4">
-        <IconButton className="shadowstyle">
-          <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{color:"#47441c",cursor:"pointer"}}/>
+        <IconButton className="shadowstyle3" onClick={this.toggleLarge1}>
+          <EmojiEmotionsRoundedIcon fontSize="medium" onClick={this.toggleLarge1} style={{cursor:"pointer"}}/>
           </IconButton>
           {/* <IconButton className="shadowstyle">
           <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>

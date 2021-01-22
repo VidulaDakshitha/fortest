@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormText,Button, Card, CardBody, CardFooter, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row, FormFeedback,FormGroup,Label } from 'reactstrap';
 import queryString from 'query-string'
 import axios from "axios";
+import {Link} from "react-router-dom";
 import alertify from "alertifyjs/build/alertify";
 import "alertifyjs/build/css/alertify.min.css";
 import "alertifyjs/build/css/alertify.css";
@@ -515,9 +516,10 @@ console.log(regUsers)
       
        <div className=" divstyle col-lg-5" id="style-15">
        <div className="d-flex justify-content-between pt-2 pl-2">
-       <IconButton className="shadowstyle">
-  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"black",cursor:"pointer"}}/>
-  </IconButton>
+       <Link style={{ textDecoration: 'none' }} to="/main">
+       <IconButton className="shadowstyle3">
+  <Home fontSize="medium" style={{cursor:"pointer"}}/>
+  </IconButton></Link>
   </div>
         <Container style={{position:"relative"}} >
           <Row className="justify-content-center">
@@ -781,9 +783,9 @@ console.log(regUsers)
       {!this.state.matches && (
 
 <div>   <div className="d-flex justify-content-between pt-2 pl-2">
-  <IconButton className="shadowstyle ">
-  <Home fontSize="medium" onClick={()=>window.location.href="/#/main"} style={{color:"grey",cursor:"pointer"}}/>
-  </IconButton>
+  <Link style={{ textDecoration: 'none' }} to="/main"> <IconButton className="shadowstyle3 ">
+ <Home fontSize="medium" style={{cursor:"pointer"}}/>
+  </IconButton></Link>
   </div>
  
   <Container style={{position:"relative"}} >
