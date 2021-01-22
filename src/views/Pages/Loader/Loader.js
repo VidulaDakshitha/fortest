@@ -25,7 +25,7 @@ class Loader extends Component{
       var subdomain =  window.location.host.split('.')[1] ? window.location.host.split('.')[0] : false;
       console.log("subs",subdomain)
 
-if(subdomain!==false)
+if(subdomain!==false && subdomain!=="alacartes")
 {             
              setTimeout(()=>{
           this.setState({

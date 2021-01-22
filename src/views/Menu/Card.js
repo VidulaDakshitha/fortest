@@ -242,7 +242,7 @@ class Cardimg extends React.Component {
       var subdomain =  window.location.host.split('.')[1] ? window.location.host.split('.')[0] : false;
       console.log("subs",subdomain)
 
-if(subdomain!==false)
+if(subdomain!==false && subdomain!=="alacartes")
 {             
               this.setState({
               QRsubdomain:subdomain
