@@ -5,7 +5,7 @@
         overflow-y: hidden;
     white-space: nowrap;
  
-    .card {
+    .card1 {
     
       display: inline-block;
     }
@@ -16,13 +16,13 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     
-    .card {
+    .card1 {
       flex: 0 0 auto;
       margin-right: 3px;
     }
   }
   
-  .card {
+  .card1 {
     border: 2px solid white;
     width: 150px;
     height: 140px;

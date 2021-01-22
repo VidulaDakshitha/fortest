@@ -264,7 +264,7 @@ changeHandler=(e)=>{
   return (
     <div>
     {this.state.matches && (
-       <div>
+       <div className="d-flex align-items-center flex-column">
     {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
@@ -303,7 +303,7 @@ changeHandler=(e)=>{
 
 
  {this.props.item.map(tile=>(
-    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",width:"102%",borderRadius:"8px"}}>
+    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",width:"95%",borderRadius:"8px"}}>
 
     <div className="col-2 removePaading">
       <Avatar variant="rounded" alt="Remy Sharp" src={"https://onepayserviceimages.s3.amazonaws.com/"+tile.itemImage} style={{ height: '100px', width: '90px' }}/>
@@ -423,7 +423,7 @@ toggledImage:!this.state.toggledImage
     
 )}
 {!this.state.matches && (
-  <div className="">
+  <div className="d-flex align-items-center flex-column">
       {/* <List className={classes.root} style={{borderRadius:"10px",cursor:"pointer"}} className="shadowstyle">
       {this.props.item.map(tile=>(
 
@@ -463,7 +463,7 @@ toggledImage:!this.state.toggledImage
 
  {this.props.item.map(tile=>(
    
-    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",borderRadius:"8px"}}>
+    <div className="shadowstyle2 mb-3 d-flex removePaading" style={{height:"100px",width:"98%",borderRadius:"8px"}}>
 
     <div className="col-3 d-flex justify-content-start removePaading">
    

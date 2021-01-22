@@ -916,14 +916,14 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
               <form onSubmit={this.onSubmitHandler}>
               <FormGroup>
-              <p>Is this first time at our restaurant?</p>
+              <p className="Label">Is this first time at our restaurant? <span style={{color:"red"}}>*</span></p>
               <Button color="success" style={{borderColor:this.state.color,backgroundColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:'#006400',color2:"#32CD32"});}}>Yes</Button>{' '}
               <Button color="success" style={{borderColor:this.state.color2,backgroundColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"#32CD32",color2:"#006400"});}}>No</Button>{' '}
               </FormGroup>
 
 
               <FormGroup>
-              <p>What is your overall satisfaction with our restaurant?</p>
+              <p className="Label">What is your overall satisfaction with our restaurant?<span style={{color:"red"}}>*</span></p>
               <Rating
         name="satisfactionrating"
         value={this.state.satisfactionrating}
@@ -947,7 +947,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>How would you rate the hygeine?</p>
+              <p className="Label">How would you rate the hygeine? <span style={{color:"red"}}>*</span></p>
               <Rating
         name="hygeinerating"
         value={this.state.hygeinerating}
@@ -967,7 +967,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>How would you rate the taste of our food?</p>
+              <p>How would you rate the taste of our food? <span style={{color:"red"}}>*</span></p>
               <Rating
         name="foodrating"
         value={this.state.foodrating}
@@ -987,27 +987,27 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>Would you come back to eat with us again?</p>
+              <p className="Label">Would you come back to eat with us again? <span style={{color:"red"}}>*</span></p>
               <Button color="success" style={{borderColor:this.state.color3,backgroundColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"#006400",color4:"#32CD32"});}}>Yes</Button>{' '}
               <Button color="success" style={{borderColor:this.state.color4,backgroundColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"#006400",color3:"#32CD32"});}}>No</Button>{' '}
               </FormGroup>
 
               <FormGroup>
-        <Label for="exampleText">Is there anything you want to tell us?</Label>
+        <Label className="Label" for="exampleText">Is there anything you want to tell us? <span style={{color:"red"}}>*</span></Label>
         <Input type="textarea" name="feedback" id="exampleText" onChange={this.changeHandler} value={this.state.feedback} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">*Name</Label>
+        <Label className="Label" for="exampleEmail">Name <span style={{color:"red"}}>*</span></Label>
         <Input type="text" name="name" id="name" placeholder="Enter your name" value={this.state.name} onChange={this.changeHandler} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">*Email</Label>
+        <Label className="Label" for="exampleEmail">Email <span style={{color:"red"}}>*</span></Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="Enter email" value={this.state.email} onChange={this.changeHandler} />
       </FormGroup>
 
-      <Button color="success">Submit Feedback</Button>{' '}
+      <Button style={{height:"50px",fontWeight:"700"}}  color="success" block type="submit" color="success">Submit Feedback</Button>{' '}
       </form>
             </ModalBody>
              
@@ -1192,7 +1192,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
          <div className="scrolling-wrapper">
                 {this.state.categories.map((tile,index) => (
-                    <div className="card pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
+                    <div className="card1 pr-2" style={{borderBottomColor:index===this.state.styleArray?'green':'white'}}   onClick={()=>{this.setState({initialCatID:tile.catID,filteredItems:[]},()=>{this.onCatergoryClick(index,tile.catName);});}}>
                                 <div  style={{backgroundImage:`url(${"https://onepayserviceimages.s3.amazonaws.com/"+tile.catImage})`,width:"100%",height: "95px",borderRadius:"15px",backgroundRepeat: 'no-repeat',backgroundSize:"cover"}}>
                                   
                                     
@@ -1208,7 +1208,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 </div>
 
 
-<div className="pt-3 pb-5 " >
+<div className="pt-3 pb-5  " >
 
 {this.state.filteredItems.length===0?<p className="pl-3">No items available</p>:
 <Menu item={this.state.filteredItems} AddItemsToCart = {this.AddItemsToCart}/>}
@@ -1264,14 +1264,14 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
               <form onSubmit={this.onSubmitHandler}>
               <FormGroup>
-              <p>Is this first time at our restaurant?</p>
+              <p className="Label">Is this first time at our restaurant? <span style={{color:"red"}}>*</span></p>
               <Button color="success" style={{borderColor:this.state.color,backgroundColor:this.state.color}} onClick={()=>{this.setState({is_first_time:true,color:"#006400",color2:"#32CD32"});}}>Yes</Button>{' '}
               <Button color="success" style={{borderColor:this.state.color2,backgroundColor:this.state.color2}} onClick={()=>{this.setState({is_first_time:false,color:"#32CD32",color2:"#006400"});}}>No</Button>{' '}
               </FormGroup>
 
 
               <FormGroup>
-              <p>What is your overall satisfaction with our restaurant?</p>
+              <p className="Label">What is your overall satisfaction with our restaurant? <span style={{color:"red"}}>*</span></p>
               <Rating
         name="satisfactionrating"
         value={this.state.satisfactionrating}
@@ -1295,7 +1295,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>How would you rate the hygeine?</p>
+              <p className="Label">How would you rate the hygeine? <span style={{color:"red"}}>*</span></p>
               <Rating
         name="hygeinerating"
         value={this.state.hygeinerating}
@@ -1315,7 +1315,7 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>How would you rate the taste of our food?</p>
+              <p className="Label">How would you rate the taste of our food? <span style={{color:"red"}}>*</span></p>
               <Rating
         name="foodrating"
         value={this.state.foodrating}
@@ -1335,27 +1335,27 @@ if(this.state.name==="" || this.state.email==="" ||this.state.feedback==="" ||th
 
 
               <FormGroup>
-              <p>Would you come back to eat with us again?</p>
+              <p className="Label">Would you come back to eat with us again? <span style={{color:"red"}}>*</span></p>
               <Button color="success" style={{borderColor:this.state.color3,backgroundColor:this.state.color3}} onClick={()=>{this.setState({is_come_back:true,color3:"#006400",color4:"#32CD32"});}}>Yes</Button>{' '}
               <Button color="success" style={{borderColor:this.state.color4,backgroundColor:this.state.color4}} onClick={()=>{this.setState({is_come_back:false,color4:"#006400",color3:"#32CD32"});}}>No</Button>{' '}
               </FormGroup>
 
               <FormGroup>
-        <Label for="exampleText">Is there anything you want to tell us?</Label>
+        <Label className="Label" for="exampleText">Is there anything you want to tell us? <span style={{color:"red"}}>*</span></Label>
         <Input type="textarea" name="feedback" id="exampleText" onChange={this.changeHandler} value={this.state.feedback} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">*Name</Label>
+        <Label className="Label" for="exampleEmail">Name <span style={{color:"red"}}>*</span></Label>
         <Input type="text" name="name" id="name" placeholder="Enter your name" value={this.state.name} onChange={this.changeHandler} />
       </FormGroup>
 
       <FormGroup>
-        <Label for="exampleEmail">*Email</Label>
+        <Label className="Label" for="exampleEmail">Email <span style={{color:"red"}}>*</span></Label>
         <Input type="email" name="email" id="exampleEmail" placeholder="Enter email" value={this.state.email} onChange={this.changeHandler} />
       </FormGroup>
 
-      <Button color="success">Submit Feedback</Button>{' '}
+      <Button style={{height:"50px",fontWeight:"700"}}  color="success" block type="submit" color="success">Submit Feedback</Button>{' '}
       </form>
             </ModalBody>
              
