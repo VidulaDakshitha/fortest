@@ -144,7 +144,7 @@ class Register extends Component {
 
 
       const data={
-        sub_domain:this.state.subdomain.replace(/\s/g, '')
+        sub_domain:this.state.subdomain.replace(/[\. ,:-]+/g, '')
       }
   
       const url = "/api/digital_user/checksubdomain/";
@@ -452,7 +452,7 @@ const regUsers={
   tranding_name:this.state.trandingname,
   principal_place:this.state.principalplace,
   correspondence_address:this.state.address,
-  sub_domain:this.state.subdomain.replace(/\s/g, ''),
+  sub_domain:this.state.subdomain.replace(/[\. ,:-]+/g, ''),
   email:this.state.email,
   phone_number:this.state.phone,
   website:this.state.web,
@@ -636,7 +636,7 @@ console.log(regUsers)
 
 
                     <FormGroup className="mb-3">
-                     <Label className="Label">Business Subdomain <span style={{color:"red"}}>* </span> <span className=" pl-4" style={{fontWeight:"600",display:this.state.subdomain===""?'none':''}}> https://{this.state.subdomain.replace(/\s/g, '')}.alacartes.lk</span></Label>
+                     <Label className="Label">Business Subdomain <span style={{color:"red"}}>* </span> <span className=" pl-4" style={{fontWeight:"600",display:this.state.subdomain===""?'none':''}}> https://{this.state.subdomain.replace(/[\. ,:-]+/g, '')}.alacartes.lk</span></Label>
                       {/* <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-user"></i>
@@ -904,7 +904,7 @@ console.log(regUsers)
 
 
                     <FormGroup className="mb-3">
-                     <Label className="Label">Business Subdomain <span style={{color:"red"}}>* </span> <span className=" pl-4" style={{fontWeight:"600",display:this.state.subdomain===""?'none':''}}> https://{this.state.subdomain.replace(/\s/g, '')}.alacartes.lk</span></Label>
+                     <Label className="Label">Business Subdomain <span style={{color:"red"}}>* </span> <span className=" pl-4" style={{fontWeight:"600",display:this.state.subdomain===""?'none':''}}> https://{this.state.subdomain.replace(/[\. ,:-]+/g, '')}.alacartes.lk</span></Label>
                       {/* <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="icon-user"></i>
