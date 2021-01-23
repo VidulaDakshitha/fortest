@@ -62,13 +62,7 @@ class App extends Component {
  
           <Switch>
 
-          <Route
-              exact
-              path="/"
-              name="Loader Page"
-            component={Loaders}
-           
-            />
+       
 
             <Route
               exact
@@ -100,6 +94,15 @@ class App extends Component {
                component={RegisterConfirm}
             
             />
+
+             <Route
+              exact
+              path="/"
+              name="Loader Page"
+            component={Loaders}
+           
+            />
+             <Redirect from="/" to="/" />
 
           {/* <Route
               exact

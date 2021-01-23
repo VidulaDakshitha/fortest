@@ -46,6 +46,9 @@ class DefaultLayout extends Component {
     e.preventDefault();
     this.props.history.push("/");
   }
+  componentDidMount=()=>{
+    console.log("visyddd")
+  }
 
   render() {
     return (
