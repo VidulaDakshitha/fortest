@@ -62,10 +62,16 @@ class App extends Component {
  
           <Switch>
 
-       
+             <Route
+              exact
+              path="/"
+              name="Loader Page"
+            component={Loaders}
+           
+            />
 
             <Route
-              exact
+              
               path="/main"
               name="Main Page"
                 component={HomePage}
@@ -74,13 +80,14 @@ class App extends Component {
             />
 
                     <Route
-              exact
+              
               path="/register"
               name="Register Page"
               component={Register}
             />
 
             <Route
+            
               path="/menu"
               name="Menu Page"
               component={Menupage}
@@ -88,21 +95,15 @@ class App extends Component {
             />
 
                <Route
-              exact
+              
               path="/regsiterconfirm"
               name="regsiter confirm"
                component={RegisterConfirm}
             
             />
 
-             <Route
-              exact
-              path="/"
-              name="Loader Page"
-            component={Loaders}
-           
-            />
-             <Redirect from="/" to="/" />
+       
+             <Route component={HomePage} />
 
           {/* <Route
               exact
